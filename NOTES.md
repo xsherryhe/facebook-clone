@@ -2,6 +2,7 @@ DATA MODELING
 
 User
 -Devise + OmniAuth
+-use username or email to log in, but username is optional
 -custom password validation regex
 
 -has_one :profile
