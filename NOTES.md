@@ -2,6 +2,7 @@ DATA MODELING
 
 User
 -Devise + OmniAuth
+-custom password validation regex
 
 -has_one :profile
 -has_and_belongs_to_many :friends, class_name: User, 
@@ -12,7 +13,7 @@ User
 -has_many :created_posts, class_name: Post, foreign_key: creator_id
 -has_many :comments
 -has_many :likes
-
+ 
 Profile
 -first_name: string
 -middle_name: string

@@ -72,3 +72,11 @@ group :test do
   gem "guard"
   gem "guard-minitest"
 end
+
+group :development do
+  gem "letter_opener"
+end
+
+gem "devise"
+gem "omniauth-facebook"
+gem "omniauth-rails_csrf_protection"
