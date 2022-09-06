@@ -15,6 +15,8 @@ User
 -has_many :likes
  
 Profile
+(First created blank from after_create hook on User)
+(At edit action of controller, pull data from session['devise.facebook_data'] for OmniAuth users)
 -first_name: string
 -middle_name: string
 -last_name: string
