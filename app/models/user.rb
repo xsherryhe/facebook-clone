@@ -6,9 +6,10 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[facebook]
 
   def self.from_omniauth(auth)
-    find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |user|
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.email = auth.info.email
       user.password = generate_password
+      # Code to create and populate user profile -- use user.create_profile
     end
   end
 

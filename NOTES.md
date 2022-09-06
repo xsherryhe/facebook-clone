@@ -15,8 +15,8 @@ User
 -has_many :likes
  
 Profile
-(First created blank from after_create hook on User)
-(At edit action of controller, pull data from session['devise.facebook_data'] for OmniAuth users)
+(On native registration, create as nested attribute in registration form)
+(On OmniAuth user creation, use user.create_profile with args passed in)
 -first_name: string
 -middle_name: string
 -last_name: string
