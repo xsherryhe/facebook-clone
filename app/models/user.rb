@@ -8,7 +8,7 @@ class User < ApplicationRecord
                        format: { with: /\A[a-zA-Z0-9_.#!$*?]*\Z/,
                                  message: 'contains a disallowed character' },
                        allow_nil: true
-  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@{}()+-=!$%&*?]).*\Z/,
+  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@{}()+-=!$%\^&*?]).*\Z/,
                                  message: 'must contain at least 1 of each: ' \
                                           'uppercase letter, lowercase letter, digit, symbol' },
                        allow_blank: true
