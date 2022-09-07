@@ -8,6 +8,14 @@ class User < ApplicationRecord
                        format: { with: /\A[a-zA-Z0-9_.#!$*?]*\Z/,
                                  message: 'contains a disallowed character' },
                        allow_nil: true
+  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@{}()+-=!$%&*?]).*\Z/,
+                                 message: 'must contain at least 1 of each: ' \
+                                          'uppercase letter, lowercase letter, digit, symbol' },
+                       allow_blank: true
+  validate :uid_or_email_present
+
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
 
   attr_writer :login
 
@@ -19,7 +27,7 @@ class User < ApplicationRecord
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.email = auth.info.email
       user.password = generate_password
-      # Code to create and populate user profile -- use user.create_profile
+      user.build_profile_from_omniauth(auth)
     end
   end
 
@@ -37,6 +45,24 @@ class User < ApplicationRecord
     end
   end
 
+  def build_profile_with_session(params, session)
+    build_profile(params).tap do |profile|
+      if (data = session['devise.facebook_data'] && session['devise.facebook_data']['info'])
+        %w[first_name middle_name last_name location birthdate].each do |attribute|
+          profile[attribute.to_sym] = data[attribute]
+        end
+      end
+    end
+  end
+
+  def build_profile_from_omniauth(auth)
+    build_profile(first_name: auth.info.first_name,
+                  middle_name: auth.info.middle_name,
+                  last_name: auth.info.last_name,
+                  birthdate: auth.dig(:extra, :raw_info, :birthday),
+                  location: auth.dig(:extra, :raw_info, :location, :name))
+  end
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     attributes = %i[username email]
@@ -49,5 +75,15 @@ class User < ApplicationRecord
     elsif attributes.any? { |attribute| conditions.has_key?(attribute) }
       find_by(conditions.to_h)
     end
+  end
+
+  private
+
+  def email_required?
+    false
+  end
+
+  def uid_or_email_present
+    errors.add(:email, "can't be blank") if email.blank? && (provider.blank? || uid.blank?)
   end
 end

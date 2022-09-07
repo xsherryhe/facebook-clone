@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+profile_user_one:
+  first_name: FirstOne
+  middle_name: MiddleOne
+  last_name: LastOne
+  birthdate: 1990-08-23
+  location: One, Wisconsin
+  user: one
+
+profile_user_two:
+  first_name: FirstTwo
+  middle_name: MiddleTwo
+  last_name: LastTwo
+  birthdate: 2001-02-06
+  location: Two, California
+  user: two
