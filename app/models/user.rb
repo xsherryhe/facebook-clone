@@ -15,6 +15,7 @@ class User < ApplicationRecord
   validate :uid_or_email_present
 
   has_one :profile, dependent: :destroy
+  has_many :created_posts, class_name: 'Post', foreign_key: 'creator_id', dependent: :destroy
   accepts_nested_attributes_for :profile
 
   attr_writer :login
