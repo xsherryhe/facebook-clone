@@ -1,4 +1,4 @@
-class UsersOmniauthCallbacksController < Devise::OmniauthCallbacksController
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token, only: :facebook
 
   def facebook
@@ -9,7 +9,7 @@ class UsersOmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Facebook')
     else
-      session['devise.facebook_data'] = @auth.except(:extra)
+      store_facebook_data
       set_flash_message(:error, :failure, kind: 'Facebook')
       redirect_to new_user_registration_path
     end
@@ -18,5 +18,13 @@ class UsersOmniauthCallbacksController < Devise::OmniauthCallbacksController
   def failure
     set_flash_message(:error, :general_failure)
     redirect_to new_user_registration_path
+  end
+
+  private
+
+  def store_facebook_data
+    session['devise.facebook_data'] = @auth.except(:extra)
+    session['devise.facebook_data']['info']['location'] = @auth.dig(:extra, :raw_info, :location, :name)
+    session['devise.facebook_data']['info']['birthdate'] = @auth.dig(:extra, :raw_info, :birthday)
   end
 end

@@ -29,7 +29,7 @@ en:
         subject: "Password Changed"
     omniauth_callbacks:
       general_failure: "Sorry, authentication failed. Please try again or sign up here."
-      failure: "Sorry, %{kind} authentication failed. Please try again or sign up here."
+      failure: "Sorry, %{kind} authentication failed. Please sign up here."
       success: "Successfully authenticated from %{kind} account."
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
