@@ -1,5 +1,7 @@
 <div>
-  <%= post.body %>
+  <div class="creator"><%= post.creator.profile.full_name %></div>
+  <div class="time"><%= post.created_at_abbr_display %></div>
+  <div class="body"><%= post.body %></div>
   <% if post.creator == current_user %>
     <%= link_to 'Edit This Post', edit_post_path(post) %>
     <%= link_to 'Delete This Post', 
