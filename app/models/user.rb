@@ -74,7 +74,7 @@ class User < ApplicationRecord
     attributes.each do |attribute|
       conditions[attribute].downcase! if conditions[attribute]
     end
-    if(login = conditions[:login].delete)
+    if (login = conditions.delete(:login))
       where(conditions.to_h).where(['lower(username) = :value OR lower(email) = :value',
                                    { value: login.downcase }]).first
     elsif attributes.any? { |attribute| conditions.has_key?(attribute) }
