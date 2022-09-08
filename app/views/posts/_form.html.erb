@@ -1,0 +1,8 @@
+<%= form_with model: post, format: response_format do |form| %>
+  <%= hidden_field_tag 'response_format', response_format %>
+  <%= form.text_area :body, placeholder: "What's on your mind, #{profile.first_name}?"%>
+  <% post.errors.full_messages_for(:body).each do |message| %>
+    <p class="error"><%= message %></p>
+  <% end %>
+  <%= form.submit 'Post' %>
+<% end %>

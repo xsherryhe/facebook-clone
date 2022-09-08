@@ -1,0 +1,5 @@
+<h2>New Post</h2>
+
+<%= turbo_frame_tag 'new_post', target: '_top' do %>
+  <%= render 'form', profile: @profile, post: @post, response_format: @response_format %>
+<% end %>

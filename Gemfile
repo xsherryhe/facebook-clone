@@ -82,3 +82,4 @@ gem "omniauth-facebook"
 gem "omniauth-rails_csrf_protection"
 
 gem "figaro"
+gem "simple_form"

@@ -11,6 +11,17 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <div>Currently signed in as: <%# link_to current_user.profile.first_name, current_user, class: "important-link" %></div>
+        <div class="user-links">
+          <% if current_user.native_login? %>
+            <div class="user-link"><%= link_to 'Edit Account', edit_user_registration_path %></div>
+          <% end %>
+          <div class="user-link"><%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete } %></div>
+        </div>
+      <% end %>
+    </header>
     <% if flash.any? %>
       <div class="flash">
         <% flash.each do |name, message| %>

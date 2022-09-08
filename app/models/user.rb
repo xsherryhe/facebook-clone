@@ -24,6 +24,10 @@ class User < ApplicationRecord
     @login || username || email
   end
 
+  def native_login?
+    email.present? && password.present?
+  end
+
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.email = auth.info.email
