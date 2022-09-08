@@ -10,4 +10,12 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal(user.profile, profile)
   end
+
+  test 'has many created posts' do
+    user = users(:one)
+    posts = user.created_posts
+
+    assert_includes(posts, posts(:post_one_from_user_one))
+    assert_includes(posts, posts(:post_two_from_user_one))
+  end
 end

@@ -1,7 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  body: MyText
+post_one_from_user_one:
+  body: PostOneBody
+  creator: one
 
-two:
-  body: MyText
+post_two_from_user_one:
+  body: PostTwoBody
+  creator: one
+
+post_three_from_user_two:
+  body: PostThreeBody
+  creator: two
