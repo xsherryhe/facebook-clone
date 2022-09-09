@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   def index
     # TO DO: Add params to filter by friends/pending friends or not friends, and header
-    @users = User.includes(:profile)
+    # TO DO: Add stored to avatar to avoid N + 1
+    @users = User.includes(profile: :avatar)
   end
 
   def show

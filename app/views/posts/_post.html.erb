@@ -1,5 +1,8 @@
 <div>
-  <div class="creator"><%= post.creator.profile.full_name %></div>
+  <div class="creator">
+    <%= mini_avatar(post.creator) %>
+    <%= post.creator.profile.full_name %>
+  </div>
   <div class="time"><%= post.created_at_abbr_display %></div>
   <div class="body"><%= post.body %></div>
   <% if post.creator == current_user %>

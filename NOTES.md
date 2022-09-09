@@ -26,7 +26,7 @@ Profile
 -photo (Gravatar API - update README when this is implemented)
 
 --belongs_to :user
--has_one :image, as: :imageable
+--has_one :image, as: :imageable
 
 FriendRequest
 -belongs_to :sender, class_name: User
@@ -54,10 +54,13 @@ Like
 -belongs_to :reactable, polymorphic: true
 
 Image
--Active Storage
--uri: string
+--url: string
 
--belongs_to :imageable, polymorphic: true, optional: true
+-has_one_attached :stored, optional: true
+--belongs_to :imageable, polymorphic: true, optional: true
 -has_many :comments, as: :reactable
 -has_many :likes, as: :reactable
+
+--before validation make uri string nil if there is a stored association
+--validate image has either uri string or stored association and not both
 
