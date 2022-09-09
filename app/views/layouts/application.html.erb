@@ -12,8 +12,10 @@
 
   <body>
     <header>
+      <%= link_to 'Home', '/' %>
       <% if user_signed_in? %>
-        <div>Currently signed in as: <%# link_to current_user.profile.first_name, current_user, class: "important-link" %></div>
+        <div>Currently signed in as: <%= link_to current_user.profile.first_name, current_user_path, class: "important-link" %></div>
+        <div><%= link_to 'Find Friends', users_path %></div>
         <div class="user-links">
           <% if current_user.native_login? %>
             <div class="user-link"><%= link_to 'Edit Account', edit_user_registration_path %></div>
