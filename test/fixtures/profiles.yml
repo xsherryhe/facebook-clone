@@ -12,6 +12,10 @@ profile_user_two:
   first_name: FirstTwo
   middle_name: MiddleTwo
   last_name: LastTwo
-  birthdate: 2001-02-06
   location: Two, California
   user: two
+
+profile_user_three:
+  first_name: FirstThree
+  last_name: LastThree
+  user: three

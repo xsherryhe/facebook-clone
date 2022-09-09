@@ -4,10 +4,10 @@ class Profile < ApplicationRecord
   belongs_to :user
 
   def full_name
-    "#{first_name} #{middle_name} #{last_name}"
+    [first_name, middle_name, last_name].compact.join(' ')
   end
 
   def birthdate_full_display
-    birthdate.strftime('%B %-d, %Y')
+    birthdate&.strftime('%B %-d, %Y')
   end
 end
