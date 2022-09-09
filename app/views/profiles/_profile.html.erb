@@ -1,6 +1,6 @@
 <h3><%= profile.full_name %></h3>
 
-<%= image_tag profile.avatar.source, alt: profile.avatar.alt_text %>
+<%= full_avatar(profile) %>
 
 <% if profile.birthdate %>
   <div class="birthdate">Birthday: <%= profile.birthdate_full_display %></div>

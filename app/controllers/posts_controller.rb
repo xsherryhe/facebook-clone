@@ -36,13 +36,13 @@ class PostsController < ApplicationController
   def edit
     @profile = current_user.profile
     @post = Post.find(params[:id])
-    return unauthorized_redirect('edit') unless @post.creator == current_user
+    return unauthorized_redirect('edit', posts_path) unless @post.creator == current_user
   end
 
   def update
     @profile = current_user.profile
     @post = Post.find(params[:id])
-    return unauthorized_redirect('edit') unless @post.creator == current_user
+    return unauthorized_redirect('edit', posts_path) unless @post.creator == current_user
 
     if @post.update(post_params)
       flash[:notice] = 'Successfully edited post.'
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    return unauthorized_redirect('delete') unless @post.creator == current_user
+    return unauthorized_redirect('delete', posts_path) unless @post.creator == current_user
 
     @post.destroy
     flash[:notice] = 'Successfully deleted post.'
@@ -65,10 +65,5 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body)
-  end
-
-  def unauthorized_redirect(action)
-    flash[:error] = "You don't have permission to #{action} that post."
-    redirect_to posts_path
   end
 end

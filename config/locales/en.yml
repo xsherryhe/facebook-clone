@@ -35,4 +35,6 @@ en:
     attributes:
       post:
         body: 'Post'
+      profile:
+        birthdate: 'Birthday'
 

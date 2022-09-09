@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit controller, keys: added_attrs
     end
   end
+
+  def unauthorized_redirect(action, redirect_path)
+    flash[:error] = "You don't have permission to #{action} that #{controller_name.classify.downcase}."
+    redirect_to redirect_path
+  end
 end

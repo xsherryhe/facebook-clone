@@ -1,5 +1,9 @@
 module ApplicationHelper
-  def mini_avatar(user)
-    image_tag user.profile.avatar.source, alt: user.profile.avatar.alt_text, size: '35'
+  def mini_avatar(profile)
+    image_tag profile.avatar.source, alt: profile.avatar.alt_text, size: '35'
+  end
+
+  def full_avatar(profile)
+    image_tag profile.avatar.source, alt: profile.avatar.alt_text
   end
 end

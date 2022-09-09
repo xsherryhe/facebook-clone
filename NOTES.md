@@ -23,10 +23,9 @@ Profile
 --last_name: string
 --birthdate: datetime
 --location: string
--photo (Gravatar API - update README when this is implemented)
 
 --belongs_to :user
---has_one :image, as: :imageable
+--has_one :image, as: :imageable (Gravatar URLs)
 
 FriendRequest
 -belongs_to :sender, class_name: User
@@ -56,7 +55,7 @@ Like
 Image
 --url: string
 
--has_one_attached :stored, optional: true
+--has_one_attached :stored
 --belongs_to :imageable, polymorphic: true, optional: true
 -has_many :comments, as: :reactable
 -has_many :likes, as: :reactable

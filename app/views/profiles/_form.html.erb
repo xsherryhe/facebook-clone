@@ -1,0 +1,14 @@
+<%= simple_form_for @profile do |form| %>
+  <%= form.input :first_name %>
+  <%= form.input :middle_name %>
+  <%= form.input :last_name %>
+  <%= form.simple_fields_for :avatar do |avatar_form| %>
+    <p>Profile picture</p>
+    <%= full_avatar(@profile) %>
+    <%= avatar_form.input :stored, as: :file, label: 'Upload new profile picture' %>
+  <% end %>
+
+  <%= form.input :birthdate, html5: true %>
+  <%= form.input :location %>
+  <%= form.submit %>
+<% end %>
