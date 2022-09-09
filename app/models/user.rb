@@ -12,6 +12,7 @@ class User < ApplicationRecord
                                  message: 'must contain at least 1 of each: ' \
                                           'uppercase letter, lowercase letter, digit, symbol' },
                        allow_blank: true
+  validates :profile, presence: true
   validate :uid_or_email_present
 
   has_one :profile, dependent: :destroy

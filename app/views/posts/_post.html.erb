@@ -1,7 +1,6 @@
 <div>
   <div class="creator">
-    <%= mini_avatar(post.creator.profile) %>
-    <%= link_to post.creator.profile.full_name, post.creator %>
+    <%= render post.creator %>
   </div>
   <div class="time"><%= post.created_at_abbr_display %></div>
   <div class="body"><%= post.body %></div>

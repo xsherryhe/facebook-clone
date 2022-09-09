@@ -81,5 +81,6 @@ gem "devise"
 gem "omniauth-facebook"
 gem "omniauth-rails_csrf_protection"
 
+gem "faker"
 gem "figaro"
 gem "simple_form"
