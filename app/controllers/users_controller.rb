@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @is_friend = params[:is_friend]
-    @users = (@is_friend ? current_user.friends : current_user.strangers)
-             .includes(profile: { avatar: :stored_attachment })
-    @heading_word = @is_friend ? 'My' : 'Find'
+    @users = current_user.strangers.includes(profile: { avatar: :stored_attachment })
   end
 
   def show

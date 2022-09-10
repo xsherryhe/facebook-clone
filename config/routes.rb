@@ -4,14 +4,14 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   get '/me', to: 'users#show', as: 'current_user'
-  get '/friends', to: 'users#index', defaults: { is_friend: true }, as: 'friends'
-  get '/find_friends', to: 'users#index', defaults: { is_friend: false }, as: 'strangers'
+  get '/find_friends', to: 'users#index', as: 'strangers'
 
   resources :users, only: [:show]
   resource :profile, only: [:edit]
   resources :profiles, only: [:update]
 
   resources :friend_requests, only: %i[index create destroy]
+  resources :friends, only: [:index]
   post '/friends/:id', to: 'friends#create', as: 'create_friend'
 
   resources :posts, except: [:show]

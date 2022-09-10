@@ -1,9 +1,7 @@
-<h2><%= @heading_word %> Friends</h2>
+<h2>Find Friends</h2>
 <% @users.each do |user| %>
   <%= render user %>
-  <% unless @is_friend %>
-    <%= turbo_frame_tag "friend-request-form-#{user.id}" do %>
-      <%= render 'friend_requests/form', friend_request: nil, receiver_id: user.id %>
-    <% end %>
+  <%= turbo_frame_tag "friend-request-form-#{user.id}" do %>
+    <%= render 'friend_requests/form', friend_request: nil, receiver_id: user.id %>
   <% end %>
 <% end %>
