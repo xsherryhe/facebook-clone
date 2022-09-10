@@ -1,7 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  url: MyString
+avatar_user_one:
+  url: AvatarURLOne
+  imageable: profile_user_one (Profile)
 
-two:
-  url: MyString
+avatar_user_two:
+  url: AvatarURLTwo
+  imageable: profile_user_two (Profile)

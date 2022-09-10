@@ -7,9 +7,12 @@
 one:
   username: one
   email: one@example.com
+  friends: [two, three]
 
 two:
   email: two@example.com
+  friends: [one]
 
 three:
   email: three@example.com
+  friends: [one]

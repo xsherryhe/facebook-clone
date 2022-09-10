@@ -1,10 +1,6 @@
 require "test_helper"
 
 class PostTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   test 'belongs to creator' do
     post = posts(:post_three_from_user_two)
     user = post.creator
