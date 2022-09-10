@@ -16,7 +16,9 @@
       <% if user_signed_in? %>
         <div>Currently signed in as: <%= link_to current_user.profile.first_name, current_user_path, class: "important-link" %></div>
         <div class="user-links">
-          <div class="user-link"><%= link_to 'Find Friends', users_path %></div>
+          <div class="user-link"><%= link_to 'My Friends', friends_path %></div>
+          <div class="user-link"><%= link_to 'My Friend Requests', friend_requests_path %></div>
+          <div class="user-link"><%= link_to 'Find Friends', strangers_path %></div>
           <div class="user-link"><%= link_to 'Edit Profile', edit_profile_path %></div>
           <% if current_user.native_login? %>
             <div class="user-link"><%= link_to 'Edit Account', edit_user_registration_path %></div>

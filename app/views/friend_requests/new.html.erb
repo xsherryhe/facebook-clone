@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "friend-request-form-#{@friend_request.receiver_id}" do %>
+  <%= render 'form', friend_request: @friend_request, receiver_id: @friend_request.receiver_id %>
+<% end %>

@@ -1,0 +1,9 @@
+<%= form_with url: friend_requests_path, method: :post do |form| %>
+  <%= form.hidden_field 'friend_request[receiver_id]', value: receiver_id %>
+  <%= form.submit 'Add Friend' %>
+  <% if friend_request %>
+    <% friend_request.errors.full_messages.each do |message| %>
+      <p class="error"><%= message %></p>
+    <% end %>
+  <% end %>
+<% end %>

@@ -6,11 +6,11 @@ User
 --custom password validation regex
 
 --has_one :profile
--has_and_belongs_to_many :friends, class_name: User, 
-                                  foreign_key: this_friend_id, 
-                                  association_foreign_key: other_friend_id
--has_many :sent_friend_requests, class_name: FriendRequest, foreign_key: sender_id
--has_many :received_friend_requests, class_name: FriendRequest, foreign_key: receiver_id
+--has_and_belongs_to_many :friends, class_name: User, 
+                                    foreign_key: user_id, 
+                                    association_foreign_key: friend_id
+--has_many :sent_friend_requests, class_name: FriendRequest, foreign_key: sender_id
+--has_many :received_friend_requests, class_name: FriendRequest, foreign_key: receiver_id
 --has_many :created_posts, class_name: Post, foreign_key: creator_id
 -has_many :comments
 -has_many :likes
@@ -28,9 +28,9 @@ Profile
 --has_one :image, as: :imageable (Gravatar URLs)
 
 FriendRequest
--belongs_to :sender, class_name: User
--belongs_to :receiver, class_name: User
--status enum accepted, not_responded, declined
+--belongs_to :sender, class_name: User
+--belongs_to :receiver, class_name: User
+--status enum accepted, pending
 -(method in FriendRequest to add sender and receiver to each other's friends when accepted)
 
 Post

@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def unauthorized_redirect(action, redirect_path)
-    flash[:error] = "You don't have permission to #{action} that #{controller_name.classify.downcase}."
-    redirect_to redirect_path
+  def unauthorized_redirect(action, redirect_path, options = {})
+    respond_to do |format|
+      error = "You don't have permission to #{action} that #{controller_name.classify.downcase}."
+      error += " #{options[:additional_info]}" if options[:additional_info]
+      flash[:error] = error
+      format.html { redirect_to redirect_path }
+    end
   end
 end

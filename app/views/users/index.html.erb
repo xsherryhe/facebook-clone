@@ -1,4 +1,9 @@
-<h2>Find Friends</h2>
-<%# TO DO: Change header to be a variable depending on whether friends/pending friends or not friends are shown %>
-
-<%= render @users %>
+<h2><%= @heading_word %> Friends</h2>
+<% @users.each do |user| %>
+  <%= render user %>
+  <% unless @is_friend %>
+    <%= turbo_frame_tag "friend-request-form-#{user.id}" do %>
+      <%= render 'friend_requests/form', friend_request: nil, receiver_id: user.id %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   def index
-    # TO DO: Add params to filter by friends/pending friends or not friends, and header
-    # TO DO: Add stored to avatar to avoid N + 1
-    @users = User.includes(profile: :avatar)
+    @is_friend = params[:is_friend]
+    @users = (@is_friend ? current_user.friends : current_user.strangers)
+             .includes(profile: { avatar: :stored_attachment })
+    @heading_word = @is_friend ? 'My' : 'Find'
   end
 
   def show

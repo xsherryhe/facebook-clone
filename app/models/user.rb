@@ -16,10 +16,25 @@ class User < ApplicationRecord
   validate :uid_or_email_present
 
   has_one :profile, dependent: :destroy
+  has_and_belongs_to_many :friends, class_name: 'User',
+                                    foreign_key: 'user_id',
+                                    association_foreign_key: 'friend_id',
+                                    join_table: 'friendships'
+  has_many :sent_friend_requests, class_name: 'FriendRequest', foreign_key: 'sender_id', dependent: :destroy
+  has_many :received_friend_requests, class_name: 'FriendRequest', foreign_key: 'receiver_id', dependent: :destroy
   has_many :created_posts, class_name: 'Post', foreign_key: 'creator_id', dependent: :destroy
   accepts_nested_attributes_for :profile
 
   attr_writer :login
+
+  def strangers
+    User.where.not(id: [id] + sent_friend_requests.pluck(:receiver_id) + friends.pluck(:friend_id))
+  end
+
+  def add_friend(friend)
+    friends << friend
+    friend.friends << self
+  end
 
   def login
     @login || username || email
