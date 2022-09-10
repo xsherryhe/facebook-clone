@@ -2,16 +2,16 @@ require "test_helper"
 
 class FriendRequestTest < ActiveSupport::TestCase
   test 'belongs to sender' do
-    friend_request = friend_requests(:friend_request_one_two)
+    friend_request = friend_requests(:friend_request_two_four)
     sender = friend_request.sender
 
-    assert_equal(sender, users(:one))
+    assert_equal(sender, users(:two))
   end
 
   test 'belongs to receiver' do
-    friend_request = friend_requests(:friend_request_three_one)
+    friend_request = friend_requests(:friend_request_four_three)
     receiver = friend_request.receiver
 
-    assert_equal(receiver, users(:one))
+    assert_equal(receiver, users(:three))
   end
 end

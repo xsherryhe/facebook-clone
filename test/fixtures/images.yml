@@ -1,9 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 avatar_user_one:
-  url: AvatarURLOne
+  url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_one (Profile)
 
 avatar_user_two:
-  url: AvatarURLTwo
+  url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_two (Profile)
+
+avatar_user_three:
+  url: https://www.gravatar.com/avatar/?default=identicon&size=150
+  imageable: profile_user_three (Profile)
+
+avatar_user_four:
+  url: https://www.gravatar.com/avatar/?default=identicon&size=150
+  imageable: profile_user_four (Profile)
+
+avatar_user_five:
+  url: https://www.gravatar.com/avatar/?default=identicon&size=150
+  imageable: profile_user_five (Profile)

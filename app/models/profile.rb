@@ -9,7 +9,7 @@ class Profile < ApplicationRecord
   accepts_nested_attributes_for :avatar
 
   def full_name
-    [first_name, middle_name, last_name].compact.join(' ')
+    [first_name, middle_name, last_name].select(&:present?).join(' ')
   end
 
   def birthdate_full_display

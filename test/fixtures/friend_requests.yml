@@ -4,10 +4,19 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-friend_request_one_two:
-  sender: one
-  receiver: two
+friend_request_two_one:
+  sender: two
+  receiver: one
+  status: accepted
 
-friend_request_three_one:
-  sender: three
+friend_request_two_four:
+  sender: two
+  receiver: four
+
+friend_request_four_three:
+  sender: four
+  receiver: three
+
+friend_request_five_one:
+  sender: five
   receiver: one

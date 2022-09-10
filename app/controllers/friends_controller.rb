@@ -6,7 +6,7 @@ class FriendsController < ApplicationController
   def create
     @friend = User.find(params[:id])
     @friend_request = FriendRequest.find_by(sender: @friend, receiver: current_user)
-    unless @friend_request
+    unless @friend_request&.pending?
       return unauthorized_redirect('make', strangers_path, additional_info: 'Please send a friend request first.')
     end
 

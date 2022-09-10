@@ -11,8 +11,15 @@ one:
 
 two:
   email: two@example.com
-  friends: [one]
+  friends: [one, four]
 
 three:
   email: three@example.com
   friends: [one]
+
+four:
+  email: four@example.com
+  friends: [two]
+
+five:
+  email: five@example.com

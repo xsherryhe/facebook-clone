@@ -23,11 +23,4 @@ class UserFlowTest < ActionDispatch::IntegrationTest
     assert_select 'div.body', 'PostThreeBody'
     assert_select 'div.body', text: 'PostOneBody', count: 0
   end
-
-  test 'can view list of other users' do
-    get users_path
-    assert_response :success
-    assert_select 'a', 'FirstTwo MiddleTwo LastTwo'
-    assert_select 'a', 'FirstThree LastThree'
-  end
 end
