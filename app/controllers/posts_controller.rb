@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   def index
-    # TO DO: Add stored to avatar to avoid N + 1
-    @posts = Post.includes(creator: { profile: :avatar }).order(updated_at: :desc)
+    @posts = Post.includes(creator: { profile: { avatar: :stored_attachment } }).order(updated_at: :desc)
     @user = current_user
   end
 
