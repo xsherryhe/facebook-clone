@@ -12,7 +12,7 @@ User
 --has_many :sent_friend_requests, class_name: FriendRequest, foreign_key: sender_id
 --has_many :received_friend_requests, class_name: FriendRequest, foreign_key: receiver_id
 --has_many :created_posts, class_name: Post, foreign_key: creator_id
--has_many :comments
+--has_many :comments
 -has_many :likes
  
 Profile
@@ -37,16 +37,18 @@ Post
 --body: text
 
 --belongs_to :creator, class_name: User
--has_many :images
--has_many :comments, as: :reactable
+-has_many :images, as: :imageable
+--has_many :comments, as: :reactable
 -has_many :likes, as: :reactable
 
 Comment
--body: text
+--body: text
 
--belongs_to :user
--belongs_to :reactable, polymorphic: true
+--belongs_to :user
+--belongs_to :reactable, polymorphic: true
 -has_many :images, as: :imageable
+--has_many :comments, as: :reactable
+-has_many :likes, as: :reactable
 
 Like
 -belongs_to :user
@@ -57,7 +59,7 @@ Image
 
 --has_one_attached :stored
 --belongs_to :imageable, polymorphic: true, optional: true
--has_many :comments, as: :reactable
+--has_many :comments, as: :reactable
 -has_many :likes, as: :reactable
 
 --before validation make uri string nil if there is a stored association

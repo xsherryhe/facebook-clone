@@ -4,6 +4,7 @@ class Image < ApplicationRecord
                                      message: 'is not an image (PNG, JPG, JPEG, or SVG)' }
   belongs_to :imageable, polymorphic: true, optional: true
   has_one_attached :stored
+  has_many :comments, as: :reactable, dependent: :destroy
 
   before_validation :delete_url_if_stored
 

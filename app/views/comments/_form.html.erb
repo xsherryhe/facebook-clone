@@ -1,0 +1,7 @@
+<div class="user">
+  <%= render current_user %>
+</div>
+<%= simple_form_for comment, url: "/#{@reactable_type}/#{@reactable.id}/comments" do |form| %>
+  <%= form.input :body, label: false %>
+  <%= form.submit 'Submit' %>
+<% end %>

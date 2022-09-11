@@ -1,4 +1,4 @@
 <div class="user">
   <%= mini_avatar(user.profile) %>
-  <%= link_to user.profile.full_name, user %>
+  <%= link_to user.profile.full_name, user, data: { turbo_frame: '_top' } %>
 </div>

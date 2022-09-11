@@ -11,4 +11,12 @@
                 data: { turbo_method: :delete,
                         turbo_confirm: 'Are you sure you wish to delete this post?' } %>
   <% end %>
+  <div class="comments">
+    <div class="comments-link">
+      <%= link_to 'Comment', 
+                  comments_path('posts', post), 
+                  data: { turbo_frame: "post-#{post.id}-comments-with-form" } %>
+    </div>
+    <%= turbo_frame_tag "post-#{post.id}-comments-with-form" %>
+  </div>
 </div>

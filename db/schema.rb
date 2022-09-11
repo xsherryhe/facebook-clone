@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_10_025415) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_10_223129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_025415) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.string "reactable_type", null: false
+    t.bigint "reactable_id", null: false
+    t.index ["reactable_type", "reactable_id"], name: "index_comments_on_reactable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "friend_requests", force: :cascade do |t|
@@ -111,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_025415) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "users"
   add_foreign_key "friend_requests", "users", column: "receiver_id"
   add_foreign_key "friend_requests", "users", column: "sender_id"
   add_foreign_key "friendships", "users"

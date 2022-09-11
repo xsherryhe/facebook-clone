@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-with-form" do %>
+  <div id="<%= @reactable_singular %>-<%= @reactable.id %>-comments">
+    <%= render @comments %>
+  </div>
+  <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
+    <%= render 'form', comment: @comment %>
+  <% end %>
+<% end %>
