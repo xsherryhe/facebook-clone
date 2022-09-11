@@ -30,6 +30,14 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_select 'p.error', 'You cannot send a friend request to yourself!'
 
+    post friend_requests_path, params: { friend_request: { receiver_id: users(:six).id } }
+    assert_response :unprocessable_entity
+    assert_select 'p.error', 'You have already sent a friend request to FirstSix!'
+
+    post friend_requests_path, params: { friend_request: { receiver_id: users(:two).id } }
+    assert_response :unprocessable_entity
+    assert_select 'p.error', 'You are already friends with FirstTwo!'
+
     post friend_requests_path, params: { friend_request: { receiver_id: users(:two).id } }
     assert_response :unprocessable_entity
     assert_select 'p.error', 'You are already friends with FirstTwo!'

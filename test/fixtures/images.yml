@@ -19,3 +19,7 @@ avatar_user_four:
 avatar_user_five:
   url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_five (Profile)
+
+avatar_user_six:
+  url: https://www.gravatar.com/avatar/?default=identicon&size=150
+  imageable: profile_user_six (Profile)

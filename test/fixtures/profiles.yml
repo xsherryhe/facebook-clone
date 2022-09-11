@@ -29,3 +29,8 @@ profile_user_five:
   first_name: FirstFive
   last_name: LastFive
   user: five
+
+profile_user_six:
+  first_name: FirstSix
+  last_name: LastSix
+  user: six

@@ -4,6 +4,10 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+friend_request_one_six:
+  sender: one
+  receiver: six
+  
 friend_request_two_one:
   sender: two
   receiver: one
