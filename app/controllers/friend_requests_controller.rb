@@ -7,18 +7,11 @@ class FriendRequestsController < ApplicationController
 
   def create
     @friend_request = current_user.sent_friend_requests.build(friend_request_params)
-    respond_to do |format|
-      begin
-        if @friend_request.save
-          format.turbo_stream
-        else
-          format.html { render :new, status: :unprocessable_entity }
-        end
-      rescue ActiveRecord::RecordNotUnique
-        @friend_request.errors.add(:base, "You have already sent a friend request to #{@friend_request.receiver.profile.first_name}!")
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
+    render :new, status: :unprocessable_entity unless @friend_request.save
+  rescue ActiveRecord::RecordNotUnique
+    @friend_request.errors.add(:base, 'You have already sent a friend request to ' \
+                                      "#{@friend_request.receiver.profile.first_name}!")
+    render :new, status: :unprocessable_entity
   end
 
   def destroy
@@ -27,7 +20,6 @@ class FriendRequestsController < ApplicationController
     return unauthorized_redirect('delete', friend_requests_path) unless @friend_request.receiver == current_user
 
     @friend_request.destroy
-    respond_to { |format| format.turbo_stream }
   end
 
   private

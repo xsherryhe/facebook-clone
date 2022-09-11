@@ -12,6 +12,5 @@ class FriendsController < ApplicationController
 
     current_user.add_friend(@friend)
     @friend_request.accepted!
-    respond_to { |format| format.turbo_stream }
   end
 end
