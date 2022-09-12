@@ -13,7 +13,7 @@ User
 --has_many :received_friend_requests, class_name: FriendRequest, foreign_key: receiver_id
 --has_many :created_posts, class_name: Post, foreign_key: creator_id
 --has_many :comments
--has_many :likes
+--has_many :likes
  
 Profile
 --(On native registration, create as nested attribute in registration form)
@@ -31,7 +31,7 @@ FriendRequest
 --belongs_to :sender, class_name: User
 --belongs_to :receiver, class_name: User
 --status enum accepted, pending
--(method in FriendRequest to add sender and receiver to each other's friends when accepted)
+--(method in FriendRequest to add sender and receiver to each other's friends when accepted)
 
 Post
 --body: text
@@ -39,7 +39,7 @@ Post
 --belongs_to :creator, class_name: User
 -has_many :images, as: :imageable
 --has_many :comments, as: :reactable
--has_many :likes, as: :reactable
+--has_many :likes, as: :reactable
 
 Comment
 --body: text
@@ -48,11 +48,11 @@ Comment
 --belongs_to :reactable, polymorphic: true
 -has_many :images, as: :imageable
 --has_many :comments, as: :reactable
--has_many :likes, as: :reactable
+--has_many :likes, as: :reactable
 
 Like
--belongs_to :user
--belongs_to :reactable, polymorphic: true
+--belongs_to :user
+--belongs_to :reactable, polymorphic: true
 
 Image
 --url: string
@@ -60,7 +60,7 @@ Image
 --has_one_attached :stored
 --belongs_to :imageable, polymorphic: true, optional: true
 --has_many :comments, as: :reactable
--has_many :likes, as: :reactable
+--has_many :likes, as: :reactable
 
 --before validation make uri string nil if there is a stored association
 --validate image has either uri string or stored association and not both
