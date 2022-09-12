@@ -1,9 +1,10 @@
-<div>
+<div data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept">
   <div class="creator">
     <%= render post.creator %>
   </div>
   <div class="time"><%= post.created_at_abbr_display %></div>
   <div class="body"><%= post.body %></div>
+
   <% if post.creator == current_user %>
     <%= link_to 'Edit This Post', edit_post_path(post) %>
     <%= link_to 'Delete This Post', 
@@ -11,12 +12,9 @@
                 data: { turbo_method: :delete,
                         turbo_confirm: 'Are you sure you wish to delete this post?' } %>
   <% end %>
-  <div class="comments">
-    <div class="comments-link">
-      <%= link_to 'Comment', 
-                  comments_path('posts', post), 
-                  data: { turbo_frame: "post-#{post.id}-comments-with-form" } %>
-    </div>
-    <%= turbo_frame_tag "post-#{post.id}-comments-with-form" %>
-  </div>
+  <%= link_to 'Comment', 
+               comments_path('posts', post), 
+               data: { turbo_frame: "post-#{post.id}-comments-with-form" } %>
+  
+  <%= turbo_frame_tag "post-#{post.id}-comments-with-form" %>
 </div>

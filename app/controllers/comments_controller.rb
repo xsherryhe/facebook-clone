@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment = @reactable.comments.build
   rescue NameError, ActiveRecord::RecordNotFound
     flash[:error] = 'Sorry, could not find comments.'
-    redirect_to '/'
+    redirect_to posts_path
   end
 
   def create
@@ -24,6 +24,30 @@ class CommentsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
+    @comment = Comment.find(params[:id])
+    return unauthorized_redirect('edit', posts_path) unless @comment.user == current_user
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    return unauthorized_redirect('edit', posts_path) unless @comment.user == current_user
+
+    if @comment.update(comment_params)
+      render @comment
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @id = params[:id]
+    @comment = Comment.find(params[:id])
+    return unauthorized_redirect('delete', posts_path) unless @comment.user == current_user
+
+    @comment.destroy
   end
 
   private

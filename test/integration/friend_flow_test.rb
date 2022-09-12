@@ -42,7 +42,7 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_select 'p.error', 'You are already friends with FirstTwo!'
 
-    post friend_requests_path(format: :turbo_stream), params: { friend_request: { receiver_id: users(:four).id } }
+    post friend_requests_path, params: { friend_request: { receiver_id: users(:four).id } }
     assert_response :success
     assert_select 'div', 'Friend request sent!'
 
@@ -61,7 +61,7 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
     assert_equal("You don't have permission to make that friend. Please send a friend request first.", flash[:error])
     assert_response :redirect
 
-    post create_friend_path(users(:five), format: :turbo_stream)
+    post create_friend_path(users(:five))
     assert_response :success
     assert_select 'div', "Success! You're friends now."
 
@@ -75,7 +75,7 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
     assert_equal("You don't have permission to delete that friend request.", flash[:error])
     assert_response :redirect
 
-    delete friend_request_path(friend_requests(:friend_request_five_one), format: :turbo_stream)
+    delete friend_request_path(friend_requests(:friend_request_five_one))
     assert_response :success
     assert_select 'div', 'Successfully deleted friend request.'
   end

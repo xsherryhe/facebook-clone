@@ -1,21 +1,21 @@
 <div>
-  <div id="comment-<%= comment.id %>">
+  <%= turbo_frame_tag "comment-#{comment.id}", 
+                      data: { controller: 'redirect', 
+                              action: "turbo:before-fetch-response->redirect#intercept" } do %>
     <div class="user">
       <%= render comment.user %>
     </div>
     <div class="time"><%= comment.created_at_abbr_display %></div>
     <div class="body"><%= comment.body %></div>
+
     <% if comment.user == current_user %>
       <%= link_to 'Edit This Comment', edit_comment_path(comment) %>
       <%= link_to 'Delete This Comment', comment, data: { turbo_method: :delete } %>
     <% end %>
-  </div>
-  <div class="comments">
-    <div class="comments-link">
-      <%= link_to (comment.comments.any? ? 'Show Replies' : 'Reply'), 
-                   comments_path('comments', comment),
-                   data: { turbo_frame: "comment-#{comment.id}-comments-with-form" } %>
-    </div>
-    <%= turbo_frame_tag "comment-#{comment.id}-comments-with-form" %>
-  </div>
+    <%= link_to (comment.comments.any? ? 'Show Replies' : 'Reply'), 
+                  comments_path('comments', comment),
+                  data: { turbo_frame: "comment-#{comment.id}-comments-with-form" } %>
+  <% end %>
+  
+  <%= turbo_frame_tag "comment-#{comment.id}-comments-with-form" %>
 </div>

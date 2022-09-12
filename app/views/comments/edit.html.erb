@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "comment-#{@comment.id}" do %>
+  <%= render 'form', comment: @comment, url: nil %>
+<% end %>
