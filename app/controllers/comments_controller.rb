@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     @reactable_type = params[:reactable_type]
     @reactable_singular = @reactable_type.singularize
     @reactable = @reactable_type.classify.constantize.find(params[:reactable_id])
-    @comments = @reactable.comments.includes(:comments)
+    @comments = @reactable.comments.includes(:likes, :comments)
     @comment = @reactable.comments.build
   rescue NameError, ActiveRecord::RecordNotFound
     flash[:error] = 'Sorry, could not find comments.'
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @id = params[:id]
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(@id)
     return unauthorized_redirect('delete', posts_path) unless @comment.user == current_user
 
     @comment.destroy

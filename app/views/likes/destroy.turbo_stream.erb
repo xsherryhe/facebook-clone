@@ -1,0 +1,7 @@
+<%= turbo_stream.update "#{@reactable_type}-#{@reactable.id}-likes" do %>
+  <%= render 'likes', likes: @reactable.likes %>
+<% end %>
+
+<%= turbo_stream.update "#{@reactable_type}-#{@reactable.id}-likes-link" do %>
+  <%= link_to 'Like', "/#{@reactable_type.pluralize}/#{@reactable.id}/likes", data: { turbo_method: :post } %>
+<% end %>

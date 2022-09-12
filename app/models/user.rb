@@ -30,9 +30,7 @@ class User < ApplicationRecord
 
   attr_writer :login
 
-  def strangers
-    User.where.not(id: [id] + sent_friend_requests.pluck(:receiver_id) + friends.pluck(:friend_id))
-  end
+  scope :strangers, -> { where.not(id: [id] + sent_friend_requests.pluck(:receiver_id) + friends.pluck(:friend_id)) }
 
   def add_friend(friend)
     return if friend == self
@@ -41,6 +39,14 @@ class User < ApplicationRecord
     save
     friend.friends << self
     friend.save
+  end
+
+  def likes?(resource)
+    Like.exists?(user: self, reactable: resource)
+  end
+
+  def like(resource)
+    Like.find_by(user: self, reactable: resource)
   end
 
   def login

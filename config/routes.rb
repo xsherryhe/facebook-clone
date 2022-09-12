@@ -16,8 +16,10 @@ Rails.application.routes.draw do
 
   resources :posts, except: [:show]
   resources :comments, only: %i[edit update destroy]
+  resources :likes, only: [:destroy]
   get '/:reactable_type/:reactable_id/comments', to: 'comments#index', as: 'comments'
   post '/:reactable_type/:reactable_id/comments', to: 'comments#create'
+  post '/:reactable_type/:reactable_id/likes', to: 'likes#create', as: 'likes'
   # Defines the root path route ("/")
   # root "articles#index"
   root 'posts#index'

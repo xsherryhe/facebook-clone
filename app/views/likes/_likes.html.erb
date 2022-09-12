@@ -1,0 +1,3 @@
+<% if likes.any? %>
+  <p><%= pluralize(likes.size, 'like') %><%= users_detail(likes) %></p>
+<% end %>

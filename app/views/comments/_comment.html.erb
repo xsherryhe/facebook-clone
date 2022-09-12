@@ -7,15 +7,25 @@
     </div>
     <div class="time"><%= comment.created_at_abbr_display %></div>
     <div class="body"><%= comment.body %></div>
+    <div id="comment-<%= comment.id %>-likes">
+      <%= render 'likes/likes', likes: comment.likes %>
+    </div>
 
-    <% if comment.user == current_user %>
-      <%= link_to 'Edit This Comment', edit_comment_path(comment) %>
-      <%= link_to 'Delete This Comment', comment, data: { turbo_method: :delete } %>
-    <% end %>
+    <span id="comment-<%= comment.id %>-likes-link">
+      <% if current_user.likes?(comment) %>
+        <%= link_to 'Unlike', current_user.like(comment), data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to 'Like', likes_path('comments', comment), data: { turbo_method: :post } %>
+      <% end %>
+    </span>
     <%= link_to (comment.comments.any? ? 'Show Replies' : 'Reply'), 
                   comments_path('comments', comment),
                   data: { turbo_frame: "comment-#{comment.id}-comments-with-form" } %>
   <% end %>
+  <% if comment.user == current_user %>
+      <%= link_to 'Edit This Comment', edit_comment_path(comment) %>
+      <%= link_to 'Delete This Comment', comment, data: { turbo_method: :delete } %>
+    <% end %>
   
   <%= turbo_frame_tag "comment-#{comment.id}-comments-with-form" %>
 </div>
