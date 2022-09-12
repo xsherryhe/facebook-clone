@@ -5,7 +5,7 @@ class PostFlowTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
   end
 
-  test 'can view post timeline after login' do
+  test "can view post timeline with user's and friend's posts after login" do
     get '/'
     assert_response :success
     assert_select 'turbo-frame'
@@ -13,6 +13,8 @@ class PostFlowTest < ActionDispatch::IntegrationTest
     assert_select 'div.body', 'PostOneBody'
     assert_select 'div.creator', 'FirstTwo MiddleTwo LastTwo'
     assert_select 'div.body', 'PostThreeBody'
+    assert_select 'div.body', text: 'PostFourBody', count: 0
+    assert_select 'div.creator', text: 'FirstSix LastSix', count: 0
   end
 
   test 'can create a post' do

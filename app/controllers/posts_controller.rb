@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.includes(creator: { profile: { avatar: :stored_attachment } }).order(updated_at: :desc)
+    @posts = Post.where(creator: [current_user] + current_user.friends)
+                 .includes(creator: { profile: { avatar: :stored_attachment } })
+                 .order(updated_at: :desc)
     @user = current_user
   end
 

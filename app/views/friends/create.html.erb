@@ -1,3 +1,9 @@
 <%= turbo_frame_tag "friend-request-#{@friend.id}" do %>
-  <div>Success! You're friends now.</div>
+  <% if current_user.errors[:friends].any? || @friend.errors[:friends].any?  %>
+    <% (current_user.errors[:friends] + @friend.errors[:friends]).each do |message| %>
+      <p class="error"><%= message %></p>
+    <% end %>
+  <% else %>
+    <div>Success! You're friends now.</div>
+  <% end %>
 <% end %>

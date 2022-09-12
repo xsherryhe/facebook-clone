@@ -14,6 +14,7 @@ class User < ApplicationRecord
                        allow_blank: true
   validates :profile, presence: true
   validate :uid_or_email_present
+  validate :not_friends_with_self
 
   has_one :profile, dependent: :destroy
   has_and_belongs_to_many :friends, class_name: 'User',
@@ -33,8 +34,12 @@ class User < ApplicationRecord
   end
 
   def add_friend(friend)
+    return if friend == self
+
     friends << friend
+    save
     friend.friends << self
+    friend.save
   end
 
   def login
@@ -107,5 +112,11 @@ class User < ApplicationRecord
 
   def uid_or_email_present
     errors.add(:email, "can't be blank") if email.blank? && (provider.blank? || uid.blank?)
+  end
+
+  def not_friends_with_self
+    return unless friends.include?(self)
+
+    errors.add(:friends, 'You cannot be friends with yourself!')
   end
 end
