@@ -37,4 +37,6 @@ en:
         body: 'Post'
       profile:
         birthdate: 'Birthday'
+      image:
+        stored: 'File'
 

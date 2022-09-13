@@ -4,6 +4,7 @@
   </div>
   <div class="time"><%= post.created_at_abbr_display %></div>
   <div class="body"><%= post.body %></div>
+  <div class="photos"><%= render post.photos, size: '250' %></div>
   <div id="post-<%= post.id %>-likes" >
     <%= render 'likes/likes', likes: post.likes %>
   </div>

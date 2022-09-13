@@ -37,7 +37,7 @@ Post
 --body: text
 
 --belongs_to :creator, class_name: User
--has_many :images, as: :imageable
+--has_many :images, as: :imageable
 --has_many :comments, as: :reactable
 --has_many :likes, as: :reactable
 
@@ -46,7 +46,7 @@ Comment
 
 --belongs_to :user
 --belongs_to :reactable, polymorphic: true
--has_many :images, as: :imageable
+--has_many :images, as: :imageable
 --has_many :comments, as: :reactable
 --has_many :likes, as: :reactable
 
