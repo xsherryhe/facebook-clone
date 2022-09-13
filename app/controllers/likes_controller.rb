@@ -14,10 +14,10 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find(params[:id])
-    return unless @like.user == current_user
-
     @reactable = @like.reactable
     @reactable_type = @like.reactable_type.downcase
+    return unless @like.user == current_user
+
     @like.destroy
   end
 end

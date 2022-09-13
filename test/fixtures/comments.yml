@@ -15,7 +15,6 @@ comment_post_one_user_one:
   reactable: post_one_from_user_one (Post)
   user: one
 
-
 comment_comment_one_user_one:
   body: ReplyTwoToCommentOne
   reactable: comment_post_one_user_two (Comment)

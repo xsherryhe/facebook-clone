@@ -11,3 +11,11 @@ like_one_post_one_user_three:
 like_two_comment_two_user_five:
   reactable: comment_comment_one_user_four (Comment)
   user: five
+
+like_three_post_one_user_one:
+  reactable: post_one_from_user_one (Post)
+  user: one
+
+like_four_comment_one_user_one:
+  reactable: comment_post_one_user_two (Comment)
+  user: one
