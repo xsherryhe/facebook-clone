@@ -6,6 +6,18 @@ comment_post_one_user_two:
   user: two
 
 comment_comment_one_user_four:
-  body: ReplyToCommentOne
+  body: ReplyOneToCommentOne
   reactable: comment_post_one_user_two (Comment)
   user: four
+
+comment_post_one_user_one:
+  body: CommentThreeBody
+  reactable: post_one_from_user_one (Post)
+  user: one
+
+
+comment_comment_one_user_one:
+  body: ReplyTwoToCommentOne
+  reactable: comment_post_one_user_two (Comment)
+  user: one
+
