@@ -1,7 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-  #body: MyText
+comment_post_one_user_two:
+  body: CommentOneBody
+  reactable: post_one_from_user_one (Post)
+  user: two
 
-#two:
-  #body: MyText
+comment_comment_one_user_four:
+  body: ReplyToCommentOne
+  reactable: comment_post_one_user_two (Comment)
+  user: four

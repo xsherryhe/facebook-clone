@@ -8,14 +8,6 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(user.profile, profile)
   end
 
-  test 'has many created posts' do
-    user = users(:one)
-    posts = user.created_posts
-
-    assert_includes(posts, posts(:post_one_from_user_one))
-    assert_includes(posts, posts(:post_two_from_user_one))
-  end
-
   test 'has many sent friend requests' do
     user = users(:two)
     sent_friend_requests = user.sent_friend_requests
@@ -45,5 +37,27 @@ class UserTest < ActiveSupport::TestCase
 
     assert_includes(friend_a.friends, user)
     assert_includes(friend_b.friends, user)
+  end
+
+  test 'has many created posts' do
+    user = users(:one)
+    posts = user.created_posts
+
+    assert_includes(posts, posts(:post_one_from_user_one))
+    assert_includes(posts, posts(:post_two_from_user_one))
+  end
+
+  test 'has many likes' do
+    user = users(:three)
+    likes = user.likes
+
+    assert_includes(likes, likes(:like_one_post_one_user_three))
+  end
+
+  test 'has many comments' do
+    user = users(:two)
+    comments = user.comments
+
+    assert_includes(comments, comments(:comment_post_one_user_two))
   end
 end

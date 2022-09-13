@@ -4,8 +4,10 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+like_one_post_one_user_three:
+  reactable: post_one_from_user_one (Post)
+  user: three
+
+like_two_comment_two_user_five:
+  reactable: comment_comment_one_user_four (Comment)
+  user: five

@@ -30,7 +30,10 @@ class User < ApplicationRecord
 
   attr_writer :login
 
-  scope :strangers, -> { where.not(id: [id] + sent_friend_requests.pluck(:receiver_id) + friends.pluck(:friend_id)) }
+  
+  def strangers
+    User.where.not(id: [id] + sent_friend_requests.pluck(:receiver_id) + friends.pluck(:friend_id))
+  end
 
   def add_friend(friend)
     return if friend == self
