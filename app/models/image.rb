@@ -2,6 +2,8 @@ class Image < ApplicationRecord
   validate :url_xor_stored_present
   validates :stored, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg', 'image/svg'],
                                      message: 'is not an image (PNG, JPG, JPEG, or SVG)' }
+
+  belongs_to :user
   belongs_to :imageable, polymorphic: true, optional: true
   has_one_attached :stored
   has_many :likes, as: :reactable, dependent: :destroy
@@ -12,6 +14,10 @@ class Image < ApplicationRecord
 
   def source
     stored.attached? ? stored : url
+  end
+
+  def single_in_post?
+    imageable.class.include?(MultiImageable) && imageable.single_photo?
   end
 
   private

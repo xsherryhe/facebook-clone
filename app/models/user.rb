@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :sent_friend_requests, class_name: 'FriendRequest', foreign_key: 'sender_id', dependent: :destroy
   has_many :received_friend_requests, class_name: 'FriendRequest', foreign_key: 'receiver_id', dependent: :destroy
   has_many :created_posts, class_name: 'Post', foreign_key: 'creator_id', dependent: :destroy
+  has_many :photos, class_name: 'Image', dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :profile

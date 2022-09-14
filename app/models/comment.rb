@@ -7,4 +7,6 @@ class Comment < ApplicationRecord
   has_many :photos, class_name: 'Image', as: :imageable, dependent: :destroy
   has_many :likes, as: :reactable, dependent: :destroy
   has_many :comments, as: :reactable, dependent: :destroy
+
+  alias_attribute :creator, :user
 end

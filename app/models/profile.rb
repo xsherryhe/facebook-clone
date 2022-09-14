@@ -19,7 +19,7 @@ class Profile < ApplicationRecord
   private
 
   def add_avatar
-    build_avatar(url: gravatar_default_url, alt_text: "#{first_name}'s profile picture")
+    build_avatar(url: gravatar_default_url, alt_text: "#{first_name}'s profile picture", user:)
   end
 
   def gravatar_default_url

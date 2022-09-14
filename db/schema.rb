@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_12_165152) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_180723) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,7 +81,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_165152) do
     t.string "imageable_type"
     t.bigint "imageable_id"
     t.string "alt_text"
+    t.bigint "user_id", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
+    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -138,6 +140,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_165152) do
   add_foreign_key "friend_requests", "users", column: "sender_id"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "images", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users", column: "creator_id"
   add_foreign_key "profiles", "users"
