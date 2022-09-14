@@ -35,6 +35,8 @@ en:
     attributes:
       post:
         body: 'Post'
+      comment:
+        body: 'Comment'
       profile:
         birthdate: 'Birthday'
       image:

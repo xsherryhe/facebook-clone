@@ -1,12 +1,15 @@
 <%= simple_form_for post, format: response_format do |form| %>
   <%= hidden_field_tag 'response_format', response_format %>
   <%= form.input :body, label: false, placeholder: "What's on your mind, #{profile.first_name}?" %>
-  <%= form.label :raw_photos, 'Upload Photos' %>
-  <%= form.file_field :raw_photos, multiple: true %>
-  <% post.photos.each.with_index(1) do |photo, i| %> 
-    <% photo.errors[:stored].each do |message| %>
-      <p class="error">Photo #<%= i %> <%= message %></p>
+  <%= render post.photos, size: '250' %>
+  <div class="field">
+    <%= form.label :raw_photos, 'Upload Photos' %>
+    <%= form.file_field :raw_photos, multiple: true %>
+    <% post.photos.each.with_index(1) do |photo, i| %> 
+      <% photo.errors[:stored].each do |message| %>
+        <p class="error">Photo #<%= i %> <%= message %></p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
   <%= form.submit 'Post' %>
 <% end %>

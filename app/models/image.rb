@@ -8,6 +8,7 @@ class Image < ApplicationRecord
   has_many :comments, as: :reactable, dependent: :destroy
 
   before_validation :delete_url_if_stored
+  before_validation :set_alt_text
 
   def source
     stored.attached? ? stored : url
@@ -23,5 +24,9 @@ class Image < ApplicationRecord
 
   def delete_url_if_stored
     self.url = nil if stored.attached?
+  end
+
+  def set_alt_text
+    self.alt_text ||= 'A user-uploaded photo'
   end
 end

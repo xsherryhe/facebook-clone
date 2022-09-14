@@ -3,12 +3,15 @@
 </div>
 <%= simple_form_for comment, url: url do |form| %>
   <%= form.input :body, label: false %>
-  <%= form.label :raw_photos, 'Upload Photos' %>
-  <%= form.file_field :raw_photos, multiple: true %>
-  <% comment.photos.each.with_index(1) do |photo, i| %> 
-    <% photo.errors[:stored].each do |message| %>
-      <p class="error">Photo #<%= i %> <%= message %></p>
+  <%= render comment.photos, size: '250' %>
+  <div class="field">
+    <%= form.label :raw_photos, 'Upload Photos' %>
+    <%= form.file_field :raw_photos, multiple: true %>
+    <% comment.photos.each.with_index(1) do |photo, i| %> 
+      <% photo.errors[:stored].each do |message| %>
+        <p class="error">Photo #<%= i %> <%= message %></p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
   <%= form.submit 'Submit' %>
 <% end %>
