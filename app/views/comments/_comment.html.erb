@@ -7,26 +7,20 @@
     </div>
     <div class="time"><%= comment.created_at_abbr_display %></div>
     <div class="body"><%= comment.body %></div>
-    <div class="photos"><%= render comment.photos, size: '150' %></div>
-    <div id="comment-<%= comment.id %>-likes">
-      <%= render 'likes/likes', likes: comment.likes %>
-    </div>
-
-    <span id="comment-<%= comment.id %>-likes-link">
-      <% if current_user.likes?(comment) %>
-        <%= link_to 'Unlike', current_user.like(comment), data: { turbo_method: :delete } %>
-      <% else %>
-        <%= link_to 'Like', likes_path('comments', comment), data: { turbo_method: :post } %>
+    <div class="photos">
+      <% comment.photos.each do |photo| %>
+        <%= render photo, link_path: image_path(photo), size: '150' %>
       <% end %>
-    </span>
-    <%= link_to (comment.comments.any? ? 'Show Replies' : 'Reply'), 
-                  comments_path('comments', comment),
-                  data: { turbo_frame: "comment-#{comment.id}-comments-with-form" } %>
+    </div>
+    <%= render 'likes/likes_display', reactable: comment %>
+    <%= render 'likes/likes_link', reactable: comment %>
+    <%= render 'comments/comment_link', text: comment.comments.any? ? 'Show Replies' : 'Reply', reactable: comment %>
+
     <% if comment.user == current_user %>
       <%= link_to 'Edit This Comment', edit_comment_path(comment) %>
       <%= link_to 'Delete This Comment', comment, data: { turbo_method: :delete } %>
     <% end %>
   <% end %>
   
-  <%= turbo_frame_tag "comment-#{comment.id}-comments-with-form" %>
+  <%= render 'comments/comment_display', reactable: comment %>
 </div>

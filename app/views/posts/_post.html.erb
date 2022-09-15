@@ -4,21 +4,13 @@
   </div>
   <div class="time"><%= post.created_at_abbr_display %></div>
   <div class="body"><%= post.body %></div>
-  <div class="photos"><%= render post.photos, size: '250' %></div>
-  <div id="post-<%= post.id %>-likes" >
-    <%= render 'likes/likes', likes: post.likes %>
-  </div>
-
-  <span id="post-<%= post.id %>-likes-link">
-    <% if current_user.likes?(post) %>
-      <%= link_to 'Unlike', current_user.like(post), data: { turbo_method: :delete } %>
-    <% else %>
-      <%= link_to 'Like', likes_path('posts', post), data: { turbo_method: :post } %>
+  <div class="photos">
+    <% post.photos.each do |photo| %>
+      <%= render photo, link_path: image_path(photo), size: '250' %>
     <% end %>
-  </span>
-  <%= link_to 'Comment', 
-               comments_path('posts', post), 
-               data: { turbo_frame: "post-#{post.id}-comments-with-form" } %>
+  <%= render 'likes/likes_display', reactable: post %>
+  <%= render 'likes/likes_link', reactable: post %>
+  <%= render 'comments/comment_link', text: 'Comment', reactable: post %>
 
   <% if post.creator == current_user %>
     <%= link_to 'Edit This Post', edit_post_path(post) %>
@@ -28,5 +20,5 @@
                         turbo_confirm: 'Are you sure you wish to delete this post?' } %>
   <% end %>
   
-  <%= turbo_frame_tag "post-#{post.id}-comments-with-form" %>
+  <%= render 'comments/comment_display', reactable: post %>
 </div>

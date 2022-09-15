@@ -4,7 +4,7 @@
   <%= form.input :last_name %>
   <%= form.simple_fields_for :avatar do |avatar_form| %>
     <p>Profile picture</p>
-    <%= full_avatar(@profile) %>
+    <%= full_avatar(@profile, false) %>
     <%= avatar_form.input :stored, as: :file, label: 'Upload new profile picture' %>
   <% end %>
 

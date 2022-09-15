@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post '/friends/:id', to: 'friends#create', as: 'create_friend'
 
   resources :posts, except: [:show]
+  resources :images, only: [:show]
   resources :comments, only: %i[edit update destroy]
   resources :likes, only: [:destroy]
   get '/:reactable_type/:reactable_id/comments', to: 'comments#index', as: 'comments'

@@ -1,0 +1,3 @@
+<%= link_to text, 
+            comments_path(resource_name(reactable).pluralize, reactable),
+            data: { turbo_frame: "#{resource_name(reactable)}-#{reactable.id}-comments-with-form" } %>
