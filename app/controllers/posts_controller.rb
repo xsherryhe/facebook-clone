@@ -7,6 +7,10 @@ class PostsController < ApplicationController
     @user = current_user
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def new
     @profile = current_user.profile
     @post = current_user.created_posts.build

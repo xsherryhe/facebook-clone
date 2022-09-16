@@ -1,7 +1,7 @@
-<span id="<%= resource_name(reactable) %>-<%= reactable.id %>-likes-link">
+<span id="<%= reactable.model_name.singular %>-<%= reactable.id %>-likes-link">
   <% if current_user.likes?(reactable) %>
     <%= link_to 'Unlike', current_user.like(reactable), data: { turbo_method: :delete } %>
   <% else %>
-    <%= link_to 'Like', likes_path(resource_name(reactable).pluralize, reactable), data: { turbo_method: :post } %>
+    <%= link_to 'Like', likes_path(reactable.model_name.route_key, reactable), data: { turbo_method: :post } %>
   <% end %>
 </span>

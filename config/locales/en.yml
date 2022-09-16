@@ -32,6 +32,8 @@
 en:
   hello: "Hello world"
   activerecord:
+    models:
+      image: 'Photo'
     attributes:
       post:
         body: 'Post'

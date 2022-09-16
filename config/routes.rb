@@ -14,13 +14,15 @@ Rails.application.routes.draw do
   resources :friends, only: [:index]
   post '/friends/:id', to: 'friends#create', as: 'create_friend'
 
-  resources :posts, except: [:show]
+  resources :posts
   resources :images, only: [:show]
   resources :comments, only: %i[edit update destroy]
   resources :likes, only: [:destroy]
   get '/:reactable_type/:reactable_id/comments', to: 'comments#index', as: 'comments'
   post '/:reactable_type/:reactable_id/comments', to: 'comments#create'
   post '/:reactable_type/:reactable_id/likes', to: 'likes#create', as: 'likes'
+
+  resources :notifications, only: [:index]
   # Defines the root path route ("/")
   # root "articles#index"
   root 'posts#index'

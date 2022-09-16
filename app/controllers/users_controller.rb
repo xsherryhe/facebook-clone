@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @users = current_user.strangers.includes(profile: { avatar: :stored_attachment })
+    @users = current_user.strangers.includes({ profile: { avatar: :stored_attachment } })
+    @friend_requests = current_user.received_friend_requests.pending.includes(sender: :profile)
   end
 
   def show

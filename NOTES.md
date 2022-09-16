@@ -65,3 +65,33 @@ Image
 --before validation make uri string nil if there is a stored association
 --validate image has either uri string or stored association and not both
 
+Notification
+--when user receives a new friend request
+--when someone accepts user's sent friend request
+--when someone likes user's reactable
+--when someone comments on user's reactable
+--after_create hooks on friend request, like, and comment
+-> combine similar notifications in the view (e.g., multiple people liking a reactable)
+--body: text
+--link: string
+--enum view_status
+--belongs_to :user
+--show notifications through turbo frame to start off
+
+STI:
+--set user in before_validation hook
+--belongs_to notifiable, polymorphic: true
+--namespace models in Notifications subdirectory
+-each model has its own body text method, link method, and set user method
+
+Alternatively:
+-belongs_to notifiable, polymorphic: true
+-enum subtype
+  -hash that connects type to body text method, link, and user
+  -set user ref in before_validate hook
+  -methods that split the hash value into body and link
+
+Need websocket for:
+-notifications
+-friend request link
+-live updating of posts on post index page

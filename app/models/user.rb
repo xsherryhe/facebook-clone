@@ -27,11 +27,15 @@ class User < ApplicationRecord
   has_many :photos, class_name: 'Image', dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   accepts_nested_attributes_for :profile
 
   attr_writer :login
 
-  
+  def new_friend_requests
+    received_friend_requests.pending.friend_request_unviewed
+  end
+
   def strangers
     User.where.not(id: [id] + sent_friend_requests.pluck(:receiver_id) + friends.pluck(:friend_id))
   end

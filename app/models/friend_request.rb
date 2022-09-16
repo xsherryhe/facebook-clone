@@ -1,11 +1,27 @@
 class FriendRequest < ApplicationRecord
+  after_create_commit { create_friend_request_notification }
+
   validate :different_sender_receiver
   validate :not_already_friends, if: -> { pending? }
 
   belongs_to :sender, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
+  has_one :friend_request_notification,
+          class_name: 'Notifications::FriendRequestNotification',
+          as: :notifiable,
+          dependent: :destroy
+  has_one :friend_notification,
+          class_name: 'Notifications::FriendNotification',
+          as: :notifiable,
+          dependent: :destroy
 
-  enum :status, %i[pending accepted]
+  enum :status, %i[pending accepted], default: :pending
+  enum :view_status, %i[unviewed viewed], default: :unviewed, prefix: :friend_request
+
+  def accepted!
+    create_friend_notification unless accepted?
+    super
+  end
 
   private
 

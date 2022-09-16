@@ -3,6 +3,7 @@ class FriendRequestsController < ApplicationController
     @friend_requests = current_user.received_friend_requests
                                    .pending
                                    .includes(sender: :profile)
+    @friend_requests.each(&:friend_request_viewed!)
   end
 
   def create

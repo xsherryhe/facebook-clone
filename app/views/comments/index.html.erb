@@ -3,6 +3,6 @@
     <%= render @comments %>
   </div>
   <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
-    <%= render 'form', comment: @comment, url: "/#{@reactable_type}/#{@reactable.id}/comments" %>
+    <%= render 'form', comment: @comment, url: comments_path(@reactable_type, @reactable.id) %>
   <% end %>
 <% end %>

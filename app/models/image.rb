@@ -12,6 +12,8 @@ class Image < ApplicationRecord
   before_validation :delete_url_if_stored
   before_validation :set_alt_text
 
+  alias_attribute :creator, :user
+
   def source
     stored.attached? ? stored : url
   end
