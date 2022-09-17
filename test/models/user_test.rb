@@ -60,4 +60,11 @@ class UserTest < ActiveSupport::TestCase
 
     assert_includes(comments, comments(:comment_post_one_user_two))
   end
+
+  test 'has many photos' do
+    user = users(:two)
+    photos = user.photos
+
+    assert_includes(photos, images(:avatar_user_two))
+  end
 end

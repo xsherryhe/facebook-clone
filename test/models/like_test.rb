@@ -21,4 +21,11 @@ class LikeTest < ActiveSupport::TestCase
 
     assert_equal(reactable, comments(:comment_comment_one_user_four))
   end
+
+  test 'can belong to image as reactable' do
+    like = likes(:like_five_photo_seven_user_two)
+    reactable = like.reactable
+
+    assert_equal(reactable, images(:photo_post_one))
+  end
 end

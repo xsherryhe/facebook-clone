@@ -3,23 +3,37 @@
 avatar_user_one:
   url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_one (Profile)
+  user: one
 
 avatar_user_two:
   url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_two (Profile)
+  user: two
 
 avatar_user_three:
   url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_three (Profile)
+  user: three
 
 avatar_user_four:
   url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_four (Profile)
+  user: four
 
 avatar_user_five:
   url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_five (Profile)
+  user: five
 
 avatar_user_six:
   url: https://www.gravatar.com/avatar/?default=identicon&size=150
   imageable: profile_user_six (Profile)
+  user: six
+
+photo_post_one:
+  imageable: post_one_from_user_one (Post)
+  user: one
+
+photo_comment_one:
+  imageable: comment_post_one_user_two (Comment)
+  user: two

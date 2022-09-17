@@ -20,3 +20,8 @@ comment_comment_one_user_one:
   reactable: comment_post_one_user_two (Comment)
   user: one
 
+comment_photo_seven_user_three:
+  body: CommentFiveBody
+  reactable: photo_post_one (Image)
+  user: three
+

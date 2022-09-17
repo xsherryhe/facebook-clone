@@ -1,0 +1,9 @@
+photo_post_one_stored_attachment:
+  name: stored
+  record: photo_post_one (Image)
+  blob: photo_post_one_stored_blob
+
+photo_comment_one_stored_attachment:
+  name: stored
+  record: photo_comment_one (Image)
+  blob: photo_comment_one_stored_blob
