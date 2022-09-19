@@ -37,3 +37,7 @@ photo_post_one:
 photo_comment_one:
   imageable: comment_post_one_user_two (Comment)
   user: two
+
+photo_post_five:
+  imageable: post_five_from_user_one (Post)
+  user: one

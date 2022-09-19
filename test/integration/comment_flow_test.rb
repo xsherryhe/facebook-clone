@@ -6,7 +6,7 @@ class CommentFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'can view comments on a post and form for new comment' do
-    get comments_path('post', posts(:post_one_from_user_one))
+    get comments_path('posts', posts(:post_one_from_user_one))
     assert_response :success
     assert_select 'div.body', 'CommentOneBody'
     assert_select 'div.body', 'CommentThreeBody'
@@ -14,19 +14,19 @@ class CommentFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'can view comments on a comment and form for new comment' do
-    get comments_path('comment', comments(:comment_post_one_user_two))
+    get comments_path('comments', comments(:comment_post_one_user_two))
     assert_response :success
     assert_select 'div.body', 'ReplyOneToCommentOne'
     assert_select 'textarea[name="comment[body]"]'
   end
 
   test 'can create a comment on a post' do
-    post comments_path('post', posts(:post_three_from_user_two)),
+    post comments_path('posts', posts(:post_three_from_user_two)),
          params: { comment: { body: '' } }
     assert_response :unprocessable_entity
-    assert_select 'p.error', "Body can't be blank"
+    assert_select 'p.error', "Comment can't be blank"
 
-    post comments_path('post', posts(:post_three_from_user_two), format: :turbo_stream),
+    post comments_path('posts', posts(:post_three_from_user_two), format: :turbo_stream),
          params: { comment: { body: 'Created Comment on a Post' } }
     assert_response :success
     assert_select 'div.user', 'FirstOne MiddleOne LastOne'
@@ -34,16 +34,29 @@ class CommentFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'can create a comment on a comment' do
-    post comments_path('comment', comments(:comment_post_one_user_one)),
+    post comments_path('comments', comments(:comment_post_one_user_one)),
          params: { comment: { body: '' } }
     assert_response :unprocessable_entity
-    assert_select 'p.error', "Body can't be blank"
+    assert_select 'p.error', "Comment can't be blank"
 
-    post comments_path('comment', comments(:comment_post_one_user_one), format: :turbo_stream),
+    post comments_path('comments', comments(:comment_post_one_user_one), format: :turbo_stream),
          params: { comment: { body: 'Created Comment on a Comment' } }
     assert_response :success
     assert_select 'div.user', 'FirstOne MiddleOne LastOne'
     assert_select 'div.body', 'Created Comment on a Comment'
+  end
+
+  test 'can create a comment on an image' do
+    post comments_path('images', images(:photo_post_one)),
+         params: { comment: { body: '' } }
+    assert_response :unprocessable_entity
+    assert_select 'p.error', "Comment can't be blank"
+
+    post comments_path('images', images(:photo_post_one), format: :turbo_stream),
+         params: { comment: { body: 'Created Comment on an Image' } }
+    assert_response :success
+    assert_select 'div.user', 'FirstOne MiddleOne LastOne'
+    assert_select 'div.body', 'Created Comment on an Image'
   end
 
   test "can update user's own comment on a post" do
@@ -58,7 +71,7 @@ class CommentFlowTest < ActionDispatch::IntegrationTest
     patch comment_path(comments(:comment_post_one_user_one)),
           params: { comment: { body: '' } }
     assert_response :unprocessable_entity
-    assert_select 'p.error', "Body can't be blank"
+    assert_select 'p.error', "Comment can't be blank"
 
     patch comment_path(comments(:comment_post_one_user_one)),
           params: { comment: { body: 'Updated comment on this post' } }
@@ -78,12 +91,32 @@ class CommentFlowTest < ActionDispatch::IntegrationTest
     patch comment_path(comments(:comment_comment_one_user_one)),
           params: { comment: { body: '' } }
     assert_response :unprocessable_entity
-    assert_select 'p.error', "Body can't be blank"
+    assert_select 'p.error', "Comment can't be blank"
 
     patch comment_path(comments(:comment_comment_one_user_one)),
           params: { comment: { body: 'Updated comment on this comment' } }
     assert_response :success
     assert_select 'div.body', 'Updated comment on this comment'
+  end
+
+  test "can update user's own comment on an image" do
+    get edit_comment_path(comments(:comment_photo_seven_user_three))
+    assert_equal("You don't have permission to edit that comment.", flash[:error])
+    assert_response :redirect
+
+    get edit_comment_path(comments(:comment_photo_seven_user_one))
+    assert_response :success
+    assert_select 'textarea', 'CommentSixBody'
+
+    patch comment_path(comments(:comment_photo_seven_user_one)),
+          params: { comment: { body: '' } }
+    assert_response :unprocessable_entity
+    assert_select 'p.error', "Comment can't be blank"
+
+    patch comment_path(comments(:comment_photo_seven_user_one)),
+          params: { comment: { body: 'Updated comment on this image' } }
+    assert_response :success
+    assert_select 'div.body', 'Updated comment on this image'
   end
 
   test "can delete user's own comment on a post" do
@@ -104,5 +137,15 @@ class CommentFlowTest < ActionDispatch::IntegrationTest
     delete comment_path(comments(:comment_comment_one_user_one))
     assert_response :success
     assert_select 'div.body', text: 'ReplyTwoToCommentOne', count: 0
+  end
+
+  test "can delete user's own comment on an image" do
+    delete comment_path(comments(:comment_photo_seven_user_three))
+    assert_equal("You don't have permission to delete that comment.", flash[:error])
+    assert_response :redirect
+
+    delete comment_path(comments(:comment_photo_seven_user_one))
+    assert_response :success
+    assert_select 'div.body', text: 'CommentSixBody', count: 0
   end
 end

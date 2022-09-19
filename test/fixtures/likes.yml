@@ -27,3 +27,7 @@ like_five_photo_seven_user_two:
 like_six_post_one_user_two:
   reactable: post_one_from_user_one (Post)
   user: two
+
+like_seven_photo_eight_user_one:
+  reactable: photo_comment_one (Image)
+  user: one

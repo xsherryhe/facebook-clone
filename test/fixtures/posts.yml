@@ -15,3 +15,6 @@ post_three_from_user_two:
 post_four_from_user_six:
   body: PostFourBody
   creator: six
+
+post_five_from_user_one:
+  creator: one

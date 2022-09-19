@@ -22,11 +22,11 @@ class PostFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'textarea[placeholder="What\'s on your mind, FirstOne?"]'
 
-    post '/posts.html', params: { response_format: :html, post: { body: '' } }
+    post posts_path, params: { post: { body: '' } }
     assert_response :unprocessable_entity
     assert_select 'p.error', "Post can't be blank"
 
-    post '/posts.html', params: { response_format: :html, post: { body: 'PostFourBody' } }
+    post posts_path, params: { post: { body: 'PostFourBody' } }
     assert_response :redirect
     follow_redirect!
 

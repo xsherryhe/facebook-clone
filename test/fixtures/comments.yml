@@ -25,3 +25,8 @@ comment_photo_seven_user_three:
   reactable: photo_post_one (Image)
   user: three
 
+comment_photo_seven_user_one:
+  body: CommentSixBody
+  reactable: photo_post_one (Image)
+  user: one
+

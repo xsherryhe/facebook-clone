@@ -7,8 +7,8 @@ class LikeFlowTest < ActionDispatch::IntegrationTest
 
   test 'can view likes on posts' do
     get posts_path
-    assert_select "div#post-#{posts(:post_one_from_user_one).id}-likes", 
-                  '2 likes: You and FirstThree LastThree'
+    assert_select "div#post-#{posts(:post_one_from_user_one).id}-likes",
+                  '3 likes: You, FirstThree LastThree, and FirstTwo MiddleTwo LastTwo'
   end
 
   test 'can view likes on comments' do
@@ -37,18 +37,28 @@ class LikeFlowTest < ActionDispatch::IntegrationTest
     assert_select "span#comment-#{target_comment.id}-likes-link", 'Unlike'
   end
 
+  test 'can like an image' do
+    target_image = images(:photo_post_one)
+    post likes_path('images', target_image, format: :turbo_stream)
+    assert_response :success
+
+    get image_path(target_image)
+    assert_select "div#image-#{target_image.id}-likes", '2 likes: You and FirstTwo MiddleTwo LastTwo'
+    assert_select "span#image-#{target_image.id}-likes-link", 'Unlike'
+  end
+
   test 'can unlike a post that the user liked' do
     delete like_path(likes(:like_one_post_one_user_three), format: :turbo_stream)
     get posts_path
     assert_select "div#post-#{posts(:post_one_from_user_one).id}-likes",
-                  '2 likes: You and FirstThree LastThree'
+                  '3 likes: You, FirstThree LastThree, and FirstTwo MiddleTwo LastTwo'
 
     delete like_path(likes(:like_three_post_one_user_one), format: :turbo_stream)
     assert_response :success
 
     get posts_path
     assert_select "div#post-#{posts(:post_one_from_user_one).id}-likes",
-                  '1 like: FirstThree LastThree'
+                  '2 likes: FirstThree LastThree and FirstTwo MiddleTwo LastTwo'
     assert_select "span#post-#{posts(:post_one_from_user_one).id}-likes-link", 'Like'
   end
 
@@ -65,5 +75,20 @@ class LikeFlowTest < ActionDispatch::IntegrationTest
     assert_select "div#comment-#{comments(:comment_post_one_user_two).id}-likes",
                   text: '1 like: You', count: 0
     assert_select "span#comment-#{comments(:comment_post_one_user_two).id}-likes-link", 'Like'
+  end
+
+  test 'can unlike an image that the user liked' do
+    delete like_path(likes(:like_five_photo_seven_user_two), format: :turbo_stream)
+    get image_path(images(:photo_post_one))
+    assert_select "div#image-#{images(:photo_post_one).id}-likes",
+                  '1 like: FirstTwo MiddleTwo LastTwo'
+
+    delete like_path(likes(:like_seven_photo_eight_user_one), format: :turbo_stream)
+    assert_response :success
+
+    get image_path(images(:photo_comment_one))
+    assert_select "div#image-#{images(:photo_comment_one).id}-likes",
+                  text: '1 like: You', count: 0
+    assert_select "span#image-#{images(:photo_comment_one).id}-likes-link", 'Like'
   end
 end

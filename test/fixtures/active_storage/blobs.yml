@@ -1,3 +1,5 @@
 photo_post_one_stored_blob: <%= ActiveStorage::FixtureSet.blob filename: 'koi-fish.png' %>
 
 photo_comment_one_stored_blob: <%= ActiveStorage::FixtureSet.blob filename: 'chocolates1.jpg' %>
+
+photo_post_five_stored_blob: <%= ActiveStorage::FixtureSet.blob filename: 'chocolates2.jpg' %>
