@@ -5,7 +5,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @auth = request.env['omniauth.auth']
     @user = User.from_omniauth(@auth)
 
-    if @user.persisted?
+    if @user.valid?
+      register_if_new_user
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Facebook')
     else
@@ -26,5 +27,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     session['devise.facebook_data'] = @auth.except(:extra)
     session['devise.facebook_data']['info']['location'] = @auth.dig(:extra, :raw_info, :location, :name)
     session['devise.facebook_data']['info']['birthdate'] = @auth.dig(:extra, :raw_info, :birthday)
+  end
+
+  def register_if_new_user
+    return unless @user.new_record?
+
+    @user.save
+    UserMailer.with(user: @user).welcome_email.deliver if @user.email
   end
 end

@@ -66,7 +66,7 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+    find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |user|
       user.email = auth.info.email
       user.password = generate_password
       user.build_profile_from_omniauth(auth)
