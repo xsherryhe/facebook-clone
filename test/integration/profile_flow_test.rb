@@ -24,13 +24,14 @@ class ProfileFlowTest < ActionDispatch::IntegrationTest
               middle_name: '',
               last_name: 'LastOneUpdated',
               avatar_attributes: {
+                id: images(:avatar_user_one).id,
                 stored: fixture_file_upload('koi-fish.png', 'image/png')
               }
             }
           }
-    assert_equal('Successfully edited profile.', flash[:notice])
     assert_response :redirect
     follow_redirect!
+    assert_equal('Successfully edited profile.', flash[:notice])
 
     assert_response :success
     assert_select 'h3', 'FirstOneUpdated LastOneUpdated'

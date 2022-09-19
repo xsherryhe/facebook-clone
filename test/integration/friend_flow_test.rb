@@ -71,7 +71,7 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'can delete received friend requests' do
-    delete friend_request_path(friend_requests(:friend_request_two_four))
+    delete friend_request_path(friend_requests(:friend_request_five_four))
     assert_equal("You don't have permission to delete that friend request.", flash[:error])
     assert_response :redirect
 

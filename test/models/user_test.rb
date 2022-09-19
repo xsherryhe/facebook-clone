@@ -9,10 +9,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'has many sent friend requests' do
-    user = users(:two)
+    user = users(:five)
     sent_friend_requests = user.sent_friend_requests
 
-    assert_includes(sent_friend_requests, friend_requests(:friend_request_two_four))
+    assert_includes(sent_friend_requests, friend_requests(:friend_request_five_four))
   end
 
   test 'has many received friend requests' do

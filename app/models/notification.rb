@@ -56,7 +56,7 @@ class Notification < ApplicationRecord
   end
 
   def destroy_empty_group
-    return unless groupable?
+    return unless groupable? && group
 
     group.destroy if group.notifications.empty?
   end

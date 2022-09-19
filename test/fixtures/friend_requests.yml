@@ -13,8 +13,8 @@ friend_request_two_one:
   receiver: one
   status: accepted
 
-friend_request_two_four:
-  sender: two
+friend_request_five_four:
+  sender: five
   receiver: four
 
 friend_request_four_three:
