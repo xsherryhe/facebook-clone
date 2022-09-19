@@ -1,7 +1,24 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-  #view_status: 1
+friend_request_notification_user_one:
+  user: one
+  notifiable: friend_request_five_one (FriendRequest)
 
-#two:
-  #view_status: 1
+like_notification_one_user_one:
+  user: one
+  notifiable: like_one_post_one_user_three (Like)
+  group: group_notification_likes
+
+like_notification_two_user_one:
+  user: one
+  notifiable: like_six_post_one_user_two (Like)
+  group: group_notification_likes
+
+comment_notification_user_one:
+  user: one
+  notifiable: comment_post_one_user_two (Comment)
+
+group_notification_likes:
+  type: Notifications::GroupNotification
+  user: one
+  notifiable: like_one_post_one_user_three (Like)

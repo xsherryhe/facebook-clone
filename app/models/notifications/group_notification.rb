@@ -2,7 +2,7 @@ class Notifications::GroupNotification < Notification
   before_validation :set_notifiable, unless: -> { notifiable }
 
   validates :notifications, presence: true
-  has_many :notifications, foreign_key: 'group_id'
+  has_many :notifications, foreign_key: 'group_id', dependent: :destroy
 
   scope :with, (lambda do |user, type, dimension|
     where(user:).select { |group| group.type == type && group.dimension == dimension }
