@@ -4,6 +4,7 @@ class PostsController < ApplicationController
                  .includes(creator: { profile: { avatar: :stored_attachment } },
                            likes: { user: :profile })
                  .order(updated_at: :desc)
+                 .limit(50)
     @user = current_user
   end
 

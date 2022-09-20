@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "friend-request-form-#{user.id}" do %>
+  <% if sent_friend_request = sent_friend_requests.find_by(receiver: user) %>
+    <div>Friend request sent!</div>
+  <% elsif received_friend_request = received_friend_requests.find_by(sender: user) %>
+    <%= render received_friend_request %>
+  <% else %>
+    <%= render 'friend_requests/form', friend_request: nil, receiver_id: user.id %>
+  <% end %>
+<% end %>

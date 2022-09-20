@@ -53,15 +53,15 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'can accept a friend request and view new friend on friends list' do
-    post create_friend_path(users(:two))
+    post friend_path(users(:two))
     assert_equal("You don't have permission to make that friend. Please send a friend request first.", flash[:error])
     assert_response :redirect
 
-    post create_friend_path(users(:four))
+    post friend_path(users(:four))
     assert_equal("You don't have permission to make that friend. Please send a friend request first.", flash[:error])
     assert_response :redirect
 
-    post create_friend_path(users(:five))
+    post friend_path(users(:five))
     assert_response :success
     assert_select 'div', "Success! You're friends now."
 

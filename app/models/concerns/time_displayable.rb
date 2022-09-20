@@ -7,18 +7,21 @@ module TimeDisplayable
 
   def created_at_abbr_display
     time = created_at
-    if time > Time.current - 1.day
-      diff_in_hours(time)
-    elsif time > Time.current - 1.week
-      diff_in_days(time)
-    elsif time > Time.current - 1.year
-      day_time_display(time)
-    else
+    if time > Time.current - 1.minutes then 'Now'
+    elsif time > Time.current - 1.hour then diff_in_minutes(time)
+    elsif time > Time.current - 1.day then diff_in_hours(time)
+    elsif time > Time.current - 1.week then diff_in_days(time)
+    elsif time > Time.current - 1.year then day_time_display(time)
+    else 
       day_year_display(time)
     end
   end
 
   private
+
+  def diff_in_minutes(time)
+    "#{((Time.current - time) / 60).round}m"
+  end
 
   def diff_in_hours(time)
     "#{((Time.current - time) / 3600).round}h"

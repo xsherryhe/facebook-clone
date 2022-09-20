@@ -2,6 +2,6 @@
                     data: { controller: 'redirect', 
                             action: "turbo:before-fetch-response->redirect#intercept" } do %>
   <p><%= friend_request.sender.profile.full_name %> sent you a friend request.</p>
-  <%= link_to 'Accept', create_friend_path(friend_request.sender), data: { turbo_method: :post } %>
+  <%= link_to 'Accept', friend_path(friend_request.sender), data: { turbo_method: :post } %>
   <%= link_to 'Delete', friend_request, data: { turbo_method: :delete } %>
 <% end %>

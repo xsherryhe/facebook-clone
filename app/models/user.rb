@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def strangers
-    User.where.not(id: [id] + sent_friend_requests.pluck(:receiver_id) + friends.pluck(:friend_id))
+    User.where.not(id: [id] + sent_friend_requests.pending.pluck(:receiver_id) + friends.pluck(:friend_id))
   end
 
   def add_friend(friend)

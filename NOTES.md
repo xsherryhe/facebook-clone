@@ -71,7 +71,7 @@ Notification
 --when someone likes user's reactable
 --when someone comments on user's reactable
 --after_create hooks on friend request, like, and comment
--> combine similar notifications in the view (e.g., multiple people liking a reactable)
+--combine similar notifications (e.g., multiple people liking a reactable)
 --body: text
 --link: string
 --enum view_status
@@ -82,7 +82,7 @@ STI:
 --set user in before_validation hook
 --belongs_to notifiable, polymorphic: true
 --namespace models in Notifications subdirectory
--each model has its own body text method, link method, and set user method
+--each model has its own body text method, link method, and set user method
 
 Alternatively:
 -belongs_to notifiable, polymorphic: true
@@ -94,4 +94,4 @@ Alternatively:
 Need websocket for:
 -notifications
 -friend request link
--live updating of posts on post index page
+-live updating of posts and post times on post index page

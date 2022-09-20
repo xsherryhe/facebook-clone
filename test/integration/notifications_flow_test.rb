@@ -23,7 +23,7 @@ class NotificationsFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'can view friend notification after having friend request accepted' do
-    post create_friend_path(users(:five))
+    post friend_path(users(:five))
 
     sign_in users(:five)
     get notifications_path
