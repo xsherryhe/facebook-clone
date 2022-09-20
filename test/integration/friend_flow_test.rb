@@ -79,4 +79,15 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'div', 'Successfully deleted friend request.'
   end
+
+  test 'can unfriend a friend' do
+    delete friend_path(users(:four))
+    assert_equal("You don't have permission to unfriend that friend. You were never friends to begin with!",
+                 flash[:error])
+    assert_response :redirect
+
+    delete friend_path(users(:two))
+    assert_response :success
+    assert_select 'div', 'Unfriended FirstTwo MiddleTwo LastTwo.'
+  end
 end

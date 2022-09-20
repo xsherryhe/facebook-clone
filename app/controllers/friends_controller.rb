@@ -19,9 +19,7 @@ class FriendsController < ApplicationController
   def destroy
     @friend = User.find(params[:id])
     unless User.joins(:friends).exists?(friendships: { user_id: current_user.id, friend_id: @friend.id })
-      return unauthorized_redirect('unfriend',
-                                   friend_requests_path,
-                                   additional_info: 'You were never friends to begin with!')
+      return unauthorized_redirect('unfriend', @friend, additional_info: 'You were never friends to begin with!')
     end
 
     current_user.remove_friend(@friend)
