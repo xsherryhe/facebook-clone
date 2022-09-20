@@ -46,11 +46,15 @@
     <div class="field">
       <%= profile_form.label :birthdate %>
       <%= profile_form.date_field :birthdate %>
+      <%= profile_form.check_box :birthdate_public, checked: true %>
+      <%= profile_form.label :birthdate_public, 'Show Birthday on Profile' %>
     </div>
 
     <div class="field">
       <%= profile_form.label :location %>
       <%= profile_form.text_field :location %>
+      <%= profile_form.check_box :location_public, checked: true %>
+      <%= profile_form.label :location_public, 'Show Location on Profile' %>
     </div>
   <% end %>
 

@@ -16,7 +16,9 @@ User.create(email: 'user123@email.com',
               middle_name: 'E.',
               last_name: 'R123',
               birthdate: Date.new(1990, 5, 20),
-              location: 'Earth, Galaxy'
+              birthdate_public: 1,
+              location: 'Earth, Galaxy',
+              location_public: 0
             })
 
 User.create(email: 'user456@email.com',
@@ -25,7 +27,8 @@ User.create(email: 'user456@email.com',
             profile_attributes: {
               first_name: 'User',
               last_name: '456',
-              birthdate: Date.new(1985, 8, 14)
+              birthdate: Date.new(1985, 8, 14),
+              birthdate_public: 0
             })
 
 20.times do
@@ -36,14 +39,16 @@ User.create(email: 'user456@email.com',
                                     middle_name: [nil, Faker::Name.middle_name].sample,
                                     last_name: Faker::Name.last_name,
                                     birthdate: [nil, Faker::Date.birthday(min_age: 12, max_age: 100)].sample,
+                                    birthdate_public: rand(2),
                                     location: [nil,
                                                Faker::Address.city,
                                                Faker::Address.state,
                                                "#{Faker::Address.city}, #{Faker::Address.state}",
-                                               Faker::Address.country].sample })
+                                               Faker::Address.country].sample,
+                                    location_public: rand(2) })
 end
 
-user_ids = User.pluck(:id).shuffle * 2
+user_ids = User.pluck(:id).shuffle * 3
 user_ind = 0
 
 if Rails.env.development?
@@ -53,7 +58,7 @@ if Rails.env.development?
     user_ind += 2
   end
 
-  post_ids = Post.pluck(:id).shuffle * 2
+  post_ids = Post.pluck(:id).shuffle * 3
   post_ind = 0
 
   post_ids[post_ind..post_ind + 4].zip(user_ids[user_ind..user_ind + 4]).each do |post_id, user_id|
@@ -62,7 +67,7 @@ if Rails.env.development?
   user_ind += 5
   post_ind += 5
 
-  comment_ids = Comment.pluck(:id).shuffle * 2
+  comment_ids = Comment.pluck(:id).shuffle * 3
   comment_ind = 0
 
   comment_ids[comment_ind..comment_ind + 4].zip(user_ids[user_ind..user_ind + 4]).each do |comment_id, user_id|

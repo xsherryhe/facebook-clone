@@ -70,7 +70,7 @@ class User < ApplicationRecord
   end
 
   def native_login?
-    email.present? && password.present?
+    uid.blank? && provider.blank?
   end
 
   def self.from_omniauth(auth)

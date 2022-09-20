@@ -19,6 +19,8 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:first_name, :middle_name, :last_name,
-                                    :birthdate, :location, avatar_attributes: %i[id stored])
+                                    :birthdate, :birthdate_public,
+                                    :location, :location_public,
+                                    avatar_attributes: %i[id stored])
   end
 end
