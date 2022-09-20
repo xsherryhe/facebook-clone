@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :friend_requests, only: %i[index create destroy]
   resources :friends, only: [:index]
   post '/friends/:id', to: 'friends#create', as: 'friend'
+  delete '/friends/:id', to: 'friends#destroy'
 
   resources :posts
   resources :images, only: [:show]

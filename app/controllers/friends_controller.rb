@@ -15,4 +15,16 @@ class FriendsController < ApplicationController
   rescue ActiveRecord::RecordNotUnique
     current_user.errors.add(:friends, "You are already friends with #{@friend.profile.first_name}!")
   end
+
+  def destroy
+    @friend = User.find(params[:id])
+    unless User.joins(:friends).exists?(friendships: { user_id: current_user.id, friend_id: @friend.id })
+      return unauthorized_redirect('unfriend',
+                                   friend_requests_path,
+                                   additional_info: 'You were never friends to begin with!')
+    end
+
+    current_user.remove_friend(@friend)
+    FriendRequest.between(current_user, @friend).each(&:destroy)
+  end
 end

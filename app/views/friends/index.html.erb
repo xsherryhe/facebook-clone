@@ -1,2 +1,7 @@
 <h2>My Friends</h2>
-<%= render @friends %>
+<% @friends.each do |friend| %>
+  <%= render friend %>
+  <%= turbo_frame_tag "unfriend-#{friend.id}" do %>
+    <%= link_to 'Unfriend', friend_path(friend), data: { turbo_method: :delete } %>
+  <% end %>
+<% end %>

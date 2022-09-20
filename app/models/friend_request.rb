@@ -18,6 +18,10 @@ class FriendRequest < ApplicationRecord
   enum :status, %i[pending accepted], default: :pending
   enum :view_status, %i[unviewed viewed], default: :unviewed, prefix: :friend_request
 
+  scope :between, (lambda do |user1, user2|
+    where(sender: user1, receiver: user2).or(where(sender: user2, receiver: user1))
+  end)
+
   def accepted!
     create_friend_notification unless accepted?
     super

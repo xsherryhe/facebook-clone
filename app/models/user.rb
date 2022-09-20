@@ -49,6 +49,11 @@ class User < ApplicationRecord
     friend.save
   end
 
+  def remove_friend(friend)
+    friends.delete(friend)
+    friend.friends.delete(self)
+  end
+
   def likes?(resource)
     Like.exists?(user: self, reactable: resource)
   end
