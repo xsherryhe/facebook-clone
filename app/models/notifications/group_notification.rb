@@ -1,5 +1,5 @@
 class Notifications::GroupNotification < Notification
-  before_validation :set_notifiable, unless: -> { notifiable }
+  before_validation :set_notifiable, unless: -> { notifiable.present? }
 
   validates :notifications, presence: true
   has_many :notifications, foreign_key: 'group_id', dependent: :destroy

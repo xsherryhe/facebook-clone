@@ -8,6 +8,8 @@ class Image < ApplicationRecord
   has_one_attached :stored
   has_many :likes, as: :reactable, dependent: :destroy
   has_many :comments, as: :reactable, dependent: :destroy
+  has_many :descendant_likes, class_name: 'Like', as: :reactable_root, dependent: :destroy
+  has_many :descendant_comments, class_name: 'Comment', as: :reactable_root, dependent: :destroy
 
   before_validation :delete_url_if_stored
   before_validation :set_alt_text

@@ -1,7 +1,7 @@
 class Notification < ApplicationRecord
   include Rails.application.routes.url_helpers
 
-  before_validation :set_user, unless: -> { user }
+  before_validation :set_user, unless: -> { user.present? }
   after_create :add_to_group
   after_destroy :destroy_empty_group
 
@@ -16,7 +16,7 @@ class Notification < ApplicationRecord
     includes(notifiable: [{ sender: :profile },
                           { receiver: :profile },
                           { user: :profile },
-                          :reactable])
+                          :reactable, :reactable_root])
   end)
 
   def initiator_name
@@ -41,8 +41,8 @@ class Notification < ApplicationRecord
     notifiable.reactable.model_name.human.downcase
   end
 
-  def reactable_model_singular_route_key
-    notifiable.reactable.model_name.singular_route_key
+  def reactable_root_model_singular_route_key
+    notifiable.reactable_root.model_name.singular_route_key
   end
 
   def add_to_group

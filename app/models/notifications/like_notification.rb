@@ -10,7 +10,7 @@ class Notifications::LikeNotification < Notification
   end
 
   def link
-    public_send("#{reactable_model_singular_route_key}_path", like.reactable)
+    public_send("#{reactable_root_model_singular_route_key}_path", like.reactable_root)
   end
 
   def groupable?
@@ -22,7 +22,7 @@ class Notifications::LikeNotification < Notification
   end
 
   def associations_for_includes
-    { like: [{ user: :profile }, :reactable] }
+    { like: [{ user: :profile }, :reactable, :reactable_root] }
   end
 
   private

@@ -10,7 +10,7 @@ class Notifications::CommentNotification < Notification
   end
 
   def link
-    public_send("#{reactable_model_singular_route_key}_path", comment.reactable)
+    public_send("#{reactable_root_model_singular_route_key}_path", comment.reactable_root)
   end
 
   def groupable?
@@ -22,7 +22,7 @@ class Notifications::CommentNotification < Notification
   end
 
   def associations_for_includes
-    { comment: [{ user: :profile }, :reactable] }
+    { comment: [{ user: :profile }, :reactable, :reactable_root] }
   end
 
   private

@@ -6,4 +6,6 @@ class Post < ApplicationRecord
   has_many :photos, class_name: 'Image', as: :imageable, dependent: :destroy
   has_many :likes, as: :reactable, dependent: :destroy
   has_many :comments, as: :reactable, dependent: :destroy
+  has_many :descendant_likes, class_name: 'Like', as: :reactable_root, dependent: :destroy
+  has_many :descendant_comments, class_name: 'Comment', as: :reactable_root, dependent: :destroy
 end
