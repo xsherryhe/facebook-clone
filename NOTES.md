@@ -94,4 +94,4 @@ Alternatively:
 Need websocket for:
 -notifications
 -friend request link
--live updating of posts and post times on post index page
+x live updating of posts and post times on post index page

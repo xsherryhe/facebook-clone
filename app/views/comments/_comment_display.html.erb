@@ -1,1 +1,10 @@
-<%= turbo_frame_tag "#{reactable.model_name.singular}-#{reactable.id}-comments-with-form" %>
+<%= turbo_frame_tag "#{reactable.model_name.singular}-#{reactable.id}-comments-with-form" do %>
+  <% if reactable.preview_comments? %>
+    <div id="<%= reactable.model_name.singular %>-<%= reactable.id %>-comments">
+      <%= render reactable.comments.preview %>
+    </div>
+    <% unless Comment.all_displayed?(reactable.comments.preview) %>
+      <%= link_to "View more #{reactable.comment_name.pluralize}", comments_path(reactable.model_name.route_key, reactable.id, page: 1) %>
+    <% end %>
+  <% end %>
+<% end %>

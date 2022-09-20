@@ -17,8 +17,8 @@
     <%= render 'comments/comment_link', text: comment.comments.any? ? 'Show Replies' : 'Reply', reactable: comment %>
 
     <% if comment.user == current_user %>
-      <%= link_to 'Edit This Comment', edit_comment_path(comment) %>
-      <%= link_to 'Delete This Comment', comment, data: { turbo_method: :delete } %>
+      <%= link_to "Edit This #{comment.reactable.comment_name.capitalize}", edit_comment_path(comment) %>
+      <%= link_to "Delete This #{comment.reactable.comment_name.capitalize}", comment, data: { turbo_method: :delete } %>
     <% end %>
   <% end %>
   

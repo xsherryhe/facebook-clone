@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.where(creator: [current_user] + current_user.friends)
                  .includes(creator: { profile: { avatar: :stored_attachment } },
+                           comments: [{ user: :profile }, :comments, :photos],
                            likes: { user: :profile })
                  .order(updated_at: :desc)
                  .limit(50)

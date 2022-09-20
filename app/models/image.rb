@@ -24,6 +24,18 @@ class Image < ApplicationRecord
     imageable.class.include?(MultiImageable) && imageable.single_photo?
   end
 
+  def comment_name
+    'comment'
+  end
+
+  def comment_form_first?
+    true
+  end
+
+  def preview_comments?
+    true
+  end
+
   private
 
   def url_xor_stored_present
