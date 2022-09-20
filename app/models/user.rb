@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   devise :omniauthable, omniauth_providers: %i[facebook]
+
+  before_destroy :clear_friends
+
   validates :username, uniqueness: { case_sensitive: false },
                        format: { with: /\A[a-zA-Z0-9_.#!$*?]*\Z/,
                                  message: 'contains a disallowed character' },
@@ -138,5 +141,9 @@ class User < ApplicationRecord
     return unless friends.include?(self)
 
     errors.add(:friends, 'You cannot be friends with yourself!')
+  end
+  
+  def clear_friends
+    friends.each { |friend| remove_friend(friend) }
   end
 end
