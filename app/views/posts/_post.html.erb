@@ -1,8 +1,6 @@
 <div data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept">
-  <div class="creator">
-    <%= render post.creator %>
-  </div>
-  <div class="time"><%= post.created_at_abbr_display %></div>
+  <div class="creator"><%= render post.creator %></div>
+  <div class="time"><%= render 'shared/time', resource: post %></div>
   <div class="body"><%= post.body %></div>
   <div class="photos">
     <% post.photos.each do |photo| %>

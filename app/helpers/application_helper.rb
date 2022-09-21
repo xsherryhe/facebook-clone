@@ -18,7 +18,8 @@ module ApplicationHelper
     new_notifications = current_user.notifications.for_display.notification_unviewed
     link_to "Notifications#{new_notifications.any? ? " (#{new_notifications.size})" : ''}",
             notifications_path,
-            data: { turbo_frame: 'notifications' },
+            data: { turbo_frame: 'notifications',
+                    action: 'hidden#toggleHidden' },
             class: new_notifications.any? ? 'important-link' : nil
   end
 end

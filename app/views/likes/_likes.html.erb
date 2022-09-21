@@ -1,5 +1,12 @@
 <% if likes.any? %>
-  <div class="links">
-    <%= pluralize(likes.size, 'like') %><%= users_detail(likes) %>
+  <div class="likes">
+    <div class="abbr-display">
+      <%= pluralize(likes.size, 'like') %><%= users_detail(likes) %>
+    </div>
+    <ul class="full-display">
+      <% likes.each do |like| %>
+        <li><%= like.user.profile.full_name %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>

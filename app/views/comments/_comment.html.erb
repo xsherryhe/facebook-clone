@@ -2,10 +2,8 @@
   <%= turbo_frame_tag "comment-#{comment.id}", 
                       data: { controller: 'redirect', 
                               action: "turbo:before-fetch-response->redirect#intercept" } do %>
-    <div class="user">
-      <%= render comment.user %>
-    </div>
-    <div class="time"><%= comment.created_at_abbr_display %></div>
+    <div class="user"><%= render comment.user %></div>
+    <div class="time"><%= render 'shared/time', resource: comment %></div>
     <div class="body"><%= comment.body %></div>
     <div class="photos">
       <% comment.photos.each do |photo| %>

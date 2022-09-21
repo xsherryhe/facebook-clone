@@ -16,8 +16,13 @@
       <% if user_signed_in? %>
         <div>Currently signed in as: <%= link_to current_user.profile.first_name, current_user_path, class: "important-link" %></div>
         <div class="user-links">
-          <div class="user-link"><%= notifications_link %></div>
-          <%= turbo_frame_tag 'notifications', target: '_top' %>
+          <div class="notifications-with-link" data-controller='hidden'>
+            <div class="user-link"><%= notifications_link %></div>
+            <%= turbo_frame_tag 'notifications', 
+                                target: '_top', 
+                                class: 'hidden', 
+                                data: { hidden_target: 'toggle' } %>
+          </div>
           <div class="user-link"><%= link_to 'My Friends', friends_path %></div>
           <div class="user-link"><%= friend_request_link %></div>
           <div class="user-link"><%= link_to 'Find Friends', strangers_path %></div>
