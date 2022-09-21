@@ -1,7 +1,3 @@
-<!-- Use TurboStream for create post. Have a new post page that creates post as normal.
-     Use a partial for the post form with a variable of format. Pass variable into :format option of form_with.
-     The posts index form_with should use default turbo stream.
-     The new posts page form_with should use html as format and redirect to posts index.-->
 <%= turbo_frame_tag 'new_post', src: new_post_path(response_format: 'turbo_stream') %>
 
 <div id="posts">

@@ -1,7 +1,9 @@
 <div class="user">
   <%= render current_user %>
 </div>
-<%= simple_form_for comment, url: url do |form| %>
+<%= simple_form_for comment, 
+                    url: url,
+                    data: { controller: 'form', action: 'turbo:submit-end->form#reset' } do |form| %>
   <%= form.input :body, label: false %>
   <%= render comment.photos, size: '250' %>
   <div class="field">

@@ -1,4 +1,6 @@
-<%= simple_form_for post, format: response_format do |form| %>
+<%= simple_form_for post, 
+                    format: response_format, 
+                    data: { controller: 'form', action: 'turbo:submit-end->form#reset' } do |form| %>
   <%= hidden_field_tag 'response_format', response_format %>
   <%= form.input :body, label: false, placeholder: "What's on your mind, #{profile.first_name}?" %>
   <%= render post.photos, size: '250' %>
