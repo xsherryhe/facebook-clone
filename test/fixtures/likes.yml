@@ -6,28 +6,35 @@
 #
 like_one_post_one_user_three:
   reactable: post_one_from_user_one (Post)
+  reactable_root: post_one_from_user_one (Post)
   user: three
 
 like_two_comment_two_user_five:
   reactable: comment_comment_one_user_four (Comment)
+  reactable_root: post_one_from_user_one (Post)
   user: five
 
 like_three_post_one_user_one:
   reactable: post_one_from_user_one (Post)
+  reactable_root: post_one_from_user_one (Post)
   user: one
 
 like_four_comment_one_user_one:
   reactable: comment_post_one_user_two (Comment)
+  reactable_root: post_one_from_user_one (Post)
   user: one
 
 like_five_photo_seven_user_two:
   reactable: photo_post_one (Image)
+  reactable_root: photo_post_one (Image)
   user: two
 
 like_six_post_one_user_two:
   reactable: post_one_from_user_one (Post)
+  reactable_root: post_one_from_user_one (Post)
   user: two
 
 like_seven_photo_eight_user_one:
   reactable: photo_comment_one (Image)
+  reactable_root: photo_comment_one (Image)
   user: one

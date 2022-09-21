@@ -13,9 +13,7 @@ class Like < ApplicationRecord
   private
 
   def set_reactable_root
-    root = reactable
-    root = root.reactable while root.is_a? Comment
-    self.reactable_root = root
+    self.reactable_root = (reactable.is_a?(Comment) ? reactable.reactable_root : reactable)
   end
 
   def notify_creator

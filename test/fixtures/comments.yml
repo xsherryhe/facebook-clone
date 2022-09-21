@@ -3,30 +3,54 @@
 comment_post_one_user_two:
   body: CommentOneBody
   reactable: post_one_from_user_one (Post)
+  reactable_root: post_one_from_user_one (Post)
   user: two
 
 comment_comment_one_user_four:
   body: ReplyOneToCommentOne
   reactable: comment_post_one_user_two (Comment)
+  reactable_root: post_one_from_user_one (Post)
   user: four
 
 comment_post_one_user_one:
   body: CommentThreeBody
   reactable: post_one_from_user_one (Post)
+  reactable_root: post_one_from_user_one (Post)
   user: one
 
 comment_comment_one_user_one:
   body: ReplyTwoToCommentOne
   reactable: comment_post_one_user_two (Comment)
+  reactable_root: post_one_from_user_one (Post)
   user: one
 
 comment_photo_seven_user_three:
   body: CommentFiveBody
   reactable: photo_post_one (Image)
+  reactable_root: photo_post_one (Image)
   user: three
 
 comment_photo_seven_user_one:
   body: CommentSixBody
   reactable: photo_post_one (Image)
+  reactable_root: photo_post_one (Image)
   user: one
+
+comment_post_one_user_three:
+  body: CommentSevenBody
+  reactable: post_one_from_user_one (Post)
+  reactable_root: post_one_from_user_one (Post)
+  user: three
+
+comment_comment_one_user_three:
+  body: ReplyThreeToCommentOne
+  reactable: comment_post_one_user_two (Comment)
+  reactable_root: post_one_from_user_one (Post)
+  user: three
+
+comment_photo_seven_user_four:
+  body: CommentNineBody
+  reactable: photo_post_one (Image)
+  reactable_root: photo_post_one (Image)
+  user: four
 

@@ -5,19 +5,63 @@ class CommentFlowTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
   end
 
-  test 'can view comments on a post and form for new comment' do
-    get comments_path('posts', posts(:post_one_from_user_one))
-    assert_response :success
+  test 'can view preview of comments on a post' do
+    get posts_path
     assert_select 'div.body', 'CommentOneBody'
     assert_select 'div.body', 'CommentThreeBody'
+    assert_select 'div.body', text: 'CommentSevenBody', count: 0
+  end
+
+  test 'can view preview of comments on an image' do
+    get image_path(images(:photo_post_one))
+    assert_select 'div.body', 'CommentFiveBody'
+    assert_select 'div.body', 'CommentSixBody'
+    assert_select 'div.body', text: 'CommentNineBody', count: 0
+  end
+
+  test 'can view form for new comment on a post' do
+    get comments_path('posts', posts(:post_one_from_user_one))
+    assert_response :success
     assert_select 'textarea[name="comment[body]"]'
   end
 
-  test 'can view comments on a comment and form for new comment' do
+  test 'can view preview of comments on a comment and form for new comment' do
     get comments_path('comments', comments(:comment_post_one_user_two))
     assert_response :success
     assert_select 'div.body', 'ReplyOneToCommentOne'
+    assert_select 'div.body', 'ReplyTwoToCommentOne'
+    assert_select 'div.body', text: 'ReplyThreeToCommentOne', count: 0
     assert_select 'textarea[name="comment[body]"]'
+  end
+
+  test 'can view form for new comment on an image' do
+    get comments_path('images', images(:photo_post_one))
+    assert_response :success
+    assert_select 'textarea[name="comment[body]"]'
+  end
+
+  test 'can view additional comments after preview on a post' do
+    get comments_path('posts', posts(:post_one_from_user_one), page: 1)
+    assert_response :success
+    assert_select 'div.body', 'CommentOneBody'
+    assert_select 'div.body', 'CommentThreeBody'
+    assert_select 'div.body', 'CommentSevenBody'
+  end
+
+  test 'can view additional comments after preview on a comment' do
+    get comments_path('comments', comments(:comment_post_one_user_two), page: 1)
+    assert_response :success
+    assert_select 'div.body', 'ReplyOneToCommentOne'
+    assert_select 'div.body', 'ReplyTwoToCommentOne'
+    assert_select 'div.body', 'ReplyThreeToCommentOne'
+  end
+
+  test 'can view additional comments after preview on an image' do
+    get comments_path('images', images(:photo_post_one), page: 1)
+    assert_response :success
+    assert_select 'div.body', 'CommentFiveBody'
+    assert_select 'div.body', 'CommentSixBody'
+    assert_select 'div.body', 'CommentNineBody'
   end
 
   test 'can create a comment on a post' do

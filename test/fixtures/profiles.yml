@@ -12,12 +12,16 @@ profile_user_two:
   first_name: FirstTwo
   middle_name: MiddleTwo
   last_name: LastTwo
+  birthdate: 1985-02-26
   location: Two, California
+  privacy: "---\nfirst_name: 1\nmiddle_name: 1\nlast_name: 1\nbirthdate: 1\nlocation: 1\n"
   user: two
 
 profile_user_three:
   first_name: FirstThree
   last_name: LastThree
+  birthdate: 2000-05-17
+  location: Three, Maine
   user: three
 
 profile_user_four:

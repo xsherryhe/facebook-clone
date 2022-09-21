@@ -17,6 +17,12 @@ class LikeFlowTest < ActionDispatch::IntegrationTest
                   '1 like: FirstFive LastFive'
   end
 
+  test 'can view likes on images' do
+    get image_path(images(:photo_post_one))
+     assert_select "div#image-#{images(:photo_post_one).id}-likes",
+                  '1 like: FirstTwo MiddleTwo LastTwo'
+  end
+
   test 'can like a post' do
     target_post = posts(:post_three_from_user_two)
     post likes_path('post', target_post, format: :turbo_stream)
