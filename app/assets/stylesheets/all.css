@@ -6,6 +6,12 @@ ul {
   margin: 0;
 }
 
+/* Move to stylesheet for form */
+
+input[type="file"] {
+  color: transparent;
+}
+
 /* Move to stylesheet for time partial */
 .time, .time * {
   width: max-content;

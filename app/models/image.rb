@@ -12,7 +12,7 @@ class Image < ApplicationRecord
   has_many :descendant_comments, class_name: 'Comment', as: :reactable_root, dependent: :destroy
 
   before_validation :delete_url_if_stored
-  before_validation :set_alt_text
+  before_create :set_alt_text
 
   alias_attribute :creator, :user
 

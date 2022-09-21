@@ -7,7 +7,7 @@
     <div class="body"><%= comment.body %></div>
     <div class="photos">
       <% comment.photos.each do |photo| %>
-        <%= render photo, link_path: image_path(photo), size: '150' %>
+        <%= render photo, link_path: image_path(photo), height: '150' %>
       <% end %>
     </div>
     <%= render 'likes/likes_display', reactable: comment %>
