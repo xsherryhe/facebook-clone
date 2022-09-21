@@ -6,6 +6,7 @@
     <% post.photos.each do |photo| %>
       <%= render photo, link_path: image_path(photo), height: '250' %>
     <% end %>
+  </div>
   <%= render 'likes/likes_display', reactable: post %>
   <%= render 'likes/likes_link', reactable: post %>
   <%= render 'comments/comment_link', text: 'Comment', reactable: post %>

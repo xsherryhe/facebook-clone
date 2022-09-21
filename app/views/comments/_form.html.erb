@@ -7,15 +7,16 @@
                             action: 'turbo:submit-end->form#reset' } do |form| %>
   <%= form.input :body, 
                  label: false, 
-                 input_html: { data: { form_target: 'input', action: 'form#setSubmit' } } %>
+                 input_html: { data: { form_target: 'input', action: 'form#setSubmit keypress->form#submitOnEnter' } } %>
   <div class="field">
-    <div class="preview" data-form-target="preview">
+    <div class="photos">
       <%= render comment.photos, link_path: false, height: '150' %>
+      <span class="preview" data-form-target="preview"></span>
     </div>
     <%= form.label :raw_photos, 'Upload Photos' %>
     <%= form.file_field :raw_photos, 
                         multiple: true, 
-                        data: { form_target: 'input', action: 'form#setSubmit form#addToPreview' } %>
+                        data: { form_target: 'input', action: 'form#setSubmit form#replacePreviewSmall' } %>
     <% comment.photos.each.with_index(1) do |photo, i| %> 
       <% photo.errors[:stored].each do |message| %>
         <p class="error">Photo #<%= i %> <%= message %></p>
