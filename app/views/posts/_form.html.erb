@@ -1,7 +1,8 @@
 <%= simple_form_for post, 
                     format: response_format, 
                     data: { controller: 'form', 
-                            action: 'turbo:submit-end->form#reset' } do |form| %>
+                            action: 'turbo:submit-end->form#reset',
+                            form_file_field_ind_value: 0 } do |form| %>
   <%= hidden_field_tag 'response_format', response_format %>
   <%= form.input :body, 
                  label: false, 
@@ -12,10 +13,11 @@
       <%= render post.photos, link_path: false, height: '150' %>
       <span class="preview" data-form-target="preview"></span>
     </div>
-    <%= form.label :raw_photos, 'Upload Photos' %>
-    <%= form.file_field :raw_photos, 
-                        multiple: true, 
-                        data: { form_target: 'input', action: 'form#setSubmit form#replacePreviewSmall' } %>
+    <div class="photo-upload">
+      <%= form.label :raw_photos, 'Upload Photos' %>
+      <%= form.file_field :raw_photos, multiple: true, id: 'filefield-0',
+                          data: { form_target: 'input', action: 'form#updateFileDisplay form#setSubmit' } %>
+    </div>
     <% post.photos.each.with_index(1) do |photo, i| %> 
       <% photo.errors[:stored].each do |message| %>
         <p class="error">Photo #<%= i %> <%= message %></p>
