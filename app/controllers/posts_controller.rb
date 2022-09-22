@@ -72,6 +72,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, raw_photos: [])
+    params.require(:post).permit(:body, raw_photos: [], photos_attributes: %i[id _destroy])
   end
 end

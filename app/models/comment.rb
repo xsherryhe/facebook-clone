@@ -11,7 +11,6 @@ class Comment < ApplicationRecord
           class_name: 'Notifications::CommentNotification',
           as: :notifiable,
           dependent: :destroy
-  has_many :photos, class_name: 'Image', as: :imageable, dependent: :destroy
   has_many :likes, as: :reactable, dependent: :destroy
   has_many :comments, as: :reactable, dependent: :destroy
 

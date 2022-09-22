@@ -4,6 +4,9 @@ module MultiImageable
   included do
     before_validation :store_raw_photos
     validate :body_or_photo_present
+
+    has_many :photos, class_name: 'Image', as: :imageable, dependent: :destroy
+    accepts_nested_attributes_for :photos, allow_destroy: true
   end
 
   attr_accessor :raw_photos

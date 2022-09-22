@@ -54,6 +54,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, raw_photos: [])
+    params.require(:comment).permit(:body, raw_photos: [], photos_attributes: %i[id _destroy])
   end
 end

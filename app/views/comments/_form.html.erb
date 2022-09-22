@@ -3,22 +3,34 @@
 </div>
 <%= simple_form_for comment, 
                     url: url,
-                    data: { controller: 'form', 
-                            action: 'turbo:submit-end->form#reset',
-                            form_file_field_ind_value: 0 } do |form| %>
+                    data: { controller: 'form image-files', 
+                            action: 'turbo:submit-end->form#reset 
+                                     image-files:input->form#setSubmit 
+                                     form:reset->image-files#clearPreview',
+                            image_files_file_field_ind_value: 0 } do |form| %>
   <%= form.input :body, 
                  label: false, 
                  input_html: { data: { form_target: 'input', action: 'form#setSubmit keypress->form#submitOnEnter' } } %>
   <div class="field">
     <div class="photos">
-      <%= render comment.photos, link_path: false, height: '150' %>
-      <%# for each photo, add a remove link underneath with a data action and something to send in params -- hidden nested attribute field with _destroy key %>
-      <span class="preview" data-form-target="preview"></span>
+      <%= form.simple_fields_for :photos do |photo_form| %>
+        <div id="image-<%= photo_form.object.id %>">
+          <%= render photo_form.object, link_path: false, height: '150' %>
+          <a href="" data-action='image-files#removeDatabaseImage'>Remove</a>
+        </div>
+        <%= photo_form.input :_destroy, 
+                             as: :hidden, 
+                             input_html: { id: "destroy-#{photo_form.object.id}",
+                                           value: '',
+                                           data: { form_target: 'input' } } %>
+      <% end %>
+      <span class="preview" data-image-files-target="preview"></span>
     </div>
     <div class="photo-upload">
       <%= form.label :raw_photos, 'Upload Photos' %>
       <%= form.file_field :raw_photos, multiple: true, id: 'filefield-0',
-                          data: { form_target: 'input', action: 'form#updateFileDisplay form#setSubmit' } %>
+                          data: { form_target: 'input', 
+                                  action: 'image-files#updateFileDisplay form#setSubmit' } %>
     </div>
     <% comment.photos.each.with_index(1) do |photo, i| %> 
       <% photo.errors[:stored].each do |message| %>
