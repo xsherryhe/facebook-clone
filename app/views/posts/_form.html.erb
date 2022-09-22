@@ -3,7 +3,7 @@
                     data: { controller: 'form image-files', 
                             action: 'turbo:submit-end->form#reset 
                                      image-files:input->form#setSubmit 
-                                     form:reset->image-files#clearPreview',
+                                     form:reset->image-files#clearAll',
                             image_files_file_field_ind_value: 0 } do |form| %>
   <%= hidden_field_tag 'response_format', response_format %>
   <%= form.input :body, 
@@ -29,13 +29,17 @@
       <%= form.label :raw_photos, 'Upload Photos' %>
       <%= form.file_field :raw_photos, multiple: true, id: 'filefield-0',
                           data: { form_target: 'input', 
-                                  action: 'image-files#updateFileDisplay form#setSubmit' } %>
+                                  action: 'image-files#filterImageFileType 
+                                           image-files#updateFileDisplay  
+                                           form#setSubmit' } %>
     </div>
-    <% post.photos.each.with_index(1) do |photo, i| %> 
-      <% photo.errors[:stored].each do |message| %>
-        <p class="error">Photo #<%= i %> <%= message %></p>
+    <div class="photo-errors" data-image-files-target="errors">
+      <% post.photos.each.with_index(1) do |photo, i| %> 
+        <% photo.errors[:stored].each do |message| %>
+          <p class="error">Photo #<%= i %> <%= message %></p>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
   <%= form.submit 'Post', disabled: true, data: { form_target: 'submit' } %>
 <% end %>

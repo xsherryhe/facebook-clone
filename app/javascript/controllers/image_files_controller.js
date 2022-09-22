@@ -1,8 +1,42 @@
 import { Controller } from "@hotwired/stimulus"
 
+const imageFileTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/svg'];
+
 export default class extends Controller {
-  static targets = ['preview'];
+  static targets = ['preview', 'errors'];
   static values = { fileFieldInd: Number };
+
+  filterImageFileType(e) {
+    const inputFiles = [...e.target.files],
+          filteredFiles = new DataTransfer();
+    inputFiles.forEach(file => {
+      if(imageFileTypes.includes(file.type)) 
+        filteredFiles.items.add(file);
+    })
+    e.target.files = filteredFiles.files;
+
+    this.updateFileTypeError(inputFiles);
+  }
+
+  updateFileTypeError(inputFiles) {
+    this.clearErrors();
+
+    if(inputFiles.some(file => !imageFileTypes.includes(file.type))) {
+      const error = document.createElement('p');
+      error.classList.add('error');
+      error.textContent = 'You may only add images (PNG, JPG, JPEG, or SVG) as files.';
+      this.errorsTarget.appendChild(error);
+    }
+  }
+
+  clearAll() {
+    this.clearPreview();
+    this.clearErrors();
+  }
+
+  clearErrors() {
+    this.errorsTarget.textContent = '';
+  }
 
   clearPreview() {
     this.previewTarget.textContent = '';
@@ -53,7 +87,7 @@ export default class extends Controller {
 
   replaceFileField() {
     const oldFileField = this.element.querySelector(`#filefield-${this.fileFieldIndValue}`),
-      newFileField = oldFileField.cloneNode();
+          newFileField = oldFileField.cloneNode();
     oldFileField.classList.add('hidden');
     newFileField.id = `filefield-${++this.fileFieldIndValue}`;
     newFileField.value = '';
@@ -79,7 +113,7 @@ export default class extends Controller {
       followingContainer.id = `filefield-${fileInd}-image-${i}`;
     }
 
-    this.dispatch('input');
+    this.registerAsInput();
   }
 
   removeDatabaseImage(e) {
@@ -90,6 +124,11 @@ export default class extends Controller {
     this.element.querySelector(`#destroy-${imageId}`).value = 'true';
     container.remove();
 
+    this.registerAsInput();
+  }
+
+  registerAsInput() {
+    this.clearErrors();
     this.dispatch('input');
   }
 }

@@ -1,16 +1,23 @@
-<%= simple_form_for profile, data: { controller: 'form' } do |form| %>
+<%= simple_form_for profile, data: { controller: 'image-files' } do |form| %>
   <%= form.input :first_name %>
   <%= form.input :middle_name %>
   <%= form.input :last_name %>
   <%= form.simple_fields_for :avatar do |avatar_form| %>
     <p>Profile Picture</p>
-    <div class="preview" data-form-target="preview">
+    <div class="preview" data-image-files-target="preview">
       <%= full_avatar(profile, false) %>
     </div>
     <%= avatar_form.input :stored, 
                           as: :file, 
                           label: 'Upload New Profile Picture',
-                          input_html: { data: { action: 'form#replacePreviewLarge' } } %>
+                          error: false,
+                          input_html: { data: { action: 'image-files#filterImageFileType 
+                                                         image-files#replacePreviewLarge' } } %>
+    <div class="avatar-errors" data-image-files-target="errors">
+      <% profile.avatar.errors.full_messages.each do |message| %>
+        <p class="error"><%= message %></p>
+      <% end %>
+    </div>
   <% end %>
 
   <div class="field">
