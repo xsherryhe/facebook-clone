@@ -3,7 +3,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['toggle'];
 
-  toggleHidden() {
+  toggleHidden(e) {
+    if(!this.toggleTarget.textContent == '') 
+      e.preventDefault();
+
     this.toggleTarget.classList.toggle('hidden');
   }
 }
