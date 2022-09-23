@@ -1,0 +1,5 @@
+.notification {
+  margin: 0.25rem 0;
+  display: flex;
+  gap: 0.5rem;
+}

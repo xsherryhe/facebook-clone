@@ -1,0 +1,15 @@
+.notifications {
+  border: 1px var(--font-color) solid;
+  border-radius: 0.25rem;
+  margin-top: 0.1rem;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  width: 12.5rem;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.notifications a {
+  color: var(--secondary-color);
+}
