@@ -12,10 +12,11 @@
 
   <body>
     <header>
-      <%= link_to 'Home', '/' %>
+      <%= render 'shared/logo' %>
       <% if user_signed_in? %>
         <div>Currently signed in as: <%= link_to current_user.profile.first_name, current_user_path, class: "important-link" %></div>
         <div class="user-links">
+          <%= link_to 'Home', '/' %>
           <div class="notifications-with-link" data-controller='hidden'>
             <div class="user-link"><%= notifications_link %></div>
             <%= turbo_frame_tag 'notifications', 
@@ -34,13 +35,15 @@
         </div>
       <% end %>
     </header>
-    <% if flash.any? %>
-      <div class="flash">
-        <% flash.each do |name, message| %>
-          <p class="<%= name %>"><%= message %></p>
-        <% end %>
-      </div>
-    <% end %>
-    <%= yield %>
+    <section class="content <%= yield :page_classes %>">
+      <% if flash.any? %>
+        <div class="flash">
+          <% flash.each do |name, message| %>
+            <p class="<%= name %>"><%= message %></p>
+          <% end %>
+        </div>
+      <% end %>
+      <section class="page-content"><%= yield %></section>
+    </section>
   </body>
 </html>

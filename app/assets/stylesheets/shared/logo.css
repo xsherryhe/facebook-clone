@@ -1,0 +1,19 @@
+.logo {
+  font-family: 'Josefin';
+  background-color: var(--secondary-color);
+  color: white;
+  border: white 3px solid;
+  padding: 0.6rem 0.8rem;
+  margin: 1rem;
+  width: 11rem;
+  height: 2.2rem;
+  line-height: 1;
+  letter-spacing: 0.2rem;
+}
+
+.logo .logo-text {
+  text-align: center;
+  font-size: 2rem;
+  font-variation-settings: "wght" 650;
+  margin: 0.3rem 0 0 0;
+}

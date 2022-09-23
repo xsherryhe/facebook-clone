@@ -34,7 +34,7 @@
                                            image-files#updateFileDisplay 
                                            form#setSubmit' } %>
     </div>
-    <div class="photo-errors" data-image-files-target="errors">
+    <div class="photo-errors error-list" data-image-files-target="errors">
       <% comment.photos.each.with_index(1) do |photo, i| %> 
         <% photo.errors[:stored].each do |message| %>
           <p class="error">Photo #<%= i %> <%= message %></p>

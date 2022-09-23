@@ -1,0 +1,41 @@
+.devise h2 {
+  margin-bottom: 1rem;
+}
+
+.devise form {
+  gap: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.devise .field {
+  gap: 0.2rem;
+}
+
+.devise input[type='text'],
+.devise input[type='password'],
+.devise input[type='email'] {
+  width: 16rem;
+}
+
+.devise .reg-constraint {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.devise .reg-constraint ul {
+  padding-left: 1rem;
+}
+
+.devise .field-with-constraints {
+  display: flex;
+  gap: 2rem;
+}
+
+.devise .field-with-constraints .focus-box {
+  display: none;
+}
+
+.devise .field-with-constraints:focus-within .focus-box {
+  display: block;
+  height: 0;
+}

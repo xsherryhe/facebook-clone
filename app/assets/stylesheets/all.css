@@ -1,9 +1,82 @@
-.hidden {
-  display: none;
+@font-face {
+  font-family: 'Nunito';
+  src: url('Nunito-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 1 999;
+}
+
+@font-face {
+  font-family: 'Josefin';
+  src: url('JosefinSlab-VariableFont_wght.ttf') format('truetype-variations');
+}
+
+:root {
+  --secondary-color: rgb(0, 100, 170);
+  --tertiary-color: rgb(175, 222, 255);
+  --dark-tertiary-color: rgb(130, 203, 255);
+  --font-color: rgb(59, 59, 59);
+  --light-font-color: rgb(230, 230, 230);
+  --site-font: 'Nunito';
+  --horizontal-content-padding: 10vw;
+  --vertical-content-padding: 2rem;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  font-family: var(--site-font);
+  font-size: 1rem;
+  background-color: var(--light-font-color);
+  color: var(--font-color);
+  line-height: 1.6rem;
+}
+
+.content>* {
+  padding-left: var(--horizontal-content-padding);
+  padding-right: var(--horizontal-content-padding);
+}
+
+.content>.page-content {
+  padding-top: var(--vertical-content-padding);
+  padding-bottom: var(--vertical-content-padding);
+}
+
+.label {
+  display: inline;
+}
+
+.important-link {
+  font-weight: 700;
+  display: inline;
+}
+
+h1, h2, h3, h4, h5,
+ul, p, section {
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.6rem;
 }
 
 ul {
+  padding: 0 1.8rem;
+  list-style-type: '⦾ ';
   margin: 0;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
 }
 
 /* Move to stylesheet for form */

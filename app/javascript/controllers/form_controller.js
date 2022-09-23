@@ -22,6 +22,6 @@ export default class extends Controller {
   }
 
   _emptyForm() {
-    return this.inputTargets.every(input => input.value == '');
+    return this.inputTargets.every(input => input.value.trim() == '');
   }
 }
