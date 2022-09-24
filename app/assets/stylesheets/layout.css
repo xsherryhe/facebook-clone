@@ -8,10 +8,6 @@ body > header {
   padding: 0.5rem 2.5vw;
 }
 
-.content-with-navbar {
-  display: flex;
-}
-
 .header-links {
   grid-column: 3 / span 1;
   display: grid;

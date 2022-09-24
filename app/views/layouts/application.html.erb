@@ -34,7 +34,7 @@
                             data: { hidden_target: 'toggle' } %>
       <% end %>
     </header>
-    <section class="content-with-navbar">
+    <section class="content <%= yield :page_classes %>">
       <% if user_signed_in? %>
         <nav>
           <div class="navbar-link"><%= link_to 'Timeline', posts_path %></div>
@@ -46,7 +46,7 @@
           <% end %>
         </nav>
       <% end %>
-      <section class="content <%= yield :page_classes %>">
+      <section class="page-content-with-flash">
         <% if flash.any? %>
           <div class="flash">
             <% flash.each do |name, message| %>

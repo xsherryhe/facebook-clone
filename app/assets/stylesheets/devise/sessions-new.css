@@ -1,11 +1,15 @@
+.sessions-new .page-content-with-flash {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .sessions-new .flash {
-  text-align: center;
   margin-bottom: calc(-1 * var(--vertical-content-padding));
 }
 
 .sessions-new .page-content {
-  display: flex;
-  justify-content: center;
   padding-top: 0;
   margin-top: var(--vertical-content-padding);
 }

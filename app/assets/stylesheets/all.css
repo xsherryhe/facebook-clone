@@ -32,12 +32,17 @@ body {
   line-height: 1.6rem;
 }
 
-.content>* {
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.content>.page-content-with-flash {
   padding-left: var(--horizontal-content-padding);
   padding-right: var(--horizontal-content-padding);
 }
 
-.content>.page-content {
+.content .page-content {
   padding-top: var(--vertical-content-padding);
   padding-bottom: var(--vertical-content-padding);
 }
