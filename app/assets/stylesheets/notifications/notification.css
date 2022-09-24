@@ -16,4 +16,13 @@
   font-size: 2rem;
 }
 
+.notification:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.notification:hover a {
+  color: white;
+}
+
 

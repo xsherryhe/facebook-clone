@@ -1,6 +1,5 @@
 body > header {
   background-color: var(--secondary-color);
-  position: relative;
   display: grid;
   grid-template-columns: repeat(2, max-content);
   justify-content: space-between;
@@ -38,6 +37,55 @@ body > header {
 
 #notifications {
   grid-column: 3 / span 1;
+  z-index: 1;
+}
+
+.logo-link:hover ~ nav, nav:hover {
+  display: flex;
+}
+
+nav {
+  display: none;
+  justify-content: center;
+  margin-top: calc(-1 * var(--logo-margin));
+}
+
+.navbar-links {
+  font-family: var(--logo-font);
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-sizing: border-box;
+  width: var(--logo-width);
+  background-color: var(--secondary-color);
+  position: absolute;
+  z-index: 1;
+  border-left: var(--logo-border);
+  border-right: var(--logo-border);
+  border-bottom: var(--logo-border);
+}
+
+.navbar-links a {
+  color: white;
+}
+
+.navbar-link {
+  box-sizing: border-box;
+  padding: 1rem;
+  height: var(--logo-height);
+  border-bottom: var(--logo-border);
+  cursor: pointer;
+}
+
+.navbar-link:last-child {
+  border-bottom: none;
+}
+
+.navbar-link:hover {
+  background-color: var(--tertiary-color);
+}
+
+.navbar-link:hover a {
+  color: var(--font-color);
 }
 
 .flash {

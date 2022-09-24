@@ -18,6 +18,11 @@
   --site-font: 'Nunito';
   --horizontal-content-padding: 10vw;
   --vertical-content-padding: 2rem;
+  --logo-width: 13rem;
+  --logo-height: 3.75rem;
+  --logo-margin: 1rem;
+  --logo-border: white 3px solid;
+  --logo-font: 'Josefin';
 }
 
 html {
@@ -33,11 +38,6 @@ body {
 }
 
 .content {
-  display: flex;
-  justify-content: center;
-}
-
-.content>.page-content-with-flash {
   padding-left: var(--horizontal-content-padding);
   padding-right: var(--horizontal-content-padding);
 }

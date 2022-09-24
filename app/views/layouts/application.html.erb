@@ -28,6 +28,17 @@
             <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete } %>
           </div>
         </div>
+        <nav>
+          <div class="navbar-links" data-controller="links">
+            <div class="navbar-link" data-links-target="linkDiv"><%= link_to 'Timeline', posts_path %></div>
+            <div class="navbar-link" data-links-target="linkDiv"><%= link_to 'My Friends', friends_path %></div>
+            <div class="navbar-link" data-links-target="linkDiv"><%= friend_request_link %></div>
+            <div class="navbar-link" data-links-target="linkDiv"><%= link_to 'Edit Profile', edit_profile_path %></div>
+            <% if current_user.native_login? %>
+              <div class="navbar-link" data-links-target="linkDiv"><%= link_to 'Edit Account', edit_user_registration_path %></div>
+            <% end %>
+          </div>
+        </nav>
         <%= turbo_frame_tag 'notifications', 
                             target: '_top', 
                             class: 'hidden',
@@ -35,27 +46,14 @@
       <% end %>
     </header>
     <section class="content <%= yield :page_classes %>">
-      <% if user_signed_in? %>
-        <nav>
-          <div class="navbar-link"><%= link_to 'Timeline', posts_path %></div>
-          <div class="navbar-link"><%= link_to 'My Friends', friends_path %></div>
-          <div class="navbar-link"><%= friend_request_link %></div>
-          <div class="navbar-link"><%= link_to 'Edit Profile', edit_profile_path %></div>
-          <% if current_user.native_login? %>
-            <div class="navbar-link"><%= link_to 'Edit Account', edit_user_registration_path %></div>
+      <% if flash.any? %>
+        <div class="flash">
+          <% flash.each do |name, message| %>
+            <p class="<%= name %>"><%= message %></p>
           <% end %>
-        </nav>
+        </div>
       <% end %>
-      <section class="page-content-with-flash">
-        <% if flash.any? %>
-          <div class="flash">
-            <% flash.each do |name, message| %>
-              <p class="<%= name %>"><%= message %></p>
-            <% end %>
-          </div>
-        <% end %>
-        <section class="page-content"><%= yield %></section>
-      </section>
+      <section class="page-content"><%= yield %></section>
     </section>
   </body>
 </html>
