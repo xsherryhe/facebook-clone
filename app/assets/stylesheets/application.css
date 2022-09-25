@@ -16,6 +16,7 @@
  *= require form.css
  *= require_tree ./shared
  *= require_tree ./devise
+ *= require_tree ./posts
  *= require_tree ./notifications
  *= require_self
  */

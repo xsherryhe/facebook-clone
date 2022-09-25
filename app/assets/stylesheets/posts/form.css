@@ -1,0 +1,45 @@
+.posts.form form {
+  row-gap: 0.3rem;
+}
+
+.posts.form .body-field {
+  grid-column: 1 / span 2;
+}
+
+.posts.form .preview {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: repeat(4, 20vw);
+  gap: 0.5rem;
+}
+
+.posts.form .preview > * {
+  margin: 0.3rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.posts.form .photos-field {
+  grid-row: 3 / span 1;
+  align-self: end;
+  gap: 0;
+}
+
+.posts.form .photos-field .error-list {
+  margin: 0;
+}
+
+.posts.form .photos-field .error:first-child {
+  margin-top: 0.5rem;
+}
+
+.posts.form .photos-field .error:last-child {
+  margin-bottom: 0.5rem;
+}
+
+.posts.form .submit {
+  grid-row: 3 / span 1;
+  justify-self: end;
+  align-self: end;
+}

@@ -91,7 +91,7 @@ export default class extends Controller {
     oldFileField.classList.add('hidden');
     newFileField.id = `filefield-${++this.fileFieldIndValue}`;
     newFileField.value = '';
-    this.element.querySelector('.photo-upload').appendChild(newFileField);
+    this.element.querySelector('.photo-upload').prepend(newFileField);
   }
 
   removeRawImage(e) {

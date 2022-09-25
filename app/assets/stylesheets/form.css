@@ -31,13 +31,23 @@
 .form input[type='date'],
 .form input[type='time'],
 .form input[type='password'],
-.form input[type="email"] {
+.form input[type='email'] {
   padding: 0.1rem 0.3rem;
   height: 1.6rem;
 }
 
+.form input[type='file'] {
+  color: transparent;
+}
+
+.form input[type='file'] ~ label {
+  position: relative;
+  left: -11rem;
+}
+
 .form input[type='radio'] + label,
-.form input[type='checkbox'] + label {
+.form input[type='checkbox'] + label,
+.form input[type='file'] ~ label {
   display: inline;
 }
 
@@ -54,16 +64,17 @@
 }
 
 .form textarea {
+  box-sizing: border-box;
+  resize: none;
+  border-radius: 0.2rem;
   padding: 0.4rem;
-  min-height: 3rem;
-  min-width: 25vw;
+  width: 100%;
+  min-height: 15vh;
 }
 
-.form .description textarea, .form textarea {
-  min-height: 6rem;
-}
-
-.form input[type='submit'], .form button {
+.form input[type='submit'], 
+.form input::file-selector-button, 
+.form button {
   padding: 0.4rem 1.8rem;
   background-color: var(--tertiary-color);
   border-radius: 0.2rem;
@@ -73,8 +84,17 @@
 }
 
 .form input[type='submit']:hover,
+.form input::file-selector-button:hover,
 .form button:hover {
   background-color: var(--dark-tertiary-color);
+}
+
+.form input[type='submit']:disabled,
+.form button:disabled {
+  background-color: lightgray;
+  color: gray;
+  border-color: gray;
+  cursor: default;
 }
 
 .form input[type='submit']:focus,
