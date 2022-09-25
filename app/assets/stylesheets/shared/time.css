@@ -1,0 +1,24 @@
+.time .abbr-display {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.time .full-display-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.time .full-display {
+  display: none;
+  position: absolute;
+  width: max-content;
+  font-size: 0.8rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.2rem;
+  padding: 0.1rem 0.5rem;
+}
+
+.time:hover .full-display {
+  display: block;
+}

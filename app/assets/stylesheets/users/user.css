@@ -1,0 +1,9 @@
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user img {
+  border-radius: 2rem;
+}

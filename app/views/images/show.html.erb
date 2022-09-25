@@ -1,4 +1,5 @@
 <div data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept">
+  <div class="image-user"><%= render @image.user %></div>
   <%= render @image, link_path: false, height: nil %>
   <%= render 'likes/likes_display', reactable: reaction_target(@image) %>
   <%= render 'likes/likes_link', reactable: reaction_target(@image) %>

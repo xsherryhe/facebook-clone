@@ -1,23 +1,26 @@
-<div data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept">
-  <div class="creator"><%= render post.creator %></div>
-  <div class="time"><%= render 'shared/time', resource: post %></div>
-  <div class="body"><%= post.body %></div>
+<div class="post" data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept">
+  <div class="post-heading">
+    <div class="post-creator"><%= render post.creator %></div>
+    <div class="post-time"><%= render 'shared/time', resource: post %></div>
+  </div>
+  <div class="post-body"><%= post.body %></div>
   <div class="photos">
     <% post.photos.each do |photo| %>
       <%= render photo, link_path: image_path(photo), height: '250' %>
     <% end %>
   </div>
   <%= render 'likes/likes_display', reactable: post %>
-  <%= render 'likes/likes_link', reactable: post %>
-  <%= render 'comments/comment_link', text: 'Comment', reactable: post %>
-
-  <% if post.creator == current_user %>
-    <%= link_to 'Edit This Post', edit_post_path(post) %>
-    <%= link_to 'Delete This Post',
-                post, 
-                data: { turbo_method: :delete,
-                        turbo_confirm: 'Are you sure you wish to delete this post?' } %>
-  <% end %>
+  <div class="post-links">
+    <%= render 'likes/likes_link', reactable: post %>
+    <%= render 'comments/comment_link', text: 'Comment', reactable: post %>
+    <% if post.creator == current_user %>
+      <%= link_to 'Edit This Post', edit_post_path(post) %>
+      <%= link_to 'Delete This Post',
+                  post,
+                  data: { turbo_method: :delete,
+                          turbo_confirm: 'Are you sure you wish to delete this post?' } %>
+    <% end %>
+  </div>
   
   <%= render 'comments/comment_display', reactable: post %>
 </div>

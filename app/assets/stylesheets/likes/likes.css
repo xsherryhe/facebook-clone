@@ -1,0 +1,25 @@
+.likes {
+  position: relative;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.likes, .likes .abbr-display {
+  width: max-content;
+}
+
+.likes .full-display {
+  display: none;
+  position: absolute;
+  font-size: 0.75rem;
+  list-style-type: none;
+  line-height: 1rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.likes:hover .full-display {
+  display: block;
+}

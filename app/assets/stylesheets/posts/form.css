@@ -9,7 +9,7 @@
 .posts.form .preview {
   grid-column: 1 / span 2;
   display: grid;
-  grid-template-columns: repeat(4, 20vw);
+  grid-template-columns: repeat(4, calc((100vw - 2 * var(--horizontal-content-padding) - 1.5rem) / 4));
   gap: 0.5rem;
 }
 
@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  font-size: 0.8rem;
 }
 
 .posts.form .photos-field {

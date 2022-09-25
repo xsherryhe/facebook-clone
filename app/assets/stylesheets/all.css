@@ -16,7 +16,7 @@
   --font-color: rgb(59, 59, 59);
   --light-font-color: rgb(230, 230, 230);
   --site-font: 'Nunito';
-  --horizontal-content-padding: 10vw;
+  --horizontal-content-padding: 12vw;
   --vertical-content-padding: 2rem;
   --logo-width: 13rem;
   --logo-height: 3.75rem;
@@ -82,49 +82,4 @@ a:hover {
 
 .hidden {
   display: none;
-}
-
-/* Move to stylesheet for time partial */
-.time, .time * {
-  width: max-content;
-}
-
-.time {
-  position: relative;
-  cursor: pointer;
-}
-
-.time .full-display {
-  display: none;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  padding: 0.5rem;
-}
-
-.time:hover .full-display {
-  display: block;
-}
-
-/* Move to stylesheet for likes */
-.likes, .likes * {
-  width: max-content;
-}
-
-.likes {
-  position: relative;
-  cursor: pointer;
-}
-
-.likes .full-display {
-  display: none;
-  list-style-type: none;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  padding: 0.5rem;
-}
-
-.likes:hover .full-display {
-  display: block;
 }
