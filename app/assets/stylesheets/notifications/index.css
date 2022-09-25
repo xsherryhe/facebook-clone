@@ -3,13 +3,16 @@
   border-radius: 0.25rem;
   margin-top: 0.1rem;
   background-color: white;
-  position: absolute;
   width: 15rem;
+  position: absolute;
+  max-height: 55vh;
   font-size: 0.8rem;
   color: var(--secondary-color);
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: 1fr;
+  grid-auto-rows: 4rem;
+  line-height: 1;
+  overflow: scroll;
 }
 
 .notifications a {

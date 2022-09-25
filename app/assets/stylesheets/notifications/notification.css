@@ -3,7 +3,7 @@
   border-bottom: 1px var(--secondary-color) solid;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
   cursor: pointer;
 }
 
@@ -11,9 +11,13 @@
   border-bottom: none;
 }
 
-.notification .icon {
+.notification .pointer {
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+.notification .new {
+  color: var(--tertiary-color);
 }
 
 .notification:hover {

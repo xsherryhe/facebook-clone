@@ -67,6 +67,7 @@
   <div class="field">
     <%= f.label :current_password %>
     <p class="reg-constraint"><em>We need your current password to confirm your changes.</em></p>
+    <p class="reg-constraint"><em>If you don't know your password, retrieve it <%= link_to 'here', new_user_password_path %>.</em></p>
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 

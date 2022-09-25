@@ -1,5 +1,9 @@
 <%= turbo_frame_tag 'notifications' do %>
   <div class="notifications">
-    <%= render partial: 'notification', collection: @notifications %>
+    <% @notifications.each do |notification| %>
+      <%= render 'notification', 
+                 notification: notification,
+                 new_notification: @new_notifications.include?(notification) %>
+    <% end %>
   </div>
 <% end %>

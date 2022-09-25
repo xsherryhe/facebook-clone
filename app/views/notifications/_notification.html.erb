@@ -1,6 +1,8 @@
 <div class="notification" data-controller="links" data-links-target="linkDiv">
-  <p class="icon">☞	</p>
-  <a href=<%= notification.link %>>
+  <p class="pointer icon">☞ </p>
+  <a href=<%= notification.link %>
+     <% if new_notification %>class="important-link"<% end %>>
     <p><%= notification.body %></p>
   </a>
+  <p class="new icon"><%= new_notification ? '⬤' : ' ' %></p>
 </div>
