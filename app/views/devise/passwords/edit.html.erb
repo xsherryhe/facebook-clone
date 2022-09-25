@@ -1,3 +1,5 @@
+<% content_for :page_classes do 'devise form passwords passwords-edit' end %>
+
 <h2>Change your password</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
@@ -5,15 +7,33 @@
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    <%= f.label :password %>
+    <div class="field-with-constraints">
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <div class="reg-constraint">
+        <div class="focus-box">
+          Password must conform to the following requirements:
+          <ul>
+            <% if @minimum_password_length %>
+              <li><%= @minimum_password_length %> characters minimum</li>
+            <% end %>
+            <li>
+              Must contain at least 1 of each:
+                <ul>
+                  <li>Uppercase letter</li>
+                  <li>Lowercase letter</li>
+                  <li>Digit</li>
+                  <li>Symbol</li>
+                </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
+    <%= f.label :password_confirmation, "Confirm new password" %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 

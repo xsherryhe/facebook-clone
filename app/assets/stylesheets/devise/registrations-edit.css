@@ -6,10 +6,6 @@
   gap: 1rem;
 }
 
-.registrations-edit h2 {
-  margin: 0;
-}
-
 .registrations-edit .field input {
-  width: 23rem;
+  width: 22rem;
 }

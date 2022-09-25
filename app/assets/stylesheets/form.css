@@ -86,7 +86,7 @@
   display: inline;
 }
 
-.form .error {
+.form .error, #error_explanation {
   color: red;
 }
 

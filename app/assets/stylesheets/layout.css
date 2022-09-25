@@ -70,7 +70,9 @@ nav {
 
 .navbar-link {
   box-sizing: border-box;
-  padding: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 1rem;
   height: var(--logo-height);
   border-bottom: var(--logo-border);
   cursor: pointer;

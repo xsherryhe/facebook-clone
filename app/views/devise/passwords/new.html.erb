@@ -1,14 +1,16 @@
+<% content_for :page_classes do 'devise form passwords passwords-new' end %>
+
 <h2>Forgot or don't know your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, 'Enter your email address' %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="actions">
+  <div class="actions submit">
     <%= f.submit "Send me reset password instructions" %>
   </div>
 <% end %>

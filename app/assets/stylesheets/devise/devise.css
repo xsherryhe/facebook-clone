@@ -17,3 +17,30 @@
 .devise input[type='date'] {
   width: 16rem;
 }
+
+.devise .reg-constraint {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.devise .reg-constraint ul {
+  padding-left: 1rem;
+}
+
+.devise .field-with-constraints {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.devise .field-with-constraints .focus-box {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px var(--font-color) solid;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+}
+
+.devise .field-with-constraints:focus-within .focus-box {
+  display: block;
+}
