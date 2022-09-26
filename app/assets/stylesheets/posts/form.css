@@ -6,6 +6,10 @@
   grid-column: 1 / span 2;
 }
 
+.posts.form textarea {
+  min-height: 45vh;
+}
+
 .posts.form .preview {
   grid-column: 1 / span 2;
   display: grid;
@@ -14,11 +18,18 @@
 }
 
 .posts.form .preview > * {
-  margin: 0.3rem 0;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
   font-size: 0.8rem;
+}
+
+.posts.form .preview > div:nth-of-type(-n + 4) {
+  margin-top: 0.3rem;
+}
+
+.posts.form img {
+  width: 100%;
 }
 
 .posts.form .photos-field {

@@ -17,8 +17,9 @@
         <%= render photo_form.object, link_path: false, height: '150' %>
         <a href="" data-action='image-files#removeDatabaseImage'>Remove</a>
       </div>
-      <%= photo_form.input :_destroy, 
+      <%= photo_form.input :_destroy,
                             as: :hidden, 
+                            wrapper: false,
                             input_html: { id: "destroy-#{photo_form.object.id}",
                                           value: '',
                                           data: { form_target: 'input' } } %>
