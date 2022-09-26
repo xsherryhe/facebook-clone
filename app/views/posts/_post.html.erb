@@ -1,26 +1,38 @@
 <div class="post" data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept">
-  <div class="post-heading">
-    <div class="post-creator"><%= render post.creator %></div>
-    <div class="post-time"><%= render 'shared/time', resource: post %></div>
+  <div class="post-main">
+    <div class="post-heading">
+      <div class="post-creator"><%= render post.creator %></div>
+      <div class="post-time"><%= render 'shared/time', resource: post %></div>
+    </div>
+    <div class="post-content">
+      <div class="post-body"><%= post.body %></div>
+      <div class="post-photos">
+        <% post.photos.each do |photo| %>
+          <%= render photo, link_path: image_path(photo), height: '250' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="post-likes"><%= render 'likes/likes_display', reactable: post %></div>
+    <div class="post-links" data-controller='links'>
+      <div class="post-link" data-links-target='linkDiv'>
+        <%= render 'likes/likes_link', reactable: post %>
+      </div>
+      <div class="post-link" data-links-target='linkDiv'>
+        <%= render 'comments/comment_link', text: 'Comment', reactable: post %>
+      </div>
+      <% if post.creator == current_user %>
+        <div class="post-link" data-links-target='linkDiv'>
+          <%= link_to 'Edit', edit_post_path(post) %>
+        </div>
+        <div class="post-link" data-links-target='linkDiv'>
+          <%= link_to 'Delete',
+                      post,
+                      data: { turbo_method: :delete,
+                              turbo_confirm: 'Are you sure you wish to delete this post?' } %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="post-body"><%= post.body %></div>
-  <div class="photos">
-    <% post.photos.each do |photo| %>
-      <%= render photo, link_path: image_path(photo), height: '250' %>
-    <% end %>
-  </div>
-  <%= render 'likes/likes_display', reactable: post %>
-  <div class="post-links">
-    <%= render 'likes/likes_link', reactable: post %>
-    <%= render 'comments/comment_link', text: 'Comment', reactable: post %>
-    <% if post.creator == current_user %>
-      <%= link_to 'Edit This Post', edit_post_path(post) %>
-      <%= link_to 'Delete This Post',
-                  post,
-                  data: { turbo_method: :delete,
-                          turbo_confirm: 'Are you sure you wish to delete this post?' } %>
-    <% end %>
-  </div>
-  
+
   <%= render 'comments/comment_display', reactable: post %>
 </div>

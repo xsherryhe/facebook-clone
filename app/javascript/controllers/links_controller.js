@@ -5,13 +5,15 @@ export default class extends Controller {
 
   connect() {
     this.linkDivTargets.forEach(linkDiv => {
-      const link = linkDiv.getElementsByTagName('a')[0];
-      linkDiv.addEventListener('click', e => this.clickLink(e, link));
+      linkDiv.addEventListener('click', e => this.clickLink(e, linkDiv));
     })
   }
 
-  clickLink(e, link) {
+  clickLink(e, linkDiv) {
     if(e.target.tagName == 'A') return;
-    link.click();
+
+    [...linkDiv.querySelectorAll('*')]
+    .find(element => element.tagName == 'A')
+    .click();
   }
 }

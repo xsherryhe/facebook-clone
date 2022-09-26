@@ -1,8 +1,10 @@
-<% if link_path %>
-  <a href=<%= link_path %>>
+<div class="image">
+  <% if link_path %>
+    <a href=<%= link_path %>>
+      <%= image_tag image.source, alt: image.alt_text, height: %>
+    </a>
+  <% else %>
     <%= image_tag image.source, alt: image.alt_text, height: %>
-  </a>
-<% else %>
-  <%= image_tag image.source, alt: image.alt_text, height: %>
-<% end %>
+  <% end %>
+</div>
  

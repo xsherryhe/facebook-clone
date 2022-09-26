@@ -3,6 +3,10 @@
   box-shadow: 0 0 3.5px var(--font-color);
   border-radius: 0.5rem;
   padding: 1rem;
+  padding-bottom: 0;
+}
+
+.post .post-main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -13,6 +17,38 @@
   justify-content: space-between;
 }
 
+.post .post-content {
+  max-height: 40rem;
+  overflow: scroll;
+}
+
+.post .post-content,
+.post .post-likes {
+  padding: 0 1rem;
+}
+
+.post .post-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .post .post-links {
   border-top: 1px var(--font-color) solid;
+  display: flex;
+}
+
+.post .post-link {
+  flex: 1 1 0;
+  text-align: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.post .post-link a {
+  color: var(--font-color);
+}
+
+.post .post-link:hover {
+  background-color: var(--tertiary-color);
 }

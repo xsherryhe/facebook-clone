@@ -1,0 +1,9 @@
+.image {
+  display: inline;
+  font-size: 0;
+}
+
+img {
+  border-radius: 0.5rem;
+  vertical-align: bottom;
+}
