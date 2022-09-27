@@ -1,0 +1,54 @@
+.posts-comments-form form {
+  row-gap: 0.3rem;
+  grid-template-columns: 1fr;
+}
+
+.posts-comments-form .body-field {
+  grid-column: 1 / span 2;
+}
+
+.posts-comments-form .preview {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.posts-comments-form .preview>* {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+}
+
+.posts-comments-form .preview>div:nth-of-type(-n + 4) {
+  margin-top: 0.3rem;
+}
+
+.posts-comments-form form img {
+  width: 100%;
+}
+
+.posts-comments-form .photos-field {
+  grid-row: 3 / span 1;
+  align-self: end;
+  gap: 0;
+}
+
+.posts-comments-form .photos-field .error-list {
+  margin: 0;
+}
+
+.posts-comments-form .photos-field .error:first-child {
+  margin-top: 0.5rem;
+}
+
+.posts-comments-form .photos-field .error:last-child {
+  margin-bottom: 0.5rem;
+}
+
+.posts-comments-form .submit {
+  grid-row: 3 / span 1;
+  justify-self: end;
+  align-self: end;
+}

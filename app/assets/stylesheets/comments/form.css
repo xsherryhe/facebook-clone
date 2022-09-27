@@ -1,0 +1,12 @@
+.comments.form .form-with-user {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.comments.form .form-with-user form {
+  flex: 1 1 0;
+}
+
+.comments.form textarea {
+  min-height: 0;
+}

@@ -19,6 +19,7 @@
  *= require_tree ./users
  *= require_tree ./posts
  *= require_tree ./images
+ *= require_tree ./comments
  *= require_tree ./likes
  *= require_tree ./notifications
  *= require_self

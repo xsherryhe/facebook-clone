@@ -1,18 +1,20 @@
 <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-with-form" do %>
-  <% if @reactable.comment_form_first? %>
-    <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
-      <%= render 'form', comment: @comment, url: comments_path(@reactable_type, @reactable.id) %>
+  <div class="form posts-comments-form comments comments-index">
+    <% if @reactable.comment_form_first? %>
+      <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
+        <%= render 'form', comment: @comment, url: comments_path(@reactable_type, @reactable.id) %>
+      <% end %>
     <% end %>
-  <% end %>
-  <div id="<%= @reactable_singular %>-<%= @reactable.id %>-comments">
-    <%= render @comments %>
+    <div id="<%= @reactable_singular %>-<%= @reactable.id %>-comments">
+      <%= render @comments %>
+    </div>
+    <% unless Comment.all_displayed?(@comments) %>
+      <%= link_to "View more #{@reactable.comment_name.pluralize}", comments_path(@reactable_type, @reactable.id, page: (@page || 0) + 1) %>
+    <% end %>
+    <% unless @reactable.comment_form_first? %>
+      <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
+        <%= render 'form', comment: @comment, url: comments_path(@reactable_type, @reactable.id) %>
+      <% end %>
+    <% end %>
   </div>
-  <% unless Comment.all_displayed?(@comments) %>
-    <%= link_to "View more #{@reactable.comment_name.pluralize}", comments_path(@reactable_type, @reactable.id, page: (@page || 0) + 1) %>
-  <% end %>
-  <% unless @reactable.comment_form_first? %>
-    <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
-      <%= render 'form', comment: @comment, url: comments_path(@reactable_type, @reactable.id) %>
-    <% end %>
-  <% end %>
 <% end %>
