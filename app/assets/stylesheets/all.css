@@ -22,10 +22,12 @@
   --logo-height-large: 3.75rem;
   --logo-text-size-large: 2rem;
   --logo-border-large: white 3px solid;
+  --logo-letter-spacing-large: 0.2rem;
   --logo-width-small: 10rem;
   --logo-height-small: 2.2rem;
   --logo-text-size-small: 1.3rem;
   --logo-border-small: white 2px solid;
+  --logo-letter-spacing-small: 0.12rem;
   --logo-margin: 0;
   --logo-outline: 1px var(--secondary-color) solid;
   --logo-font: 'Josefin';
