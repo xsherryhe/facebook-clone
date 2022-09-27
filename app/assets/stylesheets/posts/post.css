@@ -18,13 +18,17 @@
 }
 
 .post .post-content {
-  max-height: 40rem;
+  max-height: 60vh;
   overflow: scroll;
 }
 
 .post .post-content,
 .post .post-likes {
   padding: 0 1rem;
+}
+
+.post .post-body {
+  white-space: pre-wrap;
 }
 
 .post .post-photos {

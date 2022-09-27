@@ -25,6 +25,11 @@
 
 .sessions-new .logo {
   align-self: center;
+  margin: 0.5rem;
+}
+
+.sessions-new form {
+  margin-top: 0.5rem;
 }
 
 .sessions-new .omniauth {

@@ -1,7 +1,7 @@
 <% content_for :page_classes do 'devise form sessions sessions-new' end %>
 
 <div class="form-container">
-  <%= render 'shared/logo' %>
+  <%= render 'shared/logo', size: 'large' %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <%= f.label :login, "Login (Username or Email Address)" %>

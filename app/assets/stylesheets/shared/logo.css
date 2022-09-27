@@ -3,18 +3,35 @@
   font-family: var(--logo-font);
   background-color: var(--secondary-color);
   color: white;
-  border: var(--logo-border);
-  padding: 0.6rem 0.8rem;
+  outline: var(--logo-outline);
   margin: var(--logo-margin);
-  width: var(--logo-width);
-  height: var(--logo-height);
   line-height: 1;
   letter-spacing: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo .logo-text {
   text-align: center;
-  font-size: 2rem;
   font-variation-settings: "wght" 650;
   margin: 0.3rem 0 0 0;
+}
+
+.logo.large {
+  width: var(--logo-width-large);
+  height: var(--logo-height-large);
+  border: var(--logo-border-large);
+}
+
+.logo.large .logo-text {
+  font-size: var(--logo-text-size-large);
+}
+
+.logo.small {
+  height: var(--logo-height-small);
+}
+
+.logo.small .logo-text {
+  font-size: var(--logo-text-size-small);
 }

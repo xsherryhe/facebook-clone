@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def friend_request_link
     requests = current_user.new_friend_requests
-    link_to "My Friend Requests#{requests.any? ? " (#{requests.size})" : ''}",
+    link_to "Friend Requests#{requests.any? ? " (#{requests.size})" : ''}",
             friend_requests_path,
             class: requests.any? ? 'important-link' : nil
   end

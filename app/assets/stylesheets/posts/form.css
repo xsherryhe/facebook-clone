@@ -6,10 +6,6 @@
   grid-column: 1 / span 2;
 }
 
-.posts.form textarea {
-  min-height: 45vh;
-}
-
 .posts.form .preview {
   grid-column: 1 / span 2;
   display: grid;
