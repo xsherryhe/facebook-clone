@@ -72,36 +72,6 @@
   min-height: 15vh;
 }
 
-.form input[type='submit'], 
-.form input::file-selector-button, 
-.form button {
-  padding: 0.4rem 1.8rem;
-  background-color: var(--tertiary-color);
-  border-radius: 0.2rem;
-  border: var(--font-color) solid 1px;
-  color: var(--font-color);
-  cursor: pointer;
-}
-
-.form input[type='submit']:hover,
-.form input::file-selector-button:hover,
-.form button:hover {
-  background-color: var(--dark-tertiary-color);
-}
-
-.form input[type='submit']:disabled,
-.form button:disabled {
-  background-color: lightgray;
-  color: gray;
-  border-color: gray;
-  cursor: default;
-}
-
-.form input[type='submit']:focus,
-.form button:focus {
-  box-shadow: inset 0px 0px 2px var(--secondary-color);
-}
-
 .form .field-with-errors {
   display: inline;
 }

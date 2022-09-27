@@ -1,0 +1,12 @@
+.comments-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.comments-edit .back-link {
+  font-size: 0.85rem;
+  margin-left: 2rem;
+  padding: 0 1.8rem;
+}

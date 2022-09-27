@@ -5,16 +5,18 @@
         <div class="comment-user"><%= render comment.user %></div>
         <div class="comment-time"><%= render 'shared/time', resource: comment %></div>
       </div>
-      <div class="comment-main">
-        <div class="comment-content">
-          <div class="comment-body"><%= comment.body %></div>
-          <div class="comment-photos">
-            <% comment.photos.each do |photo| %>
-              <%= render photo, link_path: image_path(photo), height: '150' %>
-            <% end %>
+      <div class="comment-main-container">
+        <div class="comment-main">
+          <div class="comment-content">
+            <div class="comment-body"><%= comment.body %></div>
+            <div class="comment-photos">
+              <% comment.photos.each do |photo| %>
+                <%= render photo, link_path: image_path(photo), height: '150' %>
+              <% end %>
+            </div>
           </div>
+          <div class="comment-likes"><%= render 'likes/likes_display', reactable: comment %></div>
         </div>
-        <div class="comment-likes"><%= render 'likes/likes_display', reactable: comment %></div>
       </div>
       <div class="comment-footer">
         <div class="comment-links">

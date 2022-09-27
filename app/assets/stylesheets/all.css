@@ -90,6 +90,36 @@ a:hover {
   text-decoration: underline;
 }
 
+input[type='submit'],
+input::file-selector-button,
+button, .button {
+  padding: 0.4rem 1.8rem;
+  background-color: var(--tertiary-color);
+  border-radius: 0.2rem;
+  border: var(--font-color) solid 1px;
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+input[type='submit']:hover,
+input::file-selector-button:hover,
+button:hover, .button:hover {
+  background-color: var(--dark-tertiary-color);
+}
+
+input[type='submit']:disabled,
+button:disabled, .button:disabled {
+  background-color: lightgray;
+  color: gray;
+  border-color: gray;
+  cursor: default;
+}
+
+input[type='submit']:focus,
+button:focus, .button:disabled {
+  box-shadow: inset 0px 0px 2px var(--secondary-color);
+}
+
 .hidden {
   display: none !important;
 }

@@ -19,11 +19,19 @@
   align-items: flex-end;
 }
 
+.comment .comment-main-container {
+  background-color: var(--secondary-color);
+  border-radius: 0.2rem;
+}
+
 .comment .comment-main {
   background-color: white;
-  border-radius: 0.2rem;
-  padding: 0.3rem 0.6rem;
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.45rem;
   border: 1px solid var(--font-color);
+  border-left: none;
   display: flex;
   justify-content: space-between;
 }
@@ -54,7 +62,7 @@
   margin: -0.4rem 0.1rem 0 0.2rem;
   display: flex;
   justify-content: space-between;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
 
 .comment .comment-links > * {

@@ -14,16 +14,3 @@
   font-size: 1rem;
   min-height: 0;
 }
-
-.comments.form input[type='submit']:not([disabled]),
-.comments.form input:not([disabled])::file-selector-button,
-.comments.form button:not([disabled]) {
-  background-color: var(--secondary-color);
-  color: white;
-}
-
-.comments.form input[type='submit']:not([disabled]):hover,
-.comments.form input:not([disabled])::file-selector-button:hover,
-.comments.form button:not([disabled]):hover {
-  background-color: var(--dark-secondary-color);
-}

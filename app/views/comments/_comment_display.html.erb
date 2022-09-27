@@ -4,7 +4,10 @@
       <%= render reactable.comments.preview %>
     </div>
     <% unless Comment.all_displayed?(reactable.comments.preview) %>
-      <%= link_to "View more #{reactable.comment_name.pluralize}", comments_path(reactable.model_name.route_key, reactable.id, page: 1) %>
+      <div class="more-comments-link">
+        <%= link_to "View more #{reactable.comment_name.pluralize}", 
+                    comments_path(reactable.model_name.route_key, reactable.id, page: 1) %>
+      </div>
     <% end %>
   <% end %>
 <% end %>
