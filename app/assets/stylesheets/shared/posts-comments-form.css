@@ -31,7 +31,6 @@
 
 .posts-comments-form .photos-field {
   grid-row: 3 / span 1;
-  align-self: end;
   gap: 0;
 }
 
@@ -50,5 +49,4 @@
 .posts-comments-form .submit {
   grid-row: 3 / span 1;
   justify-self: end;
-  align-self: end;
 }

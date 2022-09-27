@@ -24,7 +24,7 @@ module MultiImageable
   end
 
   def body_or_photo_present
-    return if body.present? || photos.any?
+    return if body.present? || photos.reject(&:marked_for_destruction?).any?
 
     errors.add(:body, "can't be blank")
   end

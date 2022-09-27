@@ -18,7 +18,8 @@ body > header {
 
 .header-link {
   border-radius: 0.2rem;
-  padding: 0 1.2rem;
+  border: 2px solid var(--secondary-color);
+  padding: 0 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,6 +27,7 @@ body > header {
 
 .header-link:hover {
   background-color: var(--tertiary-color);
+  border-color: var(--font-color);
 }
 
 .header-link:hover a {
@@ -58,9 +60,9 @@ nav {
 }
 
 .navbar-links {
-  font-family: var(--logo-font);
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-family: var(--site-font);
+  /*font-size: 1.1rem;*/
+  /*font-weight: 600;*/
   box-sizing: border-box;
   width: 12rem;
   background-color: var(--secondary-color);

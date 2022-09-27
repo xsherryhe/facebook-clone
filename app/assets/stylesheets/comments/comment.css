@@ -1,0 +1,63 @@
+.comment a {
+  color: var(--font-color);
+}
+
+.comment .comment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.comment .comment-heading {
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.comment .comment-heading .comment-user .user {
+  align-items: flex-end;
+}
+
+.comment .comment-main {
+  background-color: white;
+  border-radius: 0.2rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--font-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment .comment-body {
+  white-space: pre-wrap;
+}
+
+.comment .comment-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.comment .comment-photos .image {
+  margin: 0.1rem 0;
+}
+
+.comment .comment-likes .likes {
+  font-size: 0.75rem;
+}
+
+.comment .comment-likes .users-detail {
+  display: none;
+}
+
+.comment .comment-links {
+  margin: -0.4rem 0.1rem 0 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+.comment .comment-links > * {
+  display: flex;
+  gap: 1rem;
+}

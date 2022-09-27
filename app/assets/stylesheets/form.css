@@ -38,11 +38,11 @@
 
 .form input[type='file'] {
   color: transparent;
+  max-width: 9.5rem;
 }
 
 .form input[type='file'] ~ label {
   position: relative;
-  left: -11rem;
 }
 
 .form input[type='radio'] + label,

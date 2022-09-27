@@ -11,9 +11,11 @@
 
 :root {
   --secondary-color: rgb(0, 100, 170);
+  --dark-secondary-color: rgb(0, 75, 130);
   --tertiary-color: rgb(175, 222, 255);
   --dark-tertiary-color: rgb(130, 203, 255);
   --font-color: rgb(59, 59, 59);
+  --medium-font-color: rgb(130, 130, 130);
   --light-font-color: rgb(230, 230, 230);
   --site-font: 'Nunito';
   --horizontal-content-padding: 12vw;

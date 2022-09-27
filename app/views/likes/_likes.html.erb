@@ -1,7 +1,7 @@
 <% if likes.any? %>
   <div class="likes">
     <div class="abbr-display">
-      <%= pluralize(likes.size, 'like') %><%= users_detail(likes) %>
+      <%= pluralize(likes.size, 'like') %><span class="users-detail"><%= users_detail(likes) %></span>
     </div>
     <ul class="full-display">
       <% likes.each do |like| %>

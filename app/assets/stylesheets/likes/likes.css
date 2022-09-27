@@ -2,10 +2,15 @@
   position: relative;
   cursor: pointer;
   font-size: 0.9rem;
+  color: var(--medium-font-color);
 }
 
-.likes, .likes .abbr-display {
+.likes, .likes * {
   width: max-content;
+}
+
+.likes .abbr-display {
+  font-weight: 600;
 }
 
 .likes .full-display {

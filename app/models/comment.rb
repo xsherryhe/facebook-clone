@@ -34,6 +34,11 @@ class Comment < ApplicationRecord
     comments.size == comments.first.reactable.comments.where.not(id: nil).size
   end
 
+  def comment_page
+    index = reactable.comments.order(created_at: :asc).index(self)
+    index >= 2 ? index / 8 + 1 : nil
+  end
+
   def comment_name
     'reply'
   end

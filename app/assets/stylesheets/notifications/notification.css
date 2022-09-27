@@ -1,6 +1,6 @@
 .notification {
   padding: 0.1rem 1rem;
-  border-bottom: 1px var(--secondary-color) solid;
+  border-bottom: 1.5px var(--font-color) solid;
   display: flex;
   align-items: center;
   gap: 0.8rem;

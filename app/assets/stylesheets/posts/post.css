@@ -2,29 +2,31 @@
   background-color: white;
   box-shadow: 0 0 3.5px var(--font-color);
   border-radius: 0.5rem;
-  padding: 1rem;
-  padding-bottom: 0;
-}
-
-.post .post-main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
+.post a {
+  color: var(--font-color);
+}
+
 .post .post-heading {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--tertiary-color);
+  border-bottom: 1px var(--font-color) solid;
+}
+
+.post .post-main {
+  padding: 0 2rem;
 }
 
 .post .post-content {
-  max-height: 60vh;
+  max-height: 100vh;
   overflow: scroll;
-}
-
-.post .post-content,
-.post .post-likes {
-  padding: 0 1rem;
 }
 
 .post .post-body {
@@ -37,19 +39,34 @@
   gap: 0.5rem;
 }
 
+.post .post-photos .image {
+  margin: 0.1rem 0;
+}
+
 .post .post-photos img {
   border-radius: 0.5rem;
 }
 
-.post .post-links {
+.post .post-likes .likes {
+  margin-top: 0.8rem;
+}
+
+.post .post-footer {
+  background-color: var(--tertiary-color);
   border-top: 1px var(--font-color) solid;
+}
+
+.post .post-links {
+  height: 2.75rem;
   display: flex;
+  background-color: var(--tertiary-color);
 }
 
 .post .post-link {
   flex: 1 1 0;
-  text-align: center;
-  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
@@ -58,5 +75,5 @@
 }
 
 .post .post-link:hover {
-  background-color: var(--tertiary-color);
+  background-color: var(--dark-tertiary-color);
 }

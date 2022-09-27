@@ -1,5 +1,5 @@
 .notifications {
-  border: 1px var(--secondary-color) solid;
+  border: 1.5px var(--font-color) solid;
   border-radius: 0.2rem;
   margin-top: 0.1rem;
   background-color: white;
@@ -7,14 +7,14 @@
   position: absolute;
   max-height: 55vh;
   font-size: 0.8rem;
-  color: var(--secondary-color);
+  color: var(--font-color);
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: 4rem;
+  grid-auto-rows: 3.5rem;
   line-height: 1;
   overflow: scroll;
 }
 
 .notifications a {
-  color: var(--secondary-color);
+  color: var(--font-color);
 }

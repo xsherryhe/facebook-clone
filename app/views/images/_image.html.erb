@@ -1,6 +1,6 @@
 <div class="image">
   <% if link_path %>
-    <a href=<%= link_path %>>
+    <a href=<%= link_path %> data-turbo-frame="_top">
       <%= image_tag image.source, alt: image.alt_text, height: %>
     </a>
   <% else %>

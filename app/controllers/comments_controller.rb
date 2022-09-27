@@ -28,6 +28,8 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    @reactable = @comment.reactable
+    @page = @comment.comment_page
     return unauthorized_redirect('edit', posts_path) unless @comment.user == current_user
   end
 

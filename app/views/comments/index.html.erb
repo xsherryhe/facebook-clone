@@ -5,7 +5,7 @@
         <%= render 'form', comment: @comment, url: comments_path(@reactable_type, @reactable.id) %>
       <% end %>
     <% end %>
-    <div id="<%= @reactable_singular %>-<%= @reactable.id %>-comments">
+    <div id="<%= @reactable_singular %>-<%= @reactable.id %>-comments" class="comments-list">
       <%= render @comments %>
     </div>
     <% unless Comment.all_displayed?(@comments) %>
