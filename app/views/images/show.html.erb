@@ -1,8 +1,19 @@
-<div data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept">
-  <div class="image-user"><%= render @image.user %></div>
-  <%= render @image, link_path: false, height: nil %>
-  <%= render 'likes/likes_display', reactable: reaction_target(@image) %>
-  <%= render 'likes/likes_link', reactable: reaction_target(@image) %>
-  <%= render 'comments/comment_link', text: 'Comment', reactable: reaction_target(@image) %>
-  <%= render 'comments/comment_display', reactable: reaction_target(@image) %>
+<% content_for :page_classes do 'images images-show' end %>
+
+<div class="back-link"><a class="button" href="" onclick="history.go(-1);">Back</a></div>
+<div data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept" class="image-container">
+  <div class="image-heading">
+    <div class="image-user"><%= render @image.user %></div>
+    <div class="image-likes"><%= render 'likes/likes_display', reactable: reaction_target(@image) %></div>
+  </div>
+  <div class="image-main">
+    <%= render @image, link_path: false, height: nil %>
+  </div>
+  <div class="image-footer">
+    <div class="image-links">
+      <div class="image-link"><%= render 'likes/likes_link', reactable: reaction_target(@image) %></div>
+      <div class="image-link"><%= render 'comments/comment_link', text: 'Comment', reactable: reaction_target(@image) %></div>
+    </div>
+    <%= render 'comments/comment_display', reactable: reaction_target(@image) %>
+  </div>
 </div>

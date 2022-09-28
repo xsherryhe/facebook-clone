@@ -1,0 +1,70 @@
+.images-show .back-link {
+  margin-bottom: 1rem;
+}
+
+.images-show .image-container {
+  background-color: black;
+  box-shadow: 0 0 3.5px var(--font-color);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.images-show a {
+  color: var(--font-color);
+}
+
+.images-show .image-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--tertiary-color);
+  border-bottom: 1px var(--font-color) solid;
+}
+
+.images-show .image-main .image {
+  display: flex;
+  justify-content: center;
+}
+
+.images-show .image-main img {
+  max-height: 55vh;
+  max-width: 100%;
+  border-radius: 0;
+}
+
+.images-show .image-likes .likes {
+  font-size: 1rem;
+}
+
+.images-show .image-likes .likes .users-detail {
+  display: none;
+}
+
+.images-show .image-footer {
+  background-color: var(--tertiary-color);
+  border-top: 1px var(--font-color) solid;
+}
+
+.images-show .image-links {
+  height: 2.75rem;
+  display: flex;
+  background-color: var(--tertiary-color);
+}
+
+.images-show .image-link {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.images-show .image-link a {
+  color: var(--font-color);
+}
+
+.images-show .image-link:hover {
+  background-color: var(--dark-tertiary-color);
+}
