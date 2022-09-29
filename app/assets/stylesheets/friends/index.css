@@ -1,0 +1,38 @@
+.friends-index .page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.friends-index .friends-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 0.5rem;
+}
+
+.friends-index .friend-container {
+  background-color: white;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 3.5px var(--font-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.friends-index .friend-container .user {
+  display: flex;
+  flex-direction: column;
+}
+
+.friends-index .friend-container .user img {
+  height: 5rem;
+  border: 2px solid var(--font-color);
+}
+
+.friends-index .friend-container .friend-message {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+}
