@@ -9,7 +9,7 @@
 
 .users-show .page-content {
   display: grid;
-  grid-template-columns: 17.5rem 1fr;
+  grid-template-columns: 18rem 1fr;
   padding: 0;
   background-color: var(--tertiary-color);
 }

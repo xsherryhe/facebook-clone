@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = current_user.strangers.includes({ profile: { avatar: { stored_attachment: :blob } } })
+    @users = current_user.strangers.includes({ profile: { avatar: { stored_attachment: :blob } } }).limit(50)
     @sent_friend_requests = current_user.sent_friend_requests.pending.includes(:receiver)
     @received_friend_requests = current_user.received_friend_requests.pending.includes(sender: :profile)
   end

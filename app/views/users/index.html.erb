@@ -1,8 +1,16 @@
+<% content_for :page_classes do 'form users users-index' end %>
+
 <h2>Find Friends</h2>
-<% @users.each do |user| %>
-  <%= render user %>
-  <%= render 'friend_requests/form_or_pending', 
-              user: user, 
-              sent_friend_requests: @sent_friend_requests,
-              received_friend_requests: @received_friend_requests %>
-<% end %>
+<div class="users-list">
+  <% @users.each do |user| %>
+    <div class="user-container">
+      <%= render user %>
+      <div class="friend-request-container">
+        <%= render 'friend_requests/form_or_pending',
+                    user: user,
+                    sent_friend_requests: @sent_friend_requests,
+                    received_friend_requests: @received_friend_requests %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,46 @@
+.users-index .page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.users-index .users-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 0.5rem;
+}
+
+.users-index form {
+  margin: 0;
+}
+
+.users-index form input[type="submit"] {
+  height: 2.5rem;
+}
+
+.users-index .user-container {
+  background-color: white;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 3.5px var(--font-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.users-index .user-container .user {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-index .user-container .user img {
+  height: 5rem;
+  border: 2px solid var(--font-color);
+}
+
+.users-index .user-container .friend-message {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+}
