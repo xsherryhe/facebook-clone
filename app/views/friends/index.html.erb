@@ -5,12 +5,7 @@
   <% @friends.each do |friend| %>
     <div class="friend-container">
       <%= render friend %>
-      <%= turbo_frame_tag "unfriend-#{friend.id}" do %>
-        <%= link_to 'Unfriend', 
-                    friend_path(friend), 
-                    data: { turbo_method: :delete },
-                    class: 'button' %>
-      <% end %>
+      <%= render 'friends/destroy_link', friend: %>
     </div>
   <% end %>
 </div>

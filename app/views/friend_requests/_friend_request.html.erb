@@ -1,9 +1,23 @@
-<%= turbo_frame_tag "friend-request-#{friend_request.sender.id}", 
-                    data: { controller: 'redirect', 
+<%= turbo_frame_tag "friend-request-#{friend_request.sender.id}",
+                    data: { controller: 'redirect',
                             action: "turbo:before-fetch-response->redirect#intercept" } do %>
-  <div class="friend-message">
-    <p><%= friend_request.sender.profile.full_name %> sent you a friend request.</p>
-    <%= link_to 'Accept', friend_path(friend_request.sender), data: { turbo_method: :post } %>
-    <%= link_to 'Delete', friend_request, data: { turbo_method: :delete } %>
+  <div class="friend-request friend-message">
+    <div class="friend-request-message">
+      <% if local_assigns.fetch(:sender_label_method, nil) %>
+        <div><%= friend_request.sender.profile.public_send(sender_label_method) %> sent you a friend request.</div>
+      <% else %>
+        <%= mini_avatar(friend_request.sender.profile) %>
+        <div>
+          <%= link_to friend_request.sender.profile.full_name,
+                      user_path(friend_request.sender),
+                      class: 'important-link',
+                      target: '_top' %> sent you a friend request.
+        </div>
+      <% end %>
+    </div>
+    <div class="friend-request-links">
+      <%= link_to 'Accept', friend_path(friend_request.sender), class: 'button', data: { turbo_method: :post } %>
+      <%= link_to 'Delete', friend_request, class: 'button', data: { turbo_method: :delete } %>
+    </div>
   </div>
 <% end %>

@@ -2,7 +2,7 @@
   <% if sent_friend_request = sent_friend_requests.find_by(receiver: user) %>
     <div class="friend-message">Friend request sent!</div>
   <% elsif received_friend_request = received_friend_requests.find_by(sender: user) %>
-    <%= render received_friend_request %>
+    <%= render received_friend_request, sender_label_method: local_assigns.fetch(:sender_label_method, nil) %>
   <% else %>
     <%= render 'friend_requests/form', receiver_id: user.id %>
   <% end %>

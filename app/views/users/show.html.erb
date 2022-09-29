@@ -4,12 +4,7 @@
 <div class="sidebar">
   <%= render @profile, user: @user %>
   <% if current_user.friends.include?(@user) %>
-    <%= turbo_frame_tag "unfriend-#{@user.id}" do %>
-      <%= link_to 'Unfriend',
-                  friend_path(@user),
-                  data: { turbo_method: :delete },
-                  class: 'button' %>
-    <% end %>
+    <%= render 'friends/destroy_link', friend: @user %>
   <% elsif @user == current_user %>
     <div class="friends">
       <h4>Friends (<%= @user.friends.size %>)</h4>
@@ -24,7 +19,8 @@
     <%= render 'friend_requests/form_or_pending',
                 user: @user,
                 sent_friend_requests: current_user.sent_friend_requests.pending,
-                received_friend_requests: current_user.received_friend_requests.pending %>
+                received_friend_requests: current_user.received_friend_requests.pending,
+                sender_label_method: :full_name %>
   <% end %>
 </div>
 

@@ -1,0 +1,10 @@
+.friend-requests-index .page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.friend-requests-index .delete-message {
+  display: none;
+}

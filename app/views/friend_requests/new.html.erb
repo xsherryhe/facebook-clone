@@ -1,3 +1,5 @@
+<% content_for :page_classes do 'form friend-requests friend-requests-new' end %>
+
 <%= turbo_frame_tag "friend-request-form-#{@friend_request.receiver_id}" do %>
   <%= render 'form', friend_request: @friend_request, receiver_id: @friend_request.receiver_id %>
 <% end %>

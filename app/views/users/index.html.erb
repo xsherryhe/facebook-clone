@@ -9,7 +9,8 @@
         <%= render 'friend_requests/form_or_pending',
                     user: user,
                     sent_friend_requests: @sent_friend_requests,
-                    received_friend_requests: @received_friend_requests %>
+                    received_friend_requests: @received_friend_requests,
+                    sender_label_method: :full_name %>
       </div>
     </div>
   <% end %>

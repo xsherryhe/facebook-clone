@@ -1,4 +1,4 @@
-.notifications {
+.notifications-index {
   border: 1.5px var(--font-color) solid;
   border-radius: 0.2rem;
   margin-top: 0.1rem;
@@ -15,6 +15,12 @@
   overflow: scroll;
 }
 
-.notifications a {
+.notifications-index .no-notifications-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notifications-index a {
   color: var(--font-color);
 }

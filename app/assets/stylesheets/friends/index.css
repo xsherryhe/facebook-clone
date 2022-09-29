@@ -33,6 +33,10 @@
 }
 
 .friends-index .friend-container .friend-message {
+  background-color: var(--tertiary-color);
+  border: 1px solid var(--font-color);
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.8rem;
   font-size: 0.9rem;
   line-height: 1.2rem;
 }

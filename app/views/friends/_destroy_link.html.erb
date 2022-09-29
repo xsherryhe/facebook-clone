@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "unfriend-#{friend.id}" do %>
+  <div class="friends-destroy-link">
+    <%= link_to 'Unfriend', 
+                friend_path(friend), 
+                data: { turbo_method: :delete },
+                class: 'button' %>
+  </div>
+<% end %>

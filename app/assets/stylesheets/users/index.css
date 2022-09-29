@@ -6,7 +6,7 @@
 
 .users-index .users-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(18rem, 1fr));
   grid-auto-rows: 1fr;
   gap: 0.5rem;
 }
@@ -41,6 +41,47 @@
 }
 
 .users-index .user-container .friend-message {
+  width: max-content;
+  background-color: var(--tertiary-color);
+  box-shadow: none;
+  border: 1px solid var(--font-color);
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.8rem;
   font-size: 0.9rem;
   line-height: 1.2rem;
+}
+
+.users-index .user-container .friend-request {
+  margin: -0.25rem 0 -1rem;
+  gap: 0;
+  padding: 0;
+  align-items: stretch;
+}
+
+.users-index .user-container .friend-request .friend-request-message {
+  padding: 0.4rem 0.6rem;
+}
+
+.users-index .user-container .friend-request .friend-request-links {
+  border-top: 1px solid var(--font-color);
+  gap: 0;
+}
+
+.users-index .user-container .friend-request .friend-request-links a {
+  flex: 1 1 0;
+  text-align: center;
+  border: none;
+  padding: 0.1rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 0;
+  font-weight: 600;
+}
+
+.users-index .user-container .friend-request .friend-request-links a:first-child {
+  border-right: 1px solid var(--font-color);
+}
+
+.users-index .user-container .friend-request .friend-request-links a:hover {
+  background-color: var(--dark-secondary-color);
 }
