@@ -1,23 +1,15 @@
-<h3><%= profile.full_name %></h3>
-<% if current_user.friends.include?(user) %>
-  <%= turbo_frame_tag "unfriend-#{user.id}" do %>
-    <%= link_to 'Unfriend', friend_path(user), data: { turbo_method: :delete } %>
-  <% end %>
-<% elsif user != current_user %>
-  <%= render 'friend_requests/form_or_pending', 
-              user: user, 
-              sent_friend_requests: current_user.sent_friend_requests.pending,
-              received_friend_requests: current_user.received_friend_requests.pending %>
-<% end %>
-
-<div class="avatar">
-  <%= full_avatar(profile) %>
+<div class="profile">
+  <h1 class="full-name"><%= profile.full_name %></h1>
+  <div class="avatar">
+    <%= full_avatar(@profile) %>
+  </div>
+  <div class="info">
+    <% if profile.birthdate.present? && profile.set_to_public?(:birthdate) %>
+      <div class="birthdate">Birthday: <%= profile.birthdate_full_display %></div>
+    <% end %>
+    
+    <% if profile.location.present? && profile.set_to_public?(:location) %>
+      <div class="location">Location: <%= profile.location %></div>
+    <% end %>
+  </div>
 </div>
-
-<% if profile.birthdate.present? && profile.set_to_public?(:birthdate) %>
-  <div class="birthdate">Birthday: <%= profile.birthdate_full_display %></div>
-<% end %>
-
-<% if profile.location.present? && profile.set_to_public?(:location) %>
-  <div class="location">Location: <%= profile.location %></div>
-<% end %>

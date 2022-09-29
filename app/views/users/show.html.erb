@@ -1,6 +1,53 @@
-<%= render @profile, user: @user %>
+<% content_for :page_classes do 'form posts-comments-form users users-show' end %>
+<% content_for :flash %>
 
-<div class='posts'>
-  <h4>Posts:</h4>
-  <%= render @posts %>
+<div class="sidebar">
+  <%= render @profile, user: @user %>
+  <% if current_user.friends.include?(@user) %>
+    <%= turbo_frame_tag "unfriend-#{@user.id}" do %>
+      <%= link_to 'Unfriend', 
+                  friend_path(@user), 
+                  data: { turbo_method: :delete },
+                  class: 'button' %>
+    <% end %>
+  <% elsif @user == current_user %>
+    <div class="friends">
+      <h4>Friends (<%= @user.friends.size %>)</h4>
+      <div class="friends-list">
+        <%= render @user.friends.limit(3) %>
+      </div>
+      <% if @user.friends.size > 3%>
+        <%= link_to 'More', friends_path, class: 'more-link' %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render 'friend_requests/form_or_pending',
+                user: @user,
+                sent_friend_requests: current_user.sent_friend_requests.pending,
+                received_friend_requests: current_user.received_friend_requests.pending %>
+  <% end %>
+</div>
+
+<div class="main">
+  <%= render 'shared/flash' %>
+  <div class="main-content">
+    <h3>Profile</h3>
+    <div class="photos">
+      <h4>Photos</h4>
+      <div class="photos-list">
+        <% @photos.each do |photo| %>
+          <%= render photo, link_path: image_path(photo), height: '150' %>
+        <% end %>
+      </div>
+    </div>
+    <% if @user == current_user %>
+      <%= turbo_frame_tag 'new_post', src: new_post_path(response_format: 'turbo_stream') %>
+    <% end %>
+    <div class="posts">
+      <h4>Posts</h4>
+      <div id='posts'>
+        <%= render @posts, hide_preview: true %>
+      </div>
+    </div>
+  </div>
 </div>

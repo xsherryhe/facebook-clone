@@ -34,6 +34,8 @@
         </div>
       <% end %>
     </div>
-    <%= render 'comments/comment_display', reactable: post %>
+    <%= render 'comments/comment_display', 
+               reactable: post, 
+               hide_preview: local_assigns.fetch(:hide_preview, nil) %>
   </div>
 </div>

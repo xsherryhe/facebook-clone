@@ -1,0 +1,126 @@
+.users-show {
+  padding-left: 0;
+  padding-right: 5vw;
+}
+
+.users-show > .flash {
+  display: none;
+}
+
+.users-show .page-content {
+  display: grid;
+  grid-template-columns: 17.5rem 1fr;
+  padding: 0;
+  background-color: var(--tertiary-color);
+}
+
+.users-show form {
+  margin: 0;
+}
+
+.users-show form textarea {
+  min-height: 0;
+}
+
+.users-show .sidebar {
+  box-sizing: border-box;
+  position: sticky;
+  top: calc(var(--logo-height-small) + 1rem);
+  padding: var(--vertical-content-padding) 0.5rem;
+  height: calc(100vh - var(--logo-height-small) - 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: scroll;
+}
+
+.users-show .sidebar input[type='submit']:not([disabled]),
+.users-show .sidebar input:not([disabled])::file-selector-button,
+.users-show .sidebar button:not([disabled]),
+.users-show .sidebar .button:not([disabled]) {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.users-show .sidebar input[type='submit']:not([disabled]):hover,
+.users-show .sidebar input:not([disabled])::file-selector-button:hover,
+.users-show .sidebar button:not([disabled]):hover,
+.users-show .sidebar .button:not([disabled]):hover {
+  background-color: var(--dark-secondary-color);
+}
+
+.users-show .sidebar .friend-message {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--font-color);
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.users-show .sidebar .friend-message a {
+  color: white;
+}
+
+.users-show .friends {
+  margin: 0 1rem;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  font-weight: 600;
+}
+
+.users-show .friends a {
+  color: var(--font-color);
+}
+
+.users-show .friends-list {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 1vh;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.users-show .friends-list .user img {
+  height: 1.8rem;
+}
+
+.users-show .more-link {
+  font-size: 0.9rem;
+}
+
+.users-show .main {
+  padding-left: 5vw;
+  background-color: var(--light-font-color);
+  border-left: 1px solid var(--font-color);
+}
+
+.users-show .main-content {
+  padding-top: var(--vertical-content-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.users-show .photos-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.25rem;
+}
+
+.users-show .photos-list img {
+  width: 100%;
+}
+
+.users-show #posts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.users-show .post .post-content {
+  max-height: 45vh;
+}

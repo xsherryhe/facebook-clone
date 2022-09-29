@@ -17,7 +17,11 @@ class Comment < ApplicationRecord
   alias_attribute :creator, :user
 
   scope :with_associations, (lambda do
-    includes({ reactable: :comments }, { user: :profile }, { likes: { user: :profile } }, :comments, :photos)
+    includes({ reactable: :comments },
+             { user: :profile },
+             { photos: { stored_attachment: :blob } },
+             { likes: { user: :profile } },
+             :comments)
   end)
 
   scope :up_to_page, (lambda do |page|

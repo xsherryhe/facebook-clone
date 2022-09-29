@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "#{reactable.model_name.singular}-#{reactable.id}-comments-with-form", class: 'comments-display' do %>
-  <% if reactable.preview_comments? %>
+  <% if reactable.preview_comments? && !local_assigns.fetch(:hide_preview, nil) %>
     <div id="<%= reactable.model_name.singular %>-<%= reactable.id %>-comments" class="comments-list">
       <%= render reactable.comments.preview %>
     </div>

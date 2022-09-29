@@ -17,6 +17,7 @@
  *= require_tree ./shared
  *= require_tree ./devise
  *= require_tree ./users
+ *= require_tree ./profiles
  *= require_tree ./posts
  *= require_tree ./images
  *= require_tree ./comments

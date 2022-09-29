@@ -1,5 +1,5 @@
 <%= simple_form_for post, 
-                    format: response_format, 
+                    format: local_assigns.fetch(:response_format, nil), 
                     data: { controller: 'form image-files', 
                             action: 'turbo:submit-end->form#reset 
                                      image-files:input->form#setSubmit 
@@ -14,7 +14,7 @@
   <div class="preview" data-image-files-target="preview">
     <%= form.simple_fields_for :photos do |photo_form| %>
       <div id="image-<%= photo_form.object.id %>">
-        <%= render photo_form.object, link_path: false, height: '150' %>
+        <%= render photo_form.object, height: '150' %>
         <a href="" data-action='image-files#removeDatabaseImage'>Remove</a>
       </div>
       <%= photo_form.input :_destroy,

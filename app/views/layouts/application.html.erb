@@ -46,12 +46,10 @@
       <% end %>
     </header>
     <section class="content <%= yield :page_classes %>">
-      <% if flash.any? %>
-        <div class="flash">
-          <% flash.each do |name, message| %>
-            <p class="<%= name %>"><%= message %></p>
-          <% end %>
-        </div>
+      <% if content_for?(:flash) %>
+        <%= yield :flash %>
+      <% else %>
+        <%= render 'shared/flash' %>
       <% end %>
       <section class="page-content"><%= yield %></section>
     </section>

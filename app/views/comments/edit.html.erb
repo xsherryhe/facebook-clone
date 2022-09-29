@@ -3,6 +3,6 @@
     <%= link_to 'Back', 
                 comments_path(@reactable.model_name.route_key, @reactable, page: @page),
                 class: 'button back-link' %>
-    <%= render 'form', comment: @comment, url: nil %>
+    <%= render 'form', comment: @comment %>
   </div>
 <% end %>
