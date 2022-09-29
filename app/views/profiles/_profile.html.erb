@@ -1,7 +1,7 @@
 <div class="profile">
   <h1 class="full-name"><%= profile.full_name %></h1>
   <div class="avatar">
-    <%= full_avatar(@profile) %>
+    <%= full_avatar(profile) %>
   </div>
   <div class="info">
     <% if profile.birthdate.present? && profile.set_to_public?(:birthdate) %>

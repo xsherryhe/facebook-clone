@@ -5,8 +5,8 @@
   <%= render @profile, user: @user %>
   <% if current_user.friends.include?(@user) %>
     <%= turbo_frame_tag "unfriend-#{@user.id}" do %>
-      <%= link_to 'Unfriend', 
-                  friend_path(@user), 
+      <%= link_to 'Unfriend',
+                  friend_path(@user),
                   data: { turbo_method: :delete },
                   class: 'button' %>
     <% end %>
@@ -29,6 +29,9 @@
 </div>
 
 <div class="main">
+  <% if @profile.user == current_user %>
+    <%= link_to 'Edit Profile', edit_profile_path, class: 'edit-profile-link button' %>
+  <% end %>
   <%= render 'shared/flash' %>
   <div class="main-content">
     <h3>Profile</h3>

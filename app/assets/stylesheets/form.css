@@ -38,6 +38,10 @@
 
 .form input[type='file'] {
   color: transparent;
+  max-width: 9rem;
+}
+
+.form input[type='file'][multiple='multiple'] {
   max-width: 9.5rem;
 }
 

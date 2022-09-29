@@ -1,34 +1,41 @@
 <%= simple_form_for profile, data: { controller: 'image-files' } do |form| %>
+  <%= form.simple_fields_for :avatar do |avatar_form| %>
+    <div class="field avatar-field">
+      <p>Avatar</p>
+      <div class="preview" data-image-files-target="preview">
+        <%= full_avatar(profile, false) %>
+      </div>
+      <div class="avatar-upload">
+        <%= avatar_form.input_field :stored,
+                                    as: :file,
+                                    data: { action: 'image-files#filterImageFileType
+                                                      image-files#replacePreviewLarge' } %>
+        <%= avatar_form.label :stored, 'Upload Avatar' %>
+      </div>
+      <div class="avatar-errors" data-image-files-target="errors">
+        <% profile.avatar.errors.full_messages.each do |message| %>
+          <p class="error"><%= message %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
   <%= form.input :first_name %>
   <%= form.input :middle_name %>
   <%= form.input :last_name %>
-  <%= form.simple_fields_for :avatar do |avatar_form| %>
-    <p>Profile Picture</p>
-    <div class="preview" data-image-files-target="preview">
-      <%= full_avatar(profile, false) %>
-    </div>
-    <%= avatar_form.input :stored, 
-                          as: :file, 
-                          label: 'Upload New Profile Picture',
-                          error: false,
-                          input_html: { data: { action: 'image-files#filterImageFileType 
-                                                         image-files#replacePreviewLarge' } } %>
-    <div class="avatar-errors" data-image-files-target="errors">
-      <% profile.avatar.errors.full_messages.each do |message| %>
-        <p class="error"><%= message %></p>
-      <% end %>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= form.input :birthdate, html5: true, wrapper: false %>
-    <%= form.check_box :birthdate_public, checked: profile.set_to_public?(:birthdate) %>
-    <%= form.label :birthdate_public, 'Show Birthday on Profile' %>
+    <div class="selection">
+      <%= form.check_box :birthdate_public, checked: profile.set_to_public?(:birthdate) %>
+      <%= form.label :birthdate_public, 'Show Birthday on Profile' %>
+    </div>
   </div>
   <div class="field">
     <%= form.input :location, wrapper: false %>
-    <%= form.check_box :location_public, checked: profile.set_to_public?(:location) %>
-    <%= form.label :location_public, 'Show Location on Profile' %>
+    <div class="selection">
+      <%= form.check_box :location_public, checked: profile.set_to_public?(:location) %>
+      <%= form.label :location_public, 'Show Location on Profile' %>
+    </div>
   </div>
-  <%= form.submit %>
+  <div class="submit"><%= form.submit %></div>
 <% end %>

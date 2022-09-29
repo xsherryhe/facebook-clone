@@ -8,7 +8,7 @@
   <%= hidden_field_tag 'response_format', response_format %>
   <%= form.input :body, 
                  label: false, 
-                 wrapper_class: 'field body-field',
+                 wrapper_class: 'body-field',
                  placeholder: "What's on your mind, #{profile.first_name}?",
                  input_html: { data: { form_target: 'input', action: 'form#setSubmit' } } %>
   <div class="preview" data-image-files-target="preview">

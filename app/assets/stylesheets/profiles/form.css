@@ -1,0 +1,26 @@
+.profiles.form form {
+  width: min(42rem, 100%);
+  grid-template-columns: max-content 1fr;
+  column-gap: 3rem;
+}
+
+.profiles.form .field {
+  gap: 0.2rem;
+}
+
+.profiles.form .preview img {
+  border: var(--font-color) solid 2px;
+}
+
+.profiles.form .avatar-field {
+  grid-row: 1 / span 5;
+}
+
+.profiles.form .avatar-upload {
+  margin-top: 0.2rem;
+}
+
+.profiles.form .submit {
+  grid-column: 2 / span 1;
+  justify-self: end;
+}
