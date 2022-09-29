@@ -14,7 +14,11 @@ class Notifications::GroupNotification < Notification
   end
 
   def initiator_name
-    notifications.map(&:initiator_name).to_sentence
+    (if notifications.size <= 2
+       notifications.map(&:initiator_name)
+     else
+       [notifications.first.initiator_name, "#{notifications.size - 1} others"]
+     end).to_sentence
   end
 
   def initiator_action

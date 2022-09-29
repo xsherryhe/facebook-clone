@@ -5,6 +5,19 @@
   align-items: center;
   gap: 0.8rem;
   cursor: pointer;
+  color: var(--medium-font-color);
+}
+
+.notification a {
+  color: var(--medium-font-color);
+}
+
+.notification.new-notification {
+  color: var(--font-color);
+}
+
+.notification.new-notification a {
+  color: var(--font-color);
 }
 
 .notification:last-child {
@@ -17,7 +30,7 @@
 }
 
 .notification .new {
-  color: var(--tertiary-color);
+  color: var(--secondary-color);
 }
 
 .notification:hover {
