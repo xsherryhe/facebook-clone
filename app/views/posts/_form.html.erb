@@ -5,7 +5,7 @@
                                      image-files:input->form#setSubmit 
                                      form:reset->image-files#clearAll',
                             image_files_file_field_ind_value: 0 } do |form| %>
-  <%= hidden_field_tag 'response_format', response_format %>
+  <%= hidden_field_tag 'response_format', local_assigns.fetch(:response_format, nil) %>
   <%= form.input :body, 
                  label: false, 
                  wrapper_class: 'body-field',

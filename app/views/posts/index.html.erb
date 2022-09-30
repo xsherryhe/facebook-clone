@@ -2,6 +2,11 @@
 
 <%= turbo_frame_tag 'new_post', src: new_post_path(response_format: 'turbo_stream') %>
 
-<div id="posts">
+<%= turbo_frame_tag 'posts', target: '_top' do %>
   <%= render @posts %>
-</div>
+  <% unless @posts.size == @posts_count %>
+    <div class="more-posts-link">
+      <%= link_to 'View more posts', posts_path(page: (@page || 0) + 1) %>
+    </div>
+  <% end %>
+<% end %>

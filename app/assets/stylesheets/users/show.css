@@ -146,6 +146,12 @@
   width: 100%;
 }
 
+.users-show .posts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
 .users-show #posts {
   display: flex;
   flex-direction: column;
@@ -154,4 +160,8 @@
 
 .users-show .post .post-content {
   max-height: 45vh;
+}
+
+.users-show #posts .more-posts-link {
+  text-align: center;
 }

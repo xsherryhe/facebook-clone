@@ -12,6 +12,8 @@
 }
 
 .post .post-heading {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,12 +56,13 @@
 .post .post-footer {
   background-color: var(--tertiary-color);
   border-top: 1px var(--font-color) solid;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .post .post-links {
   height: 2.75rem;
   display: flex;
-  background-color: var(--tertiary-color);
 }
 
 .post .post-link {

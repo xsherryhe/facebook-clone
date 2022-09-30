@@ -44,9 +44,14 @@
     <% end %>
     <div class="posts">
       <h4>Posts</h4>
-      <div id='posts'>
+      <%= turbo_frame_tag 'posts', target: '_top' do %>
         <%= render @posts, hide_preview: true %>
-      </div>
+        <% unless @posts.size == @posts_count %>
+          <div class="more-posts-link">
+            <%= link_to 'View more posts', user_path(@user, page: (@page || 0) + 1) %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

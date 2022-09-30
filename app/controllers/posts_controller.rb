@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   def index
+    @page = params[:page]&.to_i || 1
     @posts = Post.where(creator: [current_user] + current_user.friends)
                  .includes(creator: { profile: { avatar: { stored_attachment: :blob } } },
                            photos: { stored_attachment: :blob },
                            comments: [{ user: :profile }, :comments, { photos: { stored_attachment: :blob } }],
                            likes: { user: :profile })
                  .order(updated_at: :desc)
-                 .limit(50)
+    @posts_count = @posts.count
+    @posts = @posts.up_to_page(@page)
     @user = current_user
   end
 
@@ -62,12 +64,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @id = params[:id]
+    @post = Post.find(@id)
     return unauthorized_redirect('delete', posts_path) unless @post.creator == current_user
 
     @post.destroy
-    flash[:notice] = 'Successfully deleted post.'
-    redirect_to posts_path
   end
 
   private
