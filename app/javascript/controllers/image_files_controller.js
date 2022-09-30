@@ -6,6 +6,12 @@ export default class extends Controller {
   static targets = ['preview', 'errors'];
   static values = { fileFieldInd: Number };
 
+  selectFileField(e) {
+    e.preventDefault();
+    this.element.querySelector(`#filefield-${this.fileFieldIndValue || 0}`).click();
+    e.target.blur();
+  }
+
   filterImageFileType(e) {
     const inputFiles = [...e.target.files],
           filteredFiles = new DataTransfer();
@@ -88,10 +94,9 @@ export default class extends Controller {
   replaceFileField() {
     const oldFileField = this.element.querySelector(`#filefield-${this.fileFieldIndValue}`),
           newFileField = oldFileField.cloneNode();
-    oldFileField.classList.add('hidden');
     newFileField.id = `filefield-${++this.fileFieldIndValue}`;
     newFileField.value = '';
-    this.element.querySelector('.photo-upload').prepend(newFileField);
+    this.element.querySelector('.photo-upload').append(newFileField);
   }
 
   removeRawImage(e) {

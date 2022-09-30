@@ -10,6 +10,7 @@
 
 .profiles.form .preview img {
   border: var(--font-color) solid 2px;
+  width: 250px;
 }
 
 .profiles.form .avatar-field {

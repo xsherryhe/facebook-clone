@@ -29,6 +29,7 @@
 
 .friends-index .friend-container .user img {
   height: 5rem;
+  width: 5rem;
   border: 2px solid var(--font-color);
 }
 

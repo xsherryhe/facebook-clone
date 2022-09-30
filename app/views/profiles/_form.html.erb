@@ -6,11 +6,12 @@
         <%= full_avatar(profile, false) %>
       </div>
       <div class="avatar-upload">
+        <button data-action="image-files#selectFileField">Upload Avatar</button>
         <%= avatar_form.input_field :stored,
                                     as: :file,
+                                    id: 'filefield-0', class: 'hidden',
                                     data: { action: 'image-files#filterImageFileType
                                                       image-files#replacePreviewLarge' } %>
-        <%= avatar_form.label :stored, 'Upload Avatar' %>
       </div>
       <div class="avatar-errors" data-image-files-target="errors">
         <% profile.avatar.errors.full_messages.each do |message| %>

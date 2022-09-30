@@ -46,6 +46,11 @@
   margin-bottom: 0.5rem;
 }
 
+.posts-comments-form .photos-field .photo-upload button {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .posts-comments-form .submit {
   grid-row: 3 / span 1;
   justify-self: end;

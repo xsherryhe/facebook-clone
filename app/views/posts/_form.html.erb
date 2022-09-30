@@ -34,12 +34,13 @@
       <% end %>
     </div>
     <div class="photo-upload">
-      <%= form.file_field :raw_photos, multiple: true, id: 'filefield-0',
+      <button data-action="image-files#selectFileField">Upload Photos</button>
+      <%= form.file_field :raw_photos, multiple: true, 
+                          id: 'filefield-0', class: 'hidden',
                           data: { form_target: 'input', 
                                   action: 'image-files#filterImageFileType 
                                            image-files#updateFileDisplay  
                                            form#setSubmit' } %>
-      <%= form.label :raw_photos, 'Upload Photos' %>
     </div>
   </div>
   <div class="submit"><%= form.submit 'Post', disabled: true, data: { form_target: 'submit' } %></div>

@@ -116,7 +116,7 @@ button:disabled, .button:disabled {
 }
 
 input[type='submit']:focus,
-button:focus, .button:disabled {
+button:focus, .button:focus {
   box-shadow: inset 0px 0px 2px var(--secondary-color);
 }
 

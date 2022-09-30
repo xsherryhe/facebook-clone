@@ -1,10 +1,18 @@
 <div class="image">
   <% if local_assigns.fetch(:link_path, nil) %>
     <a href=<%= link_path %> data-turbo-frame="_top">
-      <%= image_tag image.source, alt: image.alt_text, height: local_assigns.fetch(:height, nil) %>
+      <%= image_tag image.source, 
+                    alt: image.alt_text, 
+                    size: local_assigns.fetch(:size, nil),
+                    height: local_assigns.fetch(:height, nil),
+                    width: local_assigns.fetch(:width, nil) %>
     </a>
   <% else %>
-    <%= image_tag image.source, alt: image.alt_text, height: local_assigns.fetch(:height, nil) %>
+    <%= image_tag image.source, 
+                  alt: image.alt_text, 
+                  size: local_assigns.fetch(:size, nil),
+                  height: local_assigns.fetch(:height, nil),
+                  width: local_assigns.fetch(:width, nil) %>
   <% end %>
 </div>
  
