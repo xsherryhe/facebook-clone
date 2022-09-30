@@ -14,6 +14,7 @@ class UsersController < ApplicationController
                             comments: [{ user: :profile }, :comments, { photos: { stored_attachment: :blob } }],
                             likes: { user: :profile })
                   .order(updated_at: :desc)
+                  .limit(10)
     @photos = @user.photos.with_attached_stored.limit(4)
   end
 end

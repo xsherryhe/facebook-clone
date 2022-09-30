@@ -9,7 +9,9 @@
       <%= render @comments %>
     </div>
     <% unless Comment.all_displayed?(@comments) %>
-      <%= link_to "View more #{@reactable.comment_name.pluralize}", comments_path(@reactable_type, @reactable.id, page: (@page || 0) + 1) %>
+      <div class="more-comments-link">
+        <%= link_to "View more #{@reactable.comment_name.pluralize}", comments_path(@reactable_type, @reactable.id, page: (@page || 0) + 1) %>
+      </div>
     <% end %>
     <% unless @reactable.comment_form_first? %>
       <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
