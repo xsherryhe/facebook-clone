@@ -1,5 +1,6 @@
 <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-with-form" do %>
-  <div class="form posts-comments-form comments comments-index">
+  <div class="form posts-comments-form comments comments-index"
+       data-hidden-target="toggle">
     <% if @reactable.comment_form_first? %>
       <%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
         <%= render 'form', comment: @comment, url: comments_path(@reactable_type, @reactable.id) %>

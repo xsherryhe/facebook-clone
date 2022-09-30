@@ -1,3 +1,4 @@
 <%= link_to text, 
             comments_path(reactable.model_name.route_key, reactable),
-            data: { turbo_frame: "#{reactable.model_name.singular}-#{reactable.id}-comments-with-form" } %>
+            data: { turbo_frame: "#{reactable.model_name.singular}-#{reactable.id}-comments-with-form",
+                    action: 'hidden#toggleHidden' } %>

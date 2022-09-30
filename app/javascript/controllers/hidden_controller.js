@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ['toggle'];
 
   toggleHidden(e) {
+    if(!this.hasToggleTarget) return;
     if(!this.toggleTarget.textContent == '') 
       e.preventDefault();
 

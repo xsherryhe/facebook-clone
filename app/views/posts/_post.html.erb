@@ -15,19 +15,19 @@
     </div>
     <div class="post-likes"><%= render 'likes/likes_display', reactable: post %></div>
   </div>
-  <div class="post-footer">
-    <div class="post-links" data-controller='links'>
-      <div class="post-link" data-links-target='linkDiv'>
+  <div class="post-footer" data-controller="hidden">
+    <div class="post-links" data-controller="links">
+      <div class="post-link" data-links-target="linkDiv">
         <%= render 'likes/likes_link', reactable: post %>
       </div>
-      <div class="post-link" data-links-target='linkDiv'>
+      <div class="post-link" data-links-target="linkDiv">
         <%= render 'comments/comment_link', text: 'Comment', reactable: post %>
       </div>
       <% if post.creator == current_user %>
-        <div class="post-link" data-links-target='linkDiv'>
+        <div class="post-link" data-links-target="linkDiv">
           <%= link_to 'Edit', edit_post_path(post), target: '_top' %>
         </div>
-        <div class="post-link" data-links-target='linkDiv'>
+        <div class="post-link" data-links-target="linkDiv">
           <%= link_to 'Delete',
                       post,
                       data: { turbo_method: :delete,
