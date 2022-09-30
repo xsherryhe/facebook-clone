@@ -136,6 +136,28 @@
   gap: 1rem;
 }
 
+.users-show #photos-scroll {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.users-show #photos-scroll .arrow {
+  position: absolute;
+  padding: 0.3rem;
+  color: var(--font-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.users-show #photos-scroll .arrow.left {
+  left: -1.9rem;
+}
+
+.users-show #photos-scroll .arrow.right {
+  right: -1.9rem;
+}
+
 .users-show .photos-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

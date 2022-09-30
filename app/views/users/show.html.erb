@@ -33,22 +33,31 @@
     <h3>Profile</h3>
     <div class="photos">
       <h4>Photos</h4>
-      <div class="photos-list">
-        <% @photos.each do |photo| %>
-          <%= render photo, link_path: image_path(photo), height: '150' %>
+      <%= turbo_frame_tag 'photos-scroll' do %>
+        <% unless @photos_page == 1 %>
+          <%= link_to '<', user_path(@user, photos_page: @photos_page - 1), class: 'button arrow left' %>
         <% end %>
-      </div>
+        <div class="photos-list">
+          <% @photos.each do |photo| %>
+            <%= render photo, link_path: image_path(photo), height: '150' %>
+          <% end %>
+        </div>
+        <% unless Image.last_page?(@photos_page, @photos_count) %>
+          <%= link_to '>', user_path(@user, photos_page: @photos_page + 1), class: 'button arrow right' %>
+        <% end %>
+      <% end %>
     </div>
     <% if @user == current_user %>
       <%= turbo_frame_tag 'new_post', src: new_post_path(response_format: 'turbo_stream') %>
     <% end %>
     <div class="posts">
       <h4>Posts</h4>
-      <%= turbo_frame_tag 'posts', target: '_top' do %>
+      <%= turbo_frame_tag 'posts' do %>
         <%= render @posts, hide_preview: true %>
         <% unless @posts.size == @posts_count %>
           <div class="more-posts-link">
-            <%= link_to 'View more posts', user_path(@user, page: (@page || 0) + 1) %>
+            <%= link_to 'View more posts', 
+                        user_path(@user, posts_page: @posts_page + 1) %>
           </div>
         <% end %>
       <% end %>

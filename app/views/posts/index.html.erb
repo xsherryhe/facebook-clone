@@ -2,7 +2,7 @@
 
 <%= turbo_frame_tag 'new_post', src: new_post_path(response_format: 'turbo_stream') %>
 
-<%= turbo_frame_tag 'posts', target: '_top' do %>
+<%= turbo_frame_tag 'posts' do %>
   <%= render @posts %>
   <% unless @posts.size == @posts_count %>
     <div class="more-posts-link">

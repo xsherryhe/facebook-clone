@@ -16,6 +16,10 @@ class Image < ApplicationRecord
 
   alias_attribute :creator, :user
 
+  scope :on_page, (lambda do |page|
+    limit(4).offset((page - 1) * 4)
+  end)
+
   def source
     stored.attached? ? stored : url
   end
@@ -34,6 +38,10 @@ class Image < ApplicationRecord
 
   def preview_comments?
     true
+  end
+
+  def self.last_page?(page, count)
+    count <= page * 4
   end
 
   private
