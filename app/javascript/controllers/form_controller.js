@@ -9,6 +9,12 @@ export default class extends Controller {
     this.dispatch('reset');
   }
 
+  autoResize(e) {
+    const area = e.target;
+    area.style.height = 0;
+    area.style.height = area.scrollHeight + 'px';
+  }
+
   setSubmit() {
     this.submitTarget.disabled = this._emptyForm();
   }

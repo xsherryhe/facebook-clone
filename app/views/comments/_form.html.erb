@@ -14,7 +14,7 @@
                    wrapper_class: 'body-field',
                    input_html: { rows: '1',
                                  data: { form_target: 'input',
-                                         action: 'form#setSubmit keypress->form#submitOnEnter' } } %>
+                                         action: 'form#autoResize form#setSubmit keypress->form#submitOnEnter' } } %>
     <div class="preview" data-image-files-target="preview">
       <%= form.simple_fields_for :photos do |photo_form| %>
         <div id="image-<%= photo_form.object.id %>">
