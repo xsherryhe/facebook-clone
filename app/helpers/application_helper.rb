@@ -19,7 +19,7 @@ module ApplicationHelper
     link_to "Notifications#{new_notifications.any? ? " (#{new_notifications.size})" : ''}",
             notifications_path,
             data: { turbo_frame: 'notifications',
-                    action: 'hidden#toggleHidden' },
+                    action: 'viewed#setToViewed hidden#toggleHidden' },
             class: new_notifications.any? ? 'important-link' : nil
   end
 end
