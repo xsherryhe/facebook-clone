@@ -8,7 +8,11 @@ class FriendRequestsController < ApplicationController
 
   def create
     @friend_request = current_user.sent_friend_requests.build(friend_request_params)
-    render :new, status: :unprocessable_entity unless @friend_request.save
+    if @friend_request.save
+      NotificationsChannel.broadcast_to(@friend_request.receiver, {})
+    else
+      render :new, status: :unprocessable_entity
+    end
   rescue ActiveRecord::RecordNotUnique
     @friend_request.errors.add(:base, 'You have already sent a friend request to ' \
                                       "#{@friend_request.receiver.profile.first_name}!")

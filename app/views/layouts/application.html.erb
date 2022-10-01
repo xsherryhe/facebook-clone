@@ -14,6 +14,7 @@
     <header data-controller="hidden viewed links">
       <div class="logo-link"><a href="/"><%= render 'shared/logo', size: 'small' %></a></div>
       <% if user_signed_in? %>
+        <div class="hidden" id="user-id"><%= current_user.id %></div>
         <div class="header-links">
           <div class="header-link" data-links-target="linkDiv">
             <%= link_to current_user.profile.full_name, current_user_path %>

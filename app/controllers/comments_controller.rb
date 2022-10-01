@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        NotificationsChannel.broadcast_to(@comment.comment_notification.user, {})
         format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }

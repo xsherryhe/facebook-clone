@@ -5,9 +5,10 @@ export default class extends Controller {
 
   toggleHidden(e) {
     if(!this.hasToggleTarget) return;
-    if(!this.toggleTarget.textContent == '') 
+    if(e.target.classList.contains('prevent-default'))
       e.preventDefault();
 
+    e.target.classList.add('prevent-default');
     this.toggleTarget.classList.toggle('hidden');
   }
 }

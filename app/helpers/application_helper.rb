@@ -20,6 +20,6 @@ module ApplicationHelper
             notifications_path,
             data: { turbo_frame: 'notifications',
                     action: 'viewed#setToViewed hidden#toggleHidden' },
-            class: new_notifications.any? ? 'important-link' : nil
+            class: new_notifications.any? ? 'notifications-link important-link' : 'notifications-link'
   end
 end

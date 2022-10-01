@@ -7,6 +7,7 @@ class LikesController < ApplicationController
     @likes = Like.where(reactable_type: @reactable_class, reactable_id: @reactable_id)
     begin
       @like = current_user.likes.create(reactable_type: @reactable_class, reactable_id: @reactable_id)
+      NotificationsChannel.broadcast_to(@like.like_notification.user, {})
     rescue ActiveRecord::RecordNotUnique
       # do nothing
     end

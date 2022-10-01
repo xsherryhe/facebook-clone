@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to redirect_path }
     end
   end
+
+  def broadcast_new_notification(user)
+    NotificationsChannel.broadcast_to(user, {})
+  end
 end

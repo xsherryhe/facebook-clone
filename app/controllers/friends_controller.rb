@@ -12,6 +12,7 @@ class FriendsController < ApplicationController
 
     current_user.add_friend(@friend)
     @friend_request.accepted!
+    NotificationsChannel.broadcast_to(@friend, {})
   rescue ActiveRecord::RecordNotUnique
     current_user.errors.add(:friends, "You are already friends with #{@friend.profile.first_name}!")
   end
