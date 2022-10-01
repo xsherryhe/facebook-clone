@@ -3,7 +3,7 @@
   border-bottom: 1.5px var(--font-color) solid;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.3rem;
   cursor: pointer;
   color: var(--medium-font-color);
 }
@@ -27,10 +27,12 @@
 .notification .pointer {
   font-weight: bold;
   font-size: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .notification .new {
   color: var(--secondary-color);
+  margin-left: auto;
 }
 
 .notification:hover {
@@ -38,8 +40,6 @@
   color: white;
 }
 
-.notification:hover a {
+.notification:hover .new, .notification:hover a {
   color: white;
 }
-
-
