@@ -3,4 +3,4 @@ This project is a Facebook-like app, with functionalities core to Facebook such 
 
 The project primarily demonstrates the integration of multiple concepts and features pertaining to Rails applications, including basic MVC structures, data modeling and associations, forms, authentication (e.g., Devise/OmniAuth), and mailers.
 
-This project is currently in progress.
+This branch of the project adds real-time notifications through Websocket and Action Cable. The feature only works in development, as a Redis server was not used in production.
