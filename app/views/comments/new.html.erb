@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "#{@reactable_singular}-#{@reactable.id}-comments-form" do %>
+<%= turbo_frame_tag @turbo_frame do %>
   <div class="form posts-comments-form comments comments-new">
     <%= render 'form', comment: @comment, url: "/#{@reactable_type}/#{@reactable.id}/comments" %>
   </div>

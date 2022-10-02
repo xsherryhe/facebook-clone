@@ -54,4 +54,5 @@
 .posts-comments-form .submit {
   grid-row: 3 / span 1;
   justify-self: end;
+  align-self: end;
 }

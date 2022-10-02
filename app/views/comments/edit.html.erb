@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "comment-#{@comment.id}" do %>
+<%= turbo_frame_tag @turbo_frame do %>
   <div class="form posts-comments-form comments comments-edit">
     <%= link_to 'Back', 
                 comments_path(@reactable.model_name.route_key, @reactable, page: @page),

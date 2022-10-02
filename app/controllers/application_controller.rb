@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found
+
   private
 
   def configure_permitted_parameters
@@ -12,12 +14,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def unauthorized_redirect(action, redirect_path, options = {})
-    respond_to do |format|
-      error = "You don't have permission to #{action} that #{controller_name.singularize.humanize.downcase}."
-      error += " #{options[:additional_info]}" if options[:additional_info]
-      flash[:error] = error
-      format.html { redirect_to redirect_path }
-    end
+  def handle_unauthorized(action, options = {})
+    @error = "You don't have permission to #{action} that #{controller_name.singularize.humanize.downcase}."
+    @error += " #{options[:additional_info]}" if options[:additional_info]
+    render 'shared/error', status: (request.get? ? nil : :unprocessable_entity)
+  end
+
+  def handle_not_found(exception)
+    @error = "Sorry, we could not find the #{exception.model.downcase}."
+    render 'shared/error', status: (request.get? ? nil : :unprocessable_entity)
   end
 end

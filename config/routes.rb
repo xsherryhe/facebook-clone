@@ -11,18 +11,19 @@ Rails.application.routes.draw do
   resource :profile, only: [:edit]
   resources :profiles, only: [:update]
 
-  resources :friend_requests, only: %i[index create destroy]
-  resources :friends, only: [:index]
-  post '/friends/:id', to: 'friends#create', as: 'friend'
-  delete '/friends/:id', to: 'friends#destroy'
+  resources :friend_requests, only: %i[index create]
+  resources :friends, only: %i[index destroy] do
+    resources :friend_requests, only: [:destroy]
+  end
+  post '/friends/:id', to: 'friends#create'
 
   resources :posts
   resources :images, only: [:show]
   resources :comments, only: %i[edit update destroy]
-  resources :likes, only: [:destroy]
   get '/:reactable_type/:reactable_id/comments', to: 'comments#index', as: 'comments'
   post '/:reactable_type/:reactable_id/comments', to: 'comments#create'
   post '/:reactable_type/:reactable_id/likes', to: 'likes#create', as: 'likes'
+  delete '/:reactable_type/:reactable_id/likes/:id', to: 'likes#destroy', as: 'like'
 
   resources :notifications, only: [:index]
   # Defines the root path route ("/")

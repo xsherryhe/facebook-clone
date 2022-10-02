@@ -4,11 +4,10 @@ class FriendsController < ApplicationController
   end
 
   def create
+    @turbo_frame = "friend-request-#{params[:id]}"
     @friend = User.find(params[:id])
     @friend_request = FriendRequest.find_by(sender: @friend, receiver: current_user)
-    unless @friend_request&.pending?
-      return unauthorized_redirect('make', strangers_path, additional_info: 'Please send a friend request first.')
-    end
+    return handle_unauthorized('make', additional_info: 'Please send a friend request first.') unless @friend_request
 
     current_user.add_friend(@friend)
     @friend_request.accepted!
@@ -17,9 +16,10 @@ class FriendsController < ApplicationController
   end
 
   def destroy
+    @turbo_frame = "unfriend-#{params[:id]}"
     @friend = User.find(params[:id])
     unless User.joins(:friends).exists?(friendships: { user_id: current_user.id, friend_id: @friend.id })
-      return unauthorized_redirect('unfriend', @friend, additional_info: 'You were never friends to begin with!')
+      return handle_unauthorized('unfriend', additional_info: 'You were never friends to begin with!')
     end
 
     current_user.remove_friend(@friend)

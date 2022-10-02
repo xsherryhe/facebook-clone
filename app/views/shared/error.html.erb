@@ -1,0 +1,7 @@
+<% if @turbo_frame %>
+  <%= turbo_frame_tag @turbo_frame do %>
+    <%= render 'shared/error', error: @error %>
+  <% end %>
+<% else %>
+  <%= render 'shared/error', error: @error %>
+<% end %>

@@ -2,22 +2,26 @@ class LikesController < ApplicationController
   def create
     @reactable_id = params[:reactable_id]
     @reactable_type = params[:reactable_type]
-    @reactable_class = @reactable_type.classify
     @reactable_singular = @reactable_type.singularize
-    @likes = Like.where(reactable_type: @reactable_class, reactable_id: @reactable_id)
-    begin
-      @like = current_user.likes.create(reactable_type: @reactable_class, reactable_id: @reactable_id)
-    rescue ActiveRecord::RecordNotUnique
-      # do nothing
-    end
+    @reactable = @reactable_type.classify.constantize.find(@reactable_id)
+    @likes = Like.where(reactable: @reactable)
+    @like = current_user.likes.create(reactable: @reactable)
+  rescue ActiveRecord::RecordNotUnique
+    # Do nothing
+  rescue ActiveRecord::RecordNotFound
+    @error = "Sorry, #{@reactable_singular} deleted."
   end
 
   def destroy
+    @reactable_id = params[:reactable_id]
+    @reactable_type = params[:reactable_type]
+    @reactable_singular = @reactable_type.singularize
+    @reactable = @reactable_type.classify.constantize.find(@reactable_id)
     @like = Like.find(params[:id])
-    @reactable = @like.reactable
-    @reactable_type = @like.reactable_type.downcase
     return unless @like.user == current_user
 
     @like.destroy
+  rescue ActiveRecord::RecordNotFound => e
+    @error = "Sorry, #{e.model.downcase} deleted." unless e.model == 'Like'
   end
 end

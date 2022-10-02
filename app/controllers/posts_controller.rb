@@ -47,17 +47,17 @@ class PostsController < ApplicationController
   def edit
     @profile = current_user.profile
     @post = Post.find(params[:id])
-    return unauthorized_redirect('edit', posts_path) unless @post.creator == current_user
+    return handle_unauthorized('edit') unless @post.creator == current_user
   end
 
   def update
     @profile = current_user.profile
     @post = Post.find(params[:id])
-    return unauthorized_redirect('edit', posts_path) unless @post.creator == current_user
+    return handle_unauthorized('edit') unless @post.creator == current_user
 
     if @post.update(post_params)
       flash[:notice] = 'Successfully edited post.'
-      redirect_to posts_path
+      redirect_to @post
     else
       render :edit, status: :unprocessable_entity
     end
@@ -65,10 +65,14 @@ class PostsController < ApplicationController
 
   def destroy
     @id = params[:id]
+    @turbo_frame = "post-#{@id}"
     @post = Post.find(@id)
-    return unauthorized_redirect('delete', posts_path) unless @post.creator == current_user
+    return handle_unauthorized('delete') unless @post.creator == current_user
 
     @post.destroy
+  rescue ActiveRecord::RecordNotFound
+    # Do nothing
+    # Could render an error here, but the user intends to destroy the object anyway
   end
 
   private

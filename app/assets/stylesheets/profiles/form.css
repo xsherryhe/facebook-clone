@@ -21,6 +21,10 @@
   margin-top: 0.2rem;
 }
 
+.profiles.form .error {
+  max-width: 250px;
+}
+
 .profiles.form .submit {
   grid-column: 2 / span 1;
   justify-self: end;

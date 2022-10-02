@@ -1,5 +1,4 @@
-<div class="post" id="post-<%= post.id %>" 
-     data-controller="redirect" data-action="turbo:before-fetch-response->redirect#intercept">
+<div class="post" id="post-<%= post.id %>">
   <div class="post-heading">
     <div class="post-creator"><%= render post.creator %></div>
     <div class="post-time"><%= render 'shared/time', resource: post %></div>

@@ -123,3 +123,8 @@ button:focus, .button:focus {
 .hidden {
   display: none !important;
 }
+
+.error,
+#error_explanation {
+  color: red;
+}

@@ -80,10 +80,6 @@
   display: inline;
 }
 
-.form .error, #error_explanation {
-  color: red;
-}
-
 .form .error-list {
   margin: 0.5rem 0;
   display: flex;

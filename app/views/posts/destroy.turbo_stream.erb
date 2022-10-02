@@ -1,3 +1,9 @@
 <%= turbo_stream.replace "post-#{@id}" do %>
-  <div class="posts posts-destroy">Successfully deleted post.</div>
+  <div class="posts posts-destroy">
+    <% if @error %>
+      <%= render 'shared/error', error: @error %>
+    <% else %>
+      Successfully deleted post.
+    <% end %>
+  </div>
 <% end %>
