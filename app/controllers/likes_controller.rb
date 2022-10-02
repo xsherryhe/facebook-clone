@@ -1,27 +1,35 @@
 class LikesController < ApplicationController
+  before_action :set_reactable
+
   def create
-    @reactable_id = params[:reactable_id]
-    @reactable_type = params[:reactable_type]
-    @reactable_singular = @reactable_type.singularize
-    @reactable = @reactable_type.classify.constantize.find(@reactable_id)
+    return if @error
+
     @likes = Like.where(reactable: @reactable)
     @like = current_user.likes.create(reactable: @reactable)
   rescue ActiveRecord::RecordNotUnique
     # Do nothing
-  rescue ActiveRecord::RecordNotFound
-    @error = "Sorry, #{@reactable_singular} deleted."
   end
 
   def destroy
-    @reactable_id = params[:reactable_id]
-    @reactable_type = params[:reactable_type]
-    @reactable_singular = @reactable_type.singularize
-    @reactable = @reactable_type.classify.constantize.find(@reactable_id)
+    return if @error
+
     @like = Like.find(params[:id])
     return unless @like.user == current_user
 
     @like.destroy
-  rescue ActiveRecord::RecordNotFound => e
-    @error = "Sorry, #{e.model.downcase} deleted." unless e.model == 'Like'
+  rescue ActiveRecord::RecordNotFound
+    # Do nothing
+    # Could render an error here, but the user intends to destroy the object anyway
+  end
+
+  private
+
+  def set_reactable
+    @reactable_id = params[:reactable_id]
+    @reactable_type = params[:reactable_type]
+    @reactable_singular = @reactable_type.singularize
+    @reactable = @reactable_type.classify.constantize.find(@reactable_id)
+  rescue ActiveRecord::RecordNotFound
+    @error = "This #{@reactable_singular} no longer exists."
   end
 end

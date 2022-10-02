@@ -1,13 +1,15 @@
-<%= turbo_stream.update "#{@reactable_singular}-#{@reactable_id}-likes" do %>
-  <% if @error %>
+<% if @error %>
+  <%= turbo_stream.update "#{@reactable_singular}-#{@reactable_id}" do %>
     <%= render 'shared/error', error: @error %>
-  <% else %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "#{@reactable_singular}-#{@reactable_id}-likes" do %>
     <%= render 'likes', likes: @likes %>
   <% end %>
-<% end %>
 
-<% if @like %>
-  <%= turbo_stream.update "#{@reactable_singular}-#{@reactable_id}-likes-link" do %>
-      <%= link_to 'Unlike', "/#{@reactable_type.pluralize}/#{@reactable_id}/likes/#{@like.id}", data: { turbo_method: :delete } %>
+  <% if @like %>
+    <%= turbo_stream.update "#{@reactable_singular}-#{@reactable_id}-likes-link" do %>
+        <%= link_to 'Unlike', "/#{@reactable_type.pluralize}/#{@reactable_id}/likes/#{@like.id}", data: { turbo_method: :delete } %>
+    <% end %>
   <% end %>
 <% end %>

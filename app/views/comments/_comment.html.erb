@@ -26,8 +26,13 @@
           </div>
           <% if comment.user == current_user %>
             <div class="comment-user-links">
-              <%= link_to 'Edit', edit_comment_path(comment) %>
-              <%= link_to 'Delete', comment, data: { turbo_method: :delete } %>
+              <%= link_to 'Edit', 
+                          edit_comment_path(comment.reactable_type.downcase.pluralize, 
+                                            comment.reactable_id, comment.id) %>
+              <%= link_to 'Delete', 
+                          comment_path(comment.reactable_type.downcase.pluralize, 
+                                       comment.reactable_id, comment.id), 
+                          data: { turbo_method: :delete } %>
             </div>
           <% end %>
         </div>

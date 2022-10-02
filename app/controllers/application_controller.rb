@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_not_found(exception)
-    @error = "Sorry, we could not find the #{exception.model.downcase}."
+    @error ||= "This #{exception.model.downcase} no longer exists."
     render 'shared/error', status: (request.get? ? nil : :unprocessable_entity)
   end
 end

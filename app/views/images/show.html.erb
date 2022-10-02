@@ -1,7 +1,7 @@
 <% content_for :page_classes do 'images images-show' end %>
 
 <div class="back-link"><a class="button" href="" onclick="history.go(-1);">Back</a></div>
-<div class="image-container">
+<div class="image-container" id=<%= @image_container_id %>>
   <div class="image-heading">
     <div class="image-user"><%= render @image.user %></div>
     <div class="image-likes"><%= render 'likes/likes_display', reactable: reaction_target(@image) %></div>

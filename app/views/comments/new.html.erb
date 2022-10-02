@@ -1,5 +1,5 @@
 <%= turbo_frame_tag @turbo_frame do %>
   <div class="form posts-comments-form comments comments-new">
-    <%= render 'form', comment: @comment, url: "/#{@reactable_type}/#{@reactable.id}/comments" %>
+    <%= render 'form', comment: @comment, url: comments_path(@reactable_type, @reactable.id) %>
   </div>
 <% end %>

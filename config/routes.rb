@@ -19,9 +19,12 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :images, only: [:show]
-  resources :comments, only: %i[edit update destroy]
   get '/:reactable_type/:reactable_id/comments', to: 'comments#index', as: 'comments'
   post '/:reactable_type/:reactable_id/comments', to: 'comments#create'
+  get '/:reactable_type/:reactable_id/comments/:id/edit', to: 'comments#edit', as: 'edit_comment'
+  patch '/:reactable_type/:reactable_id/comments/:id', to: 'comments#update', as: 'comment'
+  put '/:reactable_type/:reactable_id/comments/:id', to: 'comments#update'
+  delete '/:reactable_type/:reactable_id/comments/:id', to: 'comments#destroy'
   post '/:reactable_type/:reactable_id/likes', to: 'likes#create', as: 'likes'
   delete '/:reactable_type/:reactable_id/likes/:id', to: 'likes#destroy', as: 'like'
 

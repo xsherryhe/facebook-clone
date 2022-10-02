@@ -1,5 +1,5 @@
 <% if @reactable.comment_form_first? %>
-  <%= turbo_stream.prepend "#{@reactable_singular}-#{@reactable.id}-comments", @comment %>
+  <%= turbo_stream.prepend "#{@reactable_singular}-#{@reactable_id}-comments", @comment %>
 <% else %>
-  <%= turbo_stream.append "#{@reactable_singular}-#{@reactable.id}-comments", @comment %>
+  <%= turbo_stream.append "#{@reactable_singular}-#{@reactable_id}-comments", @comment %>
 <% end %>
