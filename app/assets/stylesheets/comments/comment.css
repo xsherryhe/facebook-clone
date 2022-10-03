@@ -69,3 +69,20 @@
   display: flex;
   gap: 1rem;
 }
+
+
+.comment .error-message {
+  background-color: var(--secondary-color);
+  border-radius: 0.2rem;
+  padding: 0;
+}
+
+.comment .error-message .error {
+  background-color: white;
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.45rem;
+  border: 1px solid var(--font-color);
+  border-left: none;
+}

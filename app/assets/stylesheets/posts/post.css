@@ -80,3 +80,8 @@
 .post .post-link:hover {
   background-color: var(--dark-tertiary-color);
 }
+
+.post .error-message {
+  background-color: var(--tertiary-color);
+  border-radius: 0.5rem;
+}

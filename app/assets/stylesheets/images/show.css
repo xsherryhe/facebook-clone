@@ -68,3 +68,7 @@
 .images-show .image-link:hover {
   background-color: var(--dark-tertiary-color);
 }
+
+.images-show .error-message {
+  background-color: var(--tertiary-color);
+}

@@ -41,8 +41,15 @@
   border: 2px solid var(--font-color);
 }
 
-.users-index .user-container .friend-message {
+.users-index .user-container .friend-request-container {
+  max-width: 100%;
+}
+
+.users-index .user-container .friend-message,
+.users-index .user-container .error-message {
+  box-sizing: border-box;
   width: max-content;
+  max-width: 100%;
   background-color: var(--tertiary-color);
   box-shadow: none;
   border: 1px solid var(--font-color);
@@ -52,7 +59,7 @@
   line-height: 1.2rem;
 }
 
-.users-index .user-container .friend-request {
+.users-index .user-container .friend-request .friend-request-display {
   margin: -0.4rem 0 -1rem;
   gap: 0;
   padding: 0;
@@ -85,4 +92,9 @@
 
 .users-index .user-container .friend-request .friend-request-links a:hover {
   background-color: var(--dark-secondary-color);
+}
+
+.users-index .user-container .friend-request .error-message {
+  margin: -0.4rem 0 -1rem;
+  line-height: 1;
 }

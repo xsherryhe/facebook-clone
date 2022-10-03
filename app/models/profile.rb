@@ -1,14 +1,15 @@
 class Profile < ApplicationRecord
   before_validation :set_privacy
-  before_create :add_avatar
+  before_validation :add_avatar, on: :create
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validate :valid_avatar
   serialize :privacy
 
   belongs_to :user
   has_one :avatar, class_name: 'Image', as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :avatar
+  accepts_nested_attributes_for :avatar, reject_if: :makes_avatar_invalid
 
   attr_accessor :birthdate_public, :location_public
 
@@ -49,5 +50,17 @@ class Profile < ApplicationRecord
 
       self.privacy[attribute] = setting.to_i
     end
+  end
+
+  def makes_avatar_invalid(attributes)
+    new_avatar = avatar.dup
+    new_avatar.attributes = attributes
+    new_avatar.invalid? && avatar.errors.copy!(new_avatar.errors)
+  end
+
+  def valid_avatar
+    return if avatar.errors.none?
+
+    errors.add(:base, :invalid_avatar, message: 'has an invalid avatar')
   end
 end

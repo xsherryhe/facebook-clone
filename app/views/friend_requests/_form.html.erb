@@ -1,9 +1,11 @@
-<%= form_with url: friend_requests_path, method: :post do |form| %>
-  <%= form.hidden_field 'friend_request[receiver_id]', value: receiver_id %>
-  <%= form.submit 'Add Friend' %>
-  <% if local_assigns.fetch(:friend_request, nil) %>
-    <% friend_request.errors.full_messages.each do |message| %>
-      <p class="error"><%= message %></p>
-    <% end %>
+<%= form_with url: friend_requests_path, method: :post, class: 'friend-requests-form' do |form| %>
+  <%= form.hidden_field :receiver_id, value: receiver_id %>
+  <% if local_assigns.fetch(:friend_request, nil) && friend_request.errors.any? %>
+    <div class="error-message">
+      <% friend_request.errors.full_messages.each do |message| %>
+        <p class="error"><%= message %></p>
+      <% end %>
+    </div>
   <% end %>
+  <div class="submit"><%= form.submit 'Add Friend' %></div>
 <% end %>

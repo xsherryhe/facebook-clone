@@ -5,9 +5,6 @@ class CommentsController < ApplicationController
     @page = params[:page]&.to_i
     @comments = @page ? @reactable.comments.up_to_page(@page) : @reactable.comments.preview
     @comment = @reactable.comments.build
-  rescue NameError
-    @error = 'Sorry, could not find comments.'
-    render 'shared/error'
   end
 
   def create
@@ -60,9 +57,8 @@ class CommentsController < ApplicationController
 
     set_turbo_frame
     @reactable = @reactable_model.find(@reactable_id)
-  rescue ActiveRecord::RecordNotFound => e
-    @error = "This #{@reactable_singular} and its #{@comment_name.pluralize} no longer exist."
-    handle_not_found(e)
+  rescue NameError, ActiveRecord::RecordNotFound => e
+    handle_not_found_reactable(e)
   end
 
   def set_turbo_frame
@@ -75,5 +71,14 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body, raw_photos: [], photos_attributes: %i[id _destroy])
+  end
+
+  def handle_not_found_reactable(exception)
+    @error = if exception.is_a?(NameError)
+               'Sorry, could not find comments.'
+             else
+               "This #{@reactable_singular} and its #{@comment_name.pluralize} no longer exist."
+             end
+    handle_not_found(exception)
   end
 end

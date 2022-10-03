@@ -1,5 +1,5 @@
-<%= turbo_frame_tag "friend-request-#{friend_request.sender.id}" do %>
-  <div class="friend-request friend-message">
+<%= turbo_frame_tag "friend-request-#{friend_request.sender.id}", class: 'friend-request' do %>
+  <div class="friend-request-display friend-message">
     <div class="friend-request-message">
       <% if local_assigns.fetch(:sender_label_method, nil) %>
         <div><%= friend_request.sender.profile.public_send(sender_label_method) %> sent you a friend request.</div>

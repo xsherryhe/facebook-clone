@@ -1,7 +1,8 @@
 class Image < ApplicationRecord
   validate :url_xor_stored_present
-  validates :stored, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg', 'image/svg'],
-                                     message: 'is not an image (PNG, JPG, JPEG, or SVG)' }
+  validates :stored,
+            content_type: { in: ['image/png', 'image/jpg', 'image/jpeg', 'image/svg'],
+                            message: 'was not an image (PNG, JPG, JPEG, or SVG)' }
 
   belongs_to :user
   belongs_to :imageable, polymorphic: true, optional: true

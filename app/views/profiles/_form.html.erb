@@ -1,17 +1,19 @@
-<%= simple_form_for profile, data: { controller: 'image-files' } do |form| %>
+<%= simple_form_for profile, 
+                    data: { controller: 'image-files', 
+                            image_files_file_field_ind_value: 0 } do |form| %>
   <%= form.simple_fields_for :avatar do |avatar_form| %>
     <div class="field avatar-field">
       <p>Avatar</p>
       <div class="preview" data-image-files-target="preview">
         <%= full_avatar(profile, false) %>
       </div>
-      <div class="avatar-upload">
+      <div class="avatar-upload" data-image-files-target="fileFieldContainer">
         <button data-action="image-files#selectFileField">Upload Avatar</button>
         <%= avatar_form.input_field :stored,
                                     as: :file,
                                     id: 'filefield-0', class: 'hidden',
                                     data: { action: 'image-files#filterImageFileType
-                                                      image-files#replacePreviewLarge' } %>
+                                                     image-files#updateFileDisplaySingleLarge' } %>
       </div>
       <div class="avatar-errors" data-image-files-target="errors">
         <% profile.avatar.errors.full_messages.each do |message| %>

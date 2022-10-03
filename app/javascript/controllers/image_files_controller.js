@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 const imageFileTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/svg'];
 
 export default class extends Controller {
-  static targets = ['preview', 'errors'];
+  static targets = ['preview', 'errors', 'fileFieldContainer'];
   static values = { fileFieldInd: Number };
 
   selectFileField(e) {
@@ -48,17 +48,21 @@ export default class extends Controller {
     this.previewTarget.textContent = '';
   }
 
-  updateFileDisplay(e) {
-    this.updatePreview(e, '150', true);
+  updateFileDisplayMultiple(e) {
+    this.updateFileDisplay(e, '150', true);
+  }
+
+  updateFileDisplaySingleLarge(e) {
+    this.updateFileDisplay(e, '250', false);
+  }
+
+  updateFileDisplaySingleSmall(e) {
+    this.updateFileDisplay(e, '150', false);
+  }
+
+  updateFileDisplay(e, height, multiple) {
+    this.updatePreview(e, height, multiple);
     this.replaceFileField();
-  }
-
-  replacePreviewLarge(e) {
-    this.updatePreview(e, '250', false);
-  }
-
-  replacePreviewSmall(e) {
-    this.updatePreview(e, '150', false);
   }
 
   updatePreview(e, height, multiple) {
@@ -96,7 +100,7 @@ export default class extends Controller {
           newFileField = oldFileField.cloneNode();
     newFileField.id = `filefield-${++this.fileFieldIndValue}`;
     newFileField.value = '';
-    this.element.querySelector('.photo-upload').append(newFileField);
+    this.fileFieldContainerTarget.append(newFileField);
   }
 
   removeRawImage(e) {
@@ -124,7 +128,7 @@ export default class extends Controller {
   removeDatabaseImage(e) {
     e.preventDefault();
     const container = e.target.parentNode,
-          imageId = Number(container.id.split('-')[1]);
+          imageId = container.id.split('-')[1];
     
     this.element.querySelector(`#destroy-${imageId}`).value = 'true';
     container.remove();

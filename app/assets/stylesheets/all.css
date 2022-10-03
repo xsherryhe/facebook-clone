@@ -45,6 +45,7 @@ body {
   background-color: var(--light-font-color);
   color: var(--font-color);
   line-height: 1.6rem;
+  min-width: 50rem;
 }
 
 .content {

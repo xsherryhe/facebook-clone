@@ -1,6 +1,5 @@
 <%= turbo_frame_tag @turbo_frame do %>
-  <div class="user">
-    <%= render current_user %>
+  <div class="comment-main-container">
+    <div class="comment-main">Successfully deleted <%= @comment_name %>.</div>
   </div>
-  <div>Successfully deleted <%= @comment_name %>.</div>
 <% end %>

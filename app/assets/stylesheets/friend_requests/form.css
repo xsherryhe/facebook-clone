@@ -1,0 +1,8 @@
+.friend-requests-form .error-message.error-message {
+  font-size: 0.8rem;
+  padding: 0.5rem;
+}
+
+.friend-requests-form .error-message ~ .submit {
+  display: none;
+}

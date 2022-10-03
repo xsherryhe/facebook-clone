@@ -15,14 +15,11 @@
 
 .profiles.form .avatar-field {
   grid-row: 1 / span 5;
+  width: 254px;
 }
 
 .profiles.form .avatar-upload {
   margin-top: 0.2rem;
-}
-
-.profiles.form .error {
-  max-width: 250px;
 }
 
 .profiles.form .submit {

@@ -54,19 +54,27 @@
   margin: 0.3rem 0;
 }
 
-.users-show .sidebar .friend-message {
+.users-show .sidebar .friend-message,
+.users-show .sidebar .error-message {
   width: max-content;
-  background-color: var(--secondary-color);
   box-shadow: none;
   border: 1px solid var(--font-color);
   border-radius: 0.2rem;
   padding: 0.5rem 0.8rem;
   font-size: 0.9rem;
+}
+
+.users-show .sidebar .friend-message {
+  background-color: var(--secondary-color);
   color: white;
 }
 
 .users-show .sidebar .friend-message a {
   color: white;
+}
+
+.users-show .sidebar .error-message {
+  background-color: white;
 }
 
 .users-show .sidebar .friend-message input[type='submit']:not([disabled]),

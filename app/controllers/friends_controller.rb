@@ -6,11 +6,13 @@ class FriendsController < ApplicationController
   def create
     @turbo_frame = "friend-request-#{params[:id]}"
     @friend = User.find(params[:id])
-    @friend_request = FriendRequest.find_by(sender: @friend, receiver: current_user)
+    @friend_requests = [[@friend, current_user], [current_user, @friend]]
+                       .filter_map { |sender, receiver| FriendRequest.find_by(sender:, receiver:) }
+    @friend_request = @friend_requests.first
     return handle_unauthorized('make', additional_info: 'Please send a friend request first.') unless @friend_request
 
     current_user.add_friend(@friend)
-    @friend_request.accepted!
+    @friend_requests.each(&:accepted!)
   rescue ActiveRecord::RecordNotUnique
     current_user.errors.add(:friends, "You are already friends with #{@friend.profile.first_name}!")
   end

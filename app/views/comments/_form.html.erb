@@ -17,14 +17,14 @@
                                          action: 'form#autoResize form#setSubmit keypress->form#submitOnEnter' } } %>
     <div class="preview" data-image-files-target="preview">
       <%= form.simple_fields_for :photos do |photo_form| %>
-        <div id="image-<%= photo_form.object.id %>">
+        <div id="image-<%= photo_form.object.id || "i#{photo_form.index}" %>">
           <%= render photo_form.object, height: '150' %>
           <a href="" data-action='image-files#removeDatabaseImage'>Remove</a>
         </div>
         <%= photo_form.input :_destroy,
                               as: :hidden,
                               wrapper: false,
-                              input_html: { id: "destroy-#{photo_form.object.id}",
+                              input_html: { id: "destroy-#{photo_form.object.id || "i#{photo_form.index}"}",
                                             value: 'false',
                                             data: { form_target: 'input' } } %>
       <% end %>
@@ -32,18 +32,29 @@
     <div class="field photos-field">
       <div class="photo-errors error-list" data-image-files-target="errors">
         <% comment.photos.each.with_index(1) do |photo, i| %>
-          <% photo.errors[:stored].each do |message| %>
-            <p class="error">Photo #<%= i %> <%= message %></p>
+          <% photo.errors.full_messages.each do |message| %>
+            <p class="error">Photo #<%= i %>: <%= message %></p>
           <% end %>
         <% end %>
+
+        <% if comment&.raw_photos_errors&.any? %>
+          <p class="error">Removed new photos for the following reasons:</p>
+          <ul>
+            <% comment.raw_photos_errors.each do |photo, i| %>
+              <% photo.errors.full_messages.each do |message| %>
+                <li class="error">Photo #<%= i %>: <%= message %></p>
+              <% end %>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
-      <div class="photo-upload">
+      <div class="photo-upload" data-image-files-target="fileFieldContainer">
         <button data-action="image-files#selectFileField">Upload Photos</button>
         <%= form.file_field :raw_photos, multiple: true, 
                             id: 'filefield-0', class: 'hidden',
                             data: { form_target: 'input',
                                     action: 'image-files#filterImageFileType
-                                             image-files#updateFileDisplay
+                                             image-files#updateFileDisplayMultiple
                                              form#setSubmit' } %>
       </div>
     </div>

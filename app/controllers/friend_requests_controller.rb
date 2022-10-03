@@ -7,7 +7,10 @@ class FriendRequestsController < ApplicationController
   end
 
   def create
-    @friend_request = current_user.sent_friend_requests.build(friend_request_params)
+    @receiver_id = params[:receiver_id]
+    @turbo_frame = "friend-request-form-#{@receiver_id}"
+    @receiver = User.find(@receiver_id)
+    @friend_request = current_user.sent_friend_requests.build(receiver: @receiver)
     render :new, status: :unprocessable_entity unless @friend_request.save
   rescue ActiveRecord::RecordNotUnique
     @friend_request.errors.add(:base, 'You have already sent a friend request to ' \
@@ -16,19 +19,18 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
-    @turbo_frame = "friend-request-#{params[:friend_id]}"
+    @friend_id = params[:friend_id]
+    @turbo_frame = "friend-request-#{@friend_id}"
     @friend_request = FriendRequest.find(params[:id])
     return handle_unauthorized('delete', friend_requests_path) unless @friend_request.receiver == current_user
 
-    @friend_request.destroy
+    if User.joins(:friends).exists?(friendships: { user_id: current_user.id, friend_id: @friend_id })
+      @friend_request.accepted!
+    else
+      @friend_request.destroy
+    end
   rescue ActiveRecord::RecordNotFound
     # Do nothing
     # Could render an error here, but the user intends to destroy the object anyway
-  end
-
-  private
-
-  def friend_request_params
-    params.require(:friend_request).permit(:receiver_id)
   end
 end
