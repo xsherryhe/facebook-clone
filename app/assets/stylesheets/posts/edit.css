@@ -1,10 +1,10 @@
-.profiles-edit .page-content {
+.posts-edit .page-content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.profiles-edit .back-link {
+.posts-edit .back-link {
   align-self: flex-start;
   padding: 0 1.8rem;
 }

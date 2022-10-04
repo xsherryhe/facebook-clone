@@ -1,3 +1,9 @@
+.posts-new .page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .posts-new.form textarea {
   min-height: 45vh;
 }

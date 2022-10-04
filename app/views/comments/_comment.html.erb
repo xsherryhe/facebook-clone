@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "comment-#{comment.id}" do %>
+<%= turbo_frame_tag "comment-#{comment.id}", class: 'comment' do %>
   <div class="comment-container">
     <div class="comment-heading">
       <div class="comment-user"><%= render comment.user %></div>

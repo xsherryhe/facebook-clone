@@ -19,12 +19,14 @@
   align-items: flex-end;
 }
 
-.comment .comment-main-container {
+.comment .comment-main-container,
+.comment .error-container {
   background-color: var(--secondary-color);
   border-radius: 0.2rem;
 }
 
-.comment .comment-main {
+.comment .comment-main,
+.comment .error-main {
   background-color: white;
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
@@ -32,6 +34,9 @@
   padding: 0.3rem 0.6rem 0.3rem 0.45rem;
   border: 1px solid var(--font-color);
   border-left: none;
+}
+
+.comment .comment-main {
   display: flex;
   justify-content: space-between;
 }
@@ -68,23 +73,6 @@
 .comment .comment-links > * {
   display: flex;
   gap: 1rem;
-}
-
-.comment .error-message {
-  background-color: var(--secondary-color);
-  border-radius: 0.2rem;
-  box-shadow: none;
-  padding: 0;
-}
-
-.comment .error-message .error-container {
-  background-color: white;
-  border-top-right-radius: 0.2rem;
-  border-bottom-right-radius: 0.2rem;
-  margin-left: 0.5rem;
-  padding: 0.3rem 0.6rem 0.3rem 0.45rem;
-  border: 1px solid var(--font-color);
-  border-left: none;
 }
 
 .comment .error-message button,

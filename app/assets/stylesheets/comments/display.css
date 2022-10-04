@@ -1,12 +1,15 @@
 .comments-display .comment-container,
 .comments-display .form-with-user,
-.comments-display .more-comments-link {
+.comments-display .more-comments-link,
+.comments-display .error-message {
   padding: 0.5rem 2rem;
+  box-shadow: none;
 }
 
 .comments-display .comments-display .comment-container,
 .comments-display .comments-display .form-with-user,
-.comments-display .comments-display .more-comments-link {
+.comments-display .comments-display .more-comments-link,
+.comments-display .comments-display .error-message {
   padding-right: 0;
 }
 
@@ -28,7 +31,3 @@
 /*.comments-display .comments-list > *:first-child {
   border-top: 1px solid var(--font-color);
 }*/
-
-.comments-display .error-message {
-  box-shadow: none;
-}
