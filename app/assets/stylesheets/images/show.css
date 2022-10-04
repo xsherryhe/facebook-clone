@@ -71,4 +71,10 @@
 
 .images-show .error-message {
   background-color: var(--tertiary-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 3.5px var(--font-color);
+}
+
+.images-show .dismiss-link {
+  display: none;
 }

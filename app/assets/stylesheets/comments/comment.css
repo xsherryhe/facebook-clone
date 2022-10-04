@@ -70,14 +70,14 @@
   gap: 1rem;
 }
 
-
 .comment .error-message {
   background-color: var(--secondary-color);
   border-radius: 0.2rem;
+  box-shadow: none;
   padding: 0;
 }
 
-.comment .error-message .error {
+.comment .error-message .error-container {
   background-color: white;
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
@@ -85,4 +85,17 @@
   padding: 0.3rem 0.6rem 0.3rem 0.45rem;
   border: 1px solid var(--font-color);
   border-left: none;
+}
+
+.comment .error-message button,
+.comment .error-message .button,
+.comment .delete-comment-message button,
+.comment .delete-comment-message button {
+  box-sizing: border-box;
+  font-size: 0.85rem;
+  height: 1.5rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

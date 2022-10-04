@@ -1,5 +1,5 @@
 <% if @error %>
-  <%= turbo_stream.update "#{@reactable_singular}-#{@reactable_id}" do %>
+  <%= turbo_stream.replace "#{@reactable_singular}-#{@reactable_id}" do %>
     <%= render 'shared/error', error: @error %>
   <% end %>
 <% else %>

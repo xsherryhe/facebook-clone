@@ -1,8 +1,6 @@
 <%= turbo_frame_tag @turbo_frame do %>
   <div class="form posts-comments-form comments comments-edit">
-    <%= link_to 'Back', 
-                comments_path(@reactable.model_name.route_key, @reactable, page: @page),
-                class: 'button back-link' %>
+    <%= link_to 'Back', @back_route, class: 'button back-link' %>
     <%= render 'form', comment: @comment, url: comment_path(@reactable_type, @reactable_id, @comment.id) %>
   </div>
 <% end %>

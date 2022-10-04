@@ -1,7 +1,17 @@
 <% if @turbo_frame %>
   <%= turbo_frame_tag @turbo_frame do %>
-    <%= render 'shared/error', error: @error %>
+    <%= render 'shared/error', 
+                error: @error, 
+                additional_info: @additional_info, 
+                additional_info_link: @additional_info_link,
+                back_route: @back_route,
+                persistent: @error_persistent %>
   <% end %>
 <% else %>
-  <%= render 'shared/error', error: @error %>
+  <%= render 'shared/error', 
+              error: @error, 
+              additional_info: @additional_info, 
+              additional_info_link: @additional_info_link,
+              back_route: @back_route,
+              persistent: @error_persistent || true %>
 <% end %>

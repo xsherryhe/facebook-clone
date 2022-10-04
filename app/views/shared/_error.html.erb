@@ -1,3 +1,22 @@
-<div class="error-message">
-  <p class="error"><%= error %></p>
+<div class="error-message" data-controller="hidden" data-hidden-target="add">
+  <div class="error-container">
+    <div class="error">
+      <p>
+        <%= error %>
+        <% if local_assigns.fetch(:additional_info, nil) %>
+          <% if local_assigns.fetch(:additional_info_link, nil) %>
+            <%= link_to additional_info, additional_info_link, data: { turbo_frame: '_top'} %>
+          <% else %>
+            <%= additional_info %>
+          <% end %>
+        <% end %>
+      </p>
+
+      <% if local_assigns.fetch(:back_route, nil) %>
+        <%= link_to 'Back', back_route, class: 'button back-link' %>
+      <% elsif !local_assigns.fetch(:persistent, nil) %>
+        <button class="dismiss-link" data-action="hidden#addHidden">Dismiss</button>
+      <% end %>
+    </div>
+  </div>
 </div>

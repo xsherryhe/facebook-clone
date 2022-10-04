@@ -1,10 +1,10 @@
-.comments-display .comments-list > *, 
+.comments-display .comment-container,
 .comments-display .form-with-user,
 .comments-display .more-comments-link {
   padding: 0.5rem 2rem;
 }
 
-.comments-display .comments-display .comments-list > *,
+.comments-display .comments-display .comment-container,
 .comments-display .comments-display .form-with-user,
 .comments-display .comments-display .more-comments-link {
   padding-right: 0;
@@ -28,3 +28,7 @@
 /*.comments-display .comments-list > *:first-child {
   border-top: 1px solid var(--font-color);
 }*/
+
+.comments-display .error-message {
+  box-shadow: none;
+}

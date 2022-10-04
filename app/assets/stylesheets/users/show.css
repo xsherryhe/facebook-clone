@@ -57,6 +57,7 @@
 .users-show .sidebar .friend-message,
 .users-show .sidebar .error-message {
   width: max-content;
+  max-width: 15rem;
   box-shadow: none;
   border: 1px solid var(--font-color);
   border-radius: 0.2rem;
@@ -90,6 +91,10 @@
 .users-show .sidebar .friend-message button:not([disabled]):hover,
 .users-show .sidebar .friend-message .button:not([disabled]):hover {
   background-color: var(--dark-tertiary-color);
+}
+
+.users-show .sidebar .dismiss-link {
+  display: none;
 }
 
 .users-show .friends {

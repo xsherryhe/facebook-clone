@@ -22,7 +22,7 @@ class FriendRequestsController < ApplicationController
     @friend_id = params[:friend_id]
     @turbo_frame = "friend-request-#{@friend_id}"
     @friend_request = FriendRequest.find(params[:id])
-    return handle_unauthorized('delete', friend_requests_path) unless @friend_request.receiver == current_user
+    return handle_unauthorized('delete') unless @friend_request.receiver == current_user
 
     if User.joins(:friends).exists?(friendships: { user_id: current_user.id, friend_id: @friend_id })
       @friend_request.accepted!
@@ -32,5 +32,12 @@ class FriendRequestsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     # Do nothing
     # Could render an error here, but the user intends to destroy the object anyway
+  end
+
+  private
+
+  def handle_not_found(exception)
+    @error_persistent = true
+    super
   end
 end

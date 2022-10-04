@@ -98,3 +98,7 @@
   margin: -0.4rem 0 -1rem;
   line-height: 1;
 }
+
+.users-index .user-container .friend-request .dismiss-link {
+  display: none;
+}

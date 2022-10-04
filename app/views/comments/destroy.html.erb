@@ -1,5 +1,10 @@
 <%= turbo_frame_tag @turbo_frame do %>
-  <div class="comment-main-container">
-    <div class="comment-main">Successfully deleted <%= @comment_name %>.</div>
+  <div class="comment-container comments comments-destroy" data-controller="hidden" data-hidden-target="add">
+    <div class="comment-main-container">
+      <div class="comment-main delete-comment-message">
+        Successfully deleted <%= @comment_name %>.
+        <button class="dismiss-link" data-action="hidden#addHidden">Dismiss</button>
+      </div>
+    </div>
   </div>
 <% end %>

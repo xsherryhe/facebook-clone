@@ -16,7 +16,10 @@ class ApplicationController < ActionController::Base
 
   def handle_unauthorized(action, options = {})
     @error = "You don't have permission to #{action} that #{controller_name.singularize.humanize.downcase}."
-    @error += " #{options[:additional_info]}" if options[:additional_info]
+    @additional_info = options.fetch(:additional_info, nil)
+    @additional_info_link = options.fetch(:additional_info_link, nil)
+    @back_route = options.fetch(:back_route, nil)
+    @error_persistent = options.fetch(:error_persistent, false)
     render 'shared/error', status: (request.get? ? nil : :unprocessable_entity)
   end
 

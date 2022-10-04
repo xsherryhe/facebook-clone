@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-    return handle_unauthorized('edit', @profile.user) unless @profile.user == current_user
+    return handle_unauthorized('edit', back_route: @profile.user) unless @profile.user == current_user
 
     if @profile.update(profile_params)
       flash[:notice] = 'Successfully edited profile.'

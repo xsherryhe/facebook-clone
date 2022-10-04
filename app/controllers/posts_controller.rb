@@ -47,13 +47,13 @@ class PostsController < ApplicationController
   def edit
     @profile = current_user.profile
     @post = Post.find(params[:id])
-    return handle_unauthorized('edit') unless @post.creator == current_user
+    return handle_unauthorized('edit', back_route: @post) unless @post.creator == current_user
   end
 
   def update
     @profile = current_user.profile
     @post = Post.find(params[:id])
-    return handle_unauthorized('edit') unless @post.creator == current_user
+    return handle_unauthorized('edit', back_route: @post) unless @post.creator == current_user
 
     if @post.update(post_params)
       flash[:notice] = 'Successfully edited post.'
@@ -65,9 +65,11 @@ class PostsController < ApplicationController
 
   def destroy
     @id = params[:id]
-    @turbo_frame = "post-#{@id}"
     @post = Post.find(@id)
-    return handle_unauthorized('delete') unless @post.creator == current_user
+    unless @post.creator == current_user
+      @error = "You don't have permission to delete that post."
+      @back_route = @post
+    end
 
     @post.destroy
   rescue ActiveRecord::RecordNotFound

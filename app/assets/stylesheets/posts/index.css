@@ -7,3 +7,15 @@
 .posts-index .more-posts-link {
   text-align: center;
 }
+
+.posts-index .error-message,
+.posts-index .delete-message {
+  background-color: var(--tertiary-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 3.5px var(--font-color);
+}
+
+.posts-index .dismiss-link {
+  background-color: var(--secondary-color);
+  color: white;
+}

@@ -1,46 +1,44 @@
-<div class="comment">
-  <%= turbo_frame_tag "comment-#{comment.id}" do %>
-    <div class="comment-container">
-      <div class="comment-heading">
-        <div class="comment-user"><%= render comment.user %></div>
-        <div class="comment-time"><%= render 'shared/time', resource: comment %></div>
-      </div>
-      <div class="comment-main-container">
-        <div class="comment-main">
-          <div class="comment-content">
-            <div class="comment-body"><%= comment.body %></div>
-            <div class="comment-photos">
-              <% comment.photos.each do |photo| %>
-                <%= render photo, link_path: image_path(photo), height: '150' %>
-              <% end %>
-            </div>
+<%= turbo_frame_tag "comment-#{comment.id}" do %>
+  <div class="comment-container">
+    <div class="comment-heading">
+      <div class="comment-user"><%= render comment.user %></div>
+      <div class="comment-time"><%= render 'shared/time', resource: comment %></div>
+    </div>
+    <div class="comment-main-container">
+      <div class="comment-main">
+        <div class="comment-content">
+          <div class="comment-body"><%= comment.body %></div>
+          <div class="comment-photos">
+            <% comment.photos.each do |photo| %>
+              <%= render photo, link_path: image_path(photo), height: '150' %>
+            <% end %>
           </div>
-          <div class="comment-likes"><%= render 'likes/likes_display', reactable: comment %></div>
         </div>
-      </div>
-      <div class="comment-footer">
-        <div class="comment-links">
-          <div class="comment-base-links">
-            <%= render 'likes/likes_link', reactable: comment %>
-            <%= render 'comments/comment_link', text: comment.comments.any? ? 'Show Replies' : 'Reply', reactable: comment %>
-          </div>
-          <% if comment.user == current_user %>
-            <div class="comment-user-links">
-              <%= link_to 'Edit', 
-                          edit_comment_path(comment.reactable_type.downcase.pluralize, 
-                                            comment.reactable_id, comment.id) %>
-              <%= link_to 'Delete', 
-                          comment_path(comment.reactable_type.downcase.pluralize, 
-                                       comment.reactable_id, comment.id), 
-                          data: { turbo_method: :delete } %>
-            </div>
-          <% end %>
-        </div>
+        <div class="comment-likes"><%= render 'likes/likes_display', reactable: comment %></div>
       </div>
     </div>
-  <% end %>
-  
-  <%= render 'comments/comment_display', 
-             reactable: comment,
-             hide_preview: local_assigns.fetch(:hide_preview, nil) %>
-</div>
+    <div class="comment-footer">
+      <div class="comment-links">
+        <div class="comment-base-links">
+          <%= render 'likes/likes_link', reactable: comment %>
+          <%= render 'comments/comment_link', text: comment.comments.any? ? 'Show Replies' : 'Reply', reactable: comment %>
+        </div>
+        <% if comment.user == current_user %>
+          <div class="comment-user-links">
+            <%= link_to 'Edit', 
+                        edit_comment_path(comment.reactable_type.downcase.pluralize, 
+                                          comment.reactable_id, comment.id) %>
+            <%= link_to 'Delete', 
+                        comment_path(comment.reactable_type.downcase.pluralize, 
+                                      comment.reactable_id, comment.id), 
+                        data: { turbo_method: :delete } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render 'comments/comment_display', 
+            reactable: comment,
+            hide_preview: local_assigns.fetch(:hide_preview, nil) %>

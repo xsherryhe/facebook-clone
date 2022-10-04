@@ -42,3 +42,7 @@
   font-size: 0.9rem;
   line-height: 1.2rem;
 }
+
+.friends-index .friend-container .dismiss-link {
+  display: none;
+}

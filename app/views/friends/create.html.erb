@@ -1,11 +1,20 @@
 <%= turbo_frame_tag @turbo_frame do %>
-  <div class="friend-message">
-    <% if current_user.errors[:friends].any? || @friend.errors[:friends].any?  %>
-      <% (current_user.errors[:friends] + @friend.errors[:friends]).each do |message| %>
-        <p class="error"><%= message %></p>
+  <div class="friends friends-create" data-controller="hidden" data-hidden-target="add">
+      <% if current_user.errors[:friends].any? || @friend.errors[:friends].any? %>
+        <div class="error-message">
+          <div>
+            <% (current_user.errors[:friends] + @friend.errors[:friends]).each do |message| %>
+              <p class="error"><%= message %></p>
+            <% end %>
+          </div>
+          <button class="dismiss-link" data-action="hidden#addHidden">Dismiss</button>
+        </div>
+      <% else %>
+        <div class="friend-message create-message">
+          Success! You're friends now.
+          <button class="dismiss-link" data-action="hidden#addHidden">Dismiss</button>
+        </div>
       <% end %>
-    <% else %>
-      <div>Success! You're friends now.</div>
-    <% end %>
+    </div>
   </div>
 <% end %>

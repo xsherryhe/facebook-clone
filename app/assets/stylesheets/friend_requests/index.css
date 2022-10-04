@@ -2,9 +2,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
 }
 
-.friend-requests-index .delete-message {
+.friend-requests-index h2 {
+  margin-bottom: 0.5rem;
+}
+
+.friend-requests-index .friend-message,
+.friend-requests-index .error-message {
+  margin: 0.5rem 0;
+}
+
+.friend-requests-index .friend-request .delete-message {
   display: none;
+}
+
+.friend-requests-index .friend-request .create-message,
+.friend-requests-index .friend-request .error-message {
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.friend-requests-index .friend-request .error-message {
+  width: 19rem;
+}
+
+.friend-requests-index .friend-request .dismiss-link {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  height: 2rem;
+  width: 5rem;
 }

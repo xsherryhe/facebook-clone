@@ -22,12 +22,16 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     @page = @comment.comment_page
-    handle_unauthorized('edit') unless @comment.user == current_user
+    @back_route = comments_path(@reactable.model_name.route_key, @reactable, page: @page)
+    handle_unauthorized('edit', back_route: @back_route) unless @comment.user == current_user
   end
 
   def update
     @comment = Comment.find(params[:id])
-    return handle_unauthorized('edit') unless @comment.user == current_user
+    unless @comment.user == current_user
+      back_route = comments_path(@reactable.model_name.route_key, @reactable, page: @comment.comment_page)
+      return handle_unauthorized('edit', back_route:)
+    end
 
     if @comment.update(comment_params)
       render @comment
@@ -38,7 +42,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    return handle_unauthorized('delete') unless @comment.user == current_user
+    unless @comment.user == current_user
+      back_route = comments_path(@reactable.model_name.route_key, @reactable, page: @comment.comment_page)
+      return handle_unauthorized('delete', back_route:)
+    end
 
     @comment.destroy
   rescue ActiveRecord::RecordNotFound
