@@ -21,6 +21,16 @@
   gap: 0.5rem;
 }
 
+.friend-request .friend-request-message div {
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.friend-request .friend-request-message a {
+  white-space: nowrap;
+}
+
 .friend-request .friend-request-message img {
   height: 2rem;
   width: 2rem;

@@ -10,6 +10,13 @@
 }
 
 .likes .abbr-display {
+  max-width: 68vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.likes .abbr-display {
   font-weight: 600;
 }
 

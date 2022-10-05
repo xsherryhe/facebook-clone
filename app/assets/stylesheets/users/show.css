@@ -35,6 +35,11 @@
   overflow: scroll;
 }
 
+.users-show .sidebar .full-name {
+  max-width: 16rem;
+  word-wrap: break-word;
+}
+
 .users-show .sidebar input[type='submit']:not([disabled]),
 .users-show .sidebar input:not([disabled])::file-selector-button,
 .users-show .sidebar button:not([disabled]),

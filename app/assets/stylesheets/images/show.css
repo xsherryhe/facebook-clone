@@ -17,6 +17,7 @@
 .images-show .image-heading {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   align-items: center;
   padding: 0.5rem 1rem;
   background-color: var(--tertiary-color);
@@ -75,6 +76,6 @@
   box-shadow: 0 0 3.5px var(--font-color);
 }
 
-.images-show .dismiss-link {
+.images-show .dismiss-link:not(.image-footer .dismiss-link) {
   display: none;
 }

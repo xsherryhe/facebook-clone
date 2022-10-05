@@ -12,6 +12,12 @@
   color: var(--medium-font-color);
 }
 
+.notification a > p {
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .notification.new-notification {
   color: var(--font-color);
 }

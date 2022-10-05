@@ -33,6 +33,7 @@
   border-top-right-radius: 0.5rem;
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   align-items: center;
   padding: 0.5rem 1rem;
   background-color: var(--tertiary-color);

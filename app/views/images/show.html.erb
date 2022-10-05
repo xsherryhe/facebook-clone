@@ -9,10 +9,10 @@
   <div class="image-main">
     <%= render @image %>
   </div>
-  <div class="image-footer">
-    <div class="image-links" data-controller='links'>
-      <div class="image-link" data-links-target='linkDiv'><%= render 'likes/likes_link', reactable: reaction_target(@image) %></div>
-      <div class="image-link" data-links-target='linkDiv'><%= render 'comments/comment_link', text: 'Comment', reactable: reaction_target(@image) %></div>
+  <div class="image-footer" data-controller="hidden">
+    <div class="image-links" data-controller="links">
+      <div class="image-link" data-links-target="linkDiv"><%= render 'likes/likes_link', reactable: reaction_target(@image) %></div>
+      <div class="image-link" data-links-target="linkDiv"><%= render 'comments/comment_link', text: 'Comment', reactable: reaction_target(@image) %></div>
     </div>
     <%= render 'comments/comment_display', 
                reactable: reaction_target(@image),

@@ -3,6 +3,7 @@ body > header {
   display: grid;
   grid-template-columns: repeat(2, max-content);
   justify-content: space-between;
+  column-gap: 1rem;
   color: white;
   padding: 0.5rem 2rem;
   position: sticky;
@@ -14,6 +15,7 @@ body > header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr 0;
+  max-width: max(40rem, 70vw);
 }
 
 .header-link {
@@ -39,7 +41,11 @@ body > header {
 }
 
 .header-link a {
+  max-width: max(10rem, 18vw);
   color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #notifications {

@@ -7,3 +7,10 @@
 .user img {
   border-radius: 50%;
 }
+
+.user a {
+  max-width: max(16rem, 30vw);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

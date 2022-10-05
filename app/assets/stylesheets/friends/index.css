@@ -41,6 +41,10 @@
   padding: 0.5rem 0.8rem;
   font-size: 0.9rem;
   line-height: 1.2rem;
+  max-width: max(16rem, 30vw);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .friends-index .friend-container .dismiss-link {
