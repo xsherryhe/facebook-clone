@@ -1,0 +1,3 @@
+.posts-show .dismiss-link:not(.post-footer .dismiss-link) {
+  display: none;
+}

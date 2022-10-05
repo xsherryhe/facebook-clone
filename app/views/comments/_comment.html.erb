@@ -17,7 +17,7 @@
         <div class="comment-likes"><%= render 'likes/likes_display', reactable: comment %></div>
       </div>
     </div>
-    <div class="comment-footer">
+    <div class="comment-footer" data-controller="hidden">
       <div class="comment-links">
         <div class="comment-base-links">
           <%= render 'likes/likes_link', reactable: comment %>
@@ -35,10 +35,9 @@
           </div>
         <% end %>
       </div>
+      <%= render 'comments/comment_display', 
+            reactable: comment,
+            hide_preview: local_assigns.fetch(:hide_preview, nil) %>
     </div>
   </div>
 <% end %>
-
-<%= render 'comments/comment_display', 
-            reactable: comment,
-            hide_preview: local_assigns.fetch(:hide_preview, nil) %>

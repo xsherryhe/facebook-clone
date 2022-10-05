@@ -1,5 +1,11 @@
-<% if @reactable.comment_form_first? %>
-  <%= turbo_stream.prepend "#{@reactable_singular}-#{@reactable_id}-comments", @comment %>
+<% if @error %>
+  <%= turbo_stream.update "#{@reactable_singular}-#{@reactable_id}-comments-with-form" do %>
+    <%= render 'shared/error', error: @error %>
+  <% end %>
 <% else %>
-  <%= turbo_stream.append "#{@reactable_singular}-#{@reactable_id}-comments", @comment %>
+  <% if @reactable.comment_form_first? %>
+    <%= turbo_stream.prepend "#{@reactable_singular}-#{@reactable_id}-comments", @comment %>
+  <% else %>
+    <%= turbo_stream.append "#{@reactable_singular}-#{@reactable_id}-comments", @comment %>
+  <% end %>
 <% end %>

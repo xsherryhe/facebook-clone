@@ -1,10 +1,27 @@
-.post {
-  background-color: white;
+.post .post-container,
+.post > .error-message,
+.post > .delete-message {
   box-shadow: 0 0 3.5px var(--font-color);
   border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.post .post-container {
+  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.post .error-message,
+.post .delete-message {
+  background-color: var(--tertiary-color);
+}
+
+.post .error-message .dismiss-link,
+.post .delete-message .dismiss-link {
+  background-color: var(--secondary-color);
+  color: white;
 }
 
 .post a {

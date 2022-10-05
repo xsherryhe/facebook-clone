@@ -69,6 +69,7 @@ class PostsController < ApplicationController
     unless @post.creator == current_user
       @error = "You don't have permission to delete that post."
       @back_route = @post
+      return
     end
 
     @post.destroy

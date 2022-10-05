@@ -1,4 +1,4 @@
-<%= turbo_stream.replace "post-#{@id}" do %>
+<%= turbo_stream.update "post-#{@id}" do %>
   <div class="posts posts-destroy delete-message" data-controller="hidden" data-hidden-target="add">
     <% if @error %>
       <%= render 'shared/error', error: @error, back_route: @back_route %>

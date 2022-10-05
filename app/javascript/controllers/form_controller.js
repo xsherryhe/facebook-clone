@@ -23,7 +23,6 @@ export default class extends Controller {
     if(e.key != 'Enter') return;
     e.preventDefault();
     if(this._emptyForm()) return;
-    console.log(e.target)
     this.element.requestSubmit();
   }
 

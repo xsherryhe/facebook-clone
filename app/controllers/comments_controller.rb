@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
   end
 
   def create
+    return if @error
+
     @comment = current_user.comments.build(comment_params.merge(reactable: @reactable))
 
     respond_to do |format|
@@ -86,6 +88,6 @@ class CommentsController < ApplicationController
              else
                "This #{@reactable_singular} and its #{@comment_name.pluralize} no longer exist."
              end
-    handle_not_found(exception)
+    handle_not_found(exception) unless action_name == 'create'
   end
 end
