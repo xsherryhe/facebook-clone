@@ -11,6 +11,12 @@
   margin: 0;
 }
 
+.registrations-new .about-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .registrations-new .submit {
   grid-column: 2 / span 1;
   grid-row: 7 / span 1;

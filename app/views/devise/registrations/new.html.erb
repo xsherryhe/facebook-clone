@@ -60,6 +60,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="about-links">
+    <%= link_to 'Privacy Policy', '/privacy-policy', target: :_blank %>
+    <%= link_to 'Terms of Service', '/terms-of-service', target: :_blank %>
+  </div>
+
   <%= f.fields_for :profile do |profile_form| %>
     <h3 class="heading">Your Profile Info</h3>
     <div class="field">
