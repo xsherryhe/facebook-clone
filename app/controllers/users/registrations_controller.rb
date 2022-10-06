@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    UserMailer.with(user: resource).welcome_email.deliver if resource.persisted?
+    UserMailer.with(user: resource).welcome_email.deliver_now if resource.persisted?
   end
 
   # GET /resource/edit

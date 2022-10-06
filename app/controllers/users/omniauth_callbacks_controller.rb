@@ -33,6 +33,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     return unless @user.new_record?
 
     @user.save
-    UserMailer.with(user: @user).welcome_email.deliver if @user.email
+    UserMailer.with(user: @user).welcome_email.deliver_now if @user.email
   end
 end
