@@ -2,8 +2,9 @@ class Profile < ApplicationRecord
   before_validation :set_privacy
   before_validation :add_avatar, on: :create
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name, presence: true, length: { maximum: 30 }
+  validates :middle_name, length: { maximum: 30 }
+  validates :last_name, presence: true, length: { maximum: 40 }
   validate :valid_avatar
   serialize :privacy
 

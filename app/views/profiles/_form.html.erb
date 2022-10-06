@@ -22,9 +22,9 @@
       </div>
     </div>
   <% end %>
-  <%= form.input :first_name %>
-  <%= form.input :middle_name %>
-  <%= form.input :last_name %>
+  <%= form.input :first_name, maxlength: 30 %>
+  <%= form.input :middle_name, maxlength: 30 %>
+  <%= form.input :last_name, maxlength: 40 %>
 
   <div class="field">
     <%= form.input :birthdate, html5: true, wrapper: false %>
