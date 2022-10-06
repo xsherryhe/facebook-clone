@@ -18,6 +18,10 @@ class Profile < ApplicationRecord
     [first_name, middle_name, last_name].select(&:present?).join(' ')
   end
 
+  def generic_name
+    'this user'
+  end
+
   def birthdate_full_display
     birthdate&.strftime('%B %-d, %Y')
   end

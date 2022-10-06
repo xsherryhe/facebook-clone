@@ -2,7 +2,7 @@
   <div class="friend-request-display friend-message">
     <div class="friend-request-message">
       <% if local_assigns.fetch(:sender_label_method, nil) %>
-        <div><%= friend_request.sender.profile.public_send(sender_label_method) %> sent you a friend request.</div>
+        <div><%= friend_request.sender.profile.public_send(sender_label_method).capitalize %> sent you a friend request.</div>
       <% else %>
         <%= mini_avatar(friend_request.sender.profile) %>
         <div>
