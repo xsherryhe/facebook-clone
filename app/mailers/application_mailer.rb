@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: email_address_with_name('no-reply@sleepy-springs-52383.herokuapp.com', 'Clonebook')
   layout "mailer"
 
   before_action :set_logo_attachment
