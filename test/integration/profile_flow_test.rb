@@ -11,13 +11,12 @@ class ProfileFlowTest < ActionDispatch::IntegrationTest
 
     patch profile_path(profiles(:profile_user_two)), 
           params: { profile: { first_name: 'FirstOne', last_name: 'LastOne' } }
-    assert_equal("You don't have permission to edit that profile.", flash[:error])
-    assert_response :redirect
+    assert_select '.error', /You don't have permission to edit that profile\./
 
     patch profile_path(profiles(:profile_user_one)),
           params: { profile: { first_name: '', last_name: 'LastOneUpdated' } }
     assert_response :unprocessable_entity
-    assert_select 'p.error', "First name can't be blank"
+    assert_select '.error', "First name can't be blank"
 
     patch profile_path(profiles(:profile_user_one)),
           params: {
@@ -34,7 +33,7 @@ class ProfileFlowTest < ActionDispatch::IntegrationTest
     assert_equal('Successfully edited profile.', flash[:notice])
 
     assert_response :success
-    assert_select 'h3', 'FirstOneUpdated LastOneUpdated'
+    assert_select '.full-name', 'FirstOneUpdated LastOneUpdated'
   end
 
   test "can update privacy settings on user's profile" do

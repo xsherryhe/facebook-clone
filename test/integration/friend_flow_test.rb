@@ -21,49 +21,48 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
   test 'can view pending friend requests' do
     get friend_requests_path
     assert_response :success
-    assert_select 'p', text: 'FirstTwo MiddleTwo LastTwo send you a friend request.', count: 0
-    assert_select 'p', 'FirstFive LastFive sent you a friend request.'
+    assert_select '.friend-request-message', text: 'FirstTwo MiddleTwo LastTwo send you a friend request.', count: 0
+    assert_select '.friend-request-message', 'FirstFive LastFive sent you a friend request.'
   end
 
   test 'can send friend request to other non-friend user which other user can view' do
-    post friend_requests_path, params: { friend_request: { receiver_id: users(:one).id } }
+    post friend_requests_path, params: { receiver_id: users(:one).id }
     assert_response :unprocessable_entity
-    assert_select 'p.error', 'You cannot send a friend request to yourself!'
+    assert_select '.error', 'You cannot send a friend request to yourself!'
 
-    post friend_requests_path, params: { friend_request: { receiver_id: users(:six).id } }
+    post friend_requests_path, params: { receiver_id: users(:six).id }
     assert_response :unprocessable_entity
-    assert_select 'p.error', 'You have already sent a friend request to FirstSix!'
+    assert_select '.error', 'You have already sent a friend request to FirstSix!'
 
-    post friend_requests_path, params: { friend_request: { receiver_id: users(:two).id } }
+    post friend_requests_path, params: { receiver_id: users(:two).id }
     assert_response :unprocessable_entity
-    assert_select 'p.error', 'You are already friends with FirstTwo!'
+    assert_select '.error', 'You are already friends with FirstTwo!'
 
-    post friend_requests_path, params: { friend_request: { receiver_id: users(:two).id } }
+    post friend_requests_path, params: { receiver_id: users(:two).id }
     assert_response :unprocessable_entity
-    assert_select 'p.error', 'You are already friends with FirstTwo!'
+    assert_select '.error', 'You are already friends with FirstTwo!'
 
-    post friend_requests_path, params: { friend_request: { receiver_id: users(:four).id } }
+    post friend_requests_path, params: { receiver_id: users(:four).id }
     assert_response :success
     assert_select 'div', 'Friend request sent!'
 
     sign_in users(:four)
     get friend_requests_path
     assert_response :success
-    assert_select 'p', 'FirstOne MiddleOne LastOne sent you a friend request.'
+    assert_select '.friend-request-message', 'FirstOne MiddleOne LastOne sent you a friend request.'
   end
 
   test 'can accept a friend request and view new friend on friends list' do
     post friend_path(users(:two))
-    assert_equal("You don't have permission to make that friend. Please send a friend request first.", flash[:error])
-    assert_response :redirect
+    assert_select '.error', /You are already friends with FirstTwo!/
 
     post friend_path(users(:four))
-    assert_equal("You don't have permission to make that friend. Please send a friend request first.", flash[:error])
-    assert_response :redirect
+    assert_select '.error', /You don't have permission to make that friend\./
+    assert_select '.error', /Please send a friend request first\./
 
     post friend_path(users(:five))
     assert_response :success
-    assert_select 'div', "Success! You're friends now."
+    assert_select '.friend-message', /Success! You're friends now\./
 
     get friends_path
     assert_response :success
@@ -71,23 +70,20 @@ class FriendFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'can delete received friend requests' do
-    delete friend_request_path(friend_requests(:friend_request_five_four))
-    assert_equal("You don't have permission to delete that friend request.", flash[:error])
-    assert_response :redirect
+    delete friend_friend_request_path(users(:five), friend_requests(:friend_request_five_four))
+    assert_select '.error', /You don't have permission to delete that friend request\./
 
-    delete friend_request_path(friend_requests(:friend_request_five_one))
+    delete friend_friend_request_path(users(:five), friend_requests(:friend_request_five_one))
     assert_response :success
     assert_select 'div', 'Successfully deleted friend request.'
   end
 
   test 'can unfriend a friend' do
     delete friend_path(users(:four))
-    assert_equal("You don't have permission to unfriend that friend. You were never friends to begin with!",
-                 flash[:error])
-    assert_response :redirect
+    assert_select 'div', 'Unfriended FirstFour.'
 
     delete friend_path(users(:two))
     assert_response :success
-    assert_select 'div', 'Unfriended FirstTwo MiddleTwo LastTwo.'
+    assert_select 'div', 'Unfriended FirstTwo.'
   end
 end

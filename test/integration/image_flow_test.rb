@@ -35,7 +35,7 @@ class ImageFlowTest < ActionDispatch::IntegrationTest
     follow_redirect!
 
     assert_response :success
-    assert_select 'div.body', 'Look at my chocolates.'
+    assert_select 'div.post-body', 'Look at my chocolates.'
     assert_select "img:match('src',?)", /chocolates1\.jpg/
   end
 
@@ -51,6 +51,6 @@ class ImageFlowTest < ActionDispatch::IntegrationTest
     post likes_path('posts', target_post, format: :turbo_stream)
 
     get image_path(target_post.photos.first)
-    assert_select "div#post-#{target_post.id}-likes", '1 like: You'
+    assert_select "div#post-#{target_post.id}-likes", /1 like: You/
   end
 end
