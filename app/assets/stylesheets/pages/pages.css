@@ -1,0 +1,12 @@
+.pages h1 {
+  margin: 1rem 0;
+}
+
+.pages h2 {
+  margin: 0.7rem 0;
+}
+
+.pages h3,
+.pages p {
+  margin: 0.5rem 0;
+}

@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root 'posts#index'
+
+  get '/privacy-policy', to: 'pages#privacy_policy'
 end

@@ -15,6 +15,7 @@
  *= require layout.css
  *= require form.css
  *= require_tree ./shared
+ *= require_tree ./pages
  *= require_tree ./devise
  *= require_tree ./users
  *= require_tree ./profiles
