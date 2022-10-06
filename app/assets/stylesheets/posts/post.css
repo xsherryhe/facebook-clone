@@ -46,7 +46,7 @@
 
 .post .post-content {
   max-height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .post .post-body {

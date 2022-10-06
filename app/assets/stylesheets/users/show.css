@@ -32,7 +32,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.3rem;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .users-show .sidebar .full-name {
