@@ -86,3 +86,5 @@ gem "figaro"
 gem "simple_form"
 
 gem "active_storage_validations"
+
+gem "cloudinary"
