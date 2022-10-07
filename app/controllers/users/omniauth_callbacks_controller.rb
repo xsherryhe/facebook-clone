@@ -33,6 +33,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     return unless @user.new_record?
 
     @user.save
-    UserMailer.with(user: @user).welcome_email.deliver_now if @user.email
+    # Emails will not be sent except to whitelisted users (Mailgun restriction)
+    return unless @user.email && ENV['whitelisted_emails'].split(',').include?(@user.email)
+
+    UserMailer.with(user: @user).welcome_email.deliver_now
+    # UserMailer.with(user: @user).welcome_email.deliver_now if @user.email
   end
 end
